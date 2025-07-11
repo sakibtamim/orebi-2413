@@ -8,10 +8,10 @@ const Navbar = () => {
   let [show, setShow] = useState(false);
   let [account, setAccount] = useState(false);
   return (
-    <nav className="bg-navbg py-[25px]">
+    <nav className="bg-navbg lg:py-[25px] py-3">
       <Container>
-        <div className="flex items-center">
-          <div className="w-1/4 relative inline-block">
+        <div className="flex flex-wrap items-center lg:gap-0 gap-y-5">
+          <div className="lg:w-1/4 w-full relative inline-block ">
             <div className="flex items-center gap-x-[10px]  ">
               <div className="cursor-pointer" onClick={() => setShow(!show)}>
                 <HiBars3BottomLeft className="text-[18px]" />
@@ -20,7 +20,7 @@ const Navbar = () => {
                 Shop by Category
               </h6>
             </div>
-            <div className="w-[250px] absolute top-[28px] left-0">
+            <div className=" w-[250px] absolute top-[28px] left-0 z-10 duration-300 ease-in-out">
               <ul className={` ${show == true ? "bg-primary" : "opacity-0"}`}>
                 <li className=" border-b-1 border-b-[#2D2D2D]">
                   <a
@@ -65,7 +65,7 @@ const Navbar = () => {
               </ul>
             </div>
           </div>
-          <div className="w-2/4">
+          <div className="lg:w-2/4 w-1/2">
             <div className="relative">
               <input
                 type="text"
@@ -77,7 +77,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <div className="w-1/4">
+          <div className="lg:w-1/4 w-1/2">
             <div className="flex justify-end gap-x-[40px]">
               <div
                 className="flex items-center gap-x-[10px] cursor-pointer relative "
@@ -85,7 +85,7 @@ const Navbar = () => {
               >
                 <FaUser className="text-[18px] text-primary" />
                 <IoMdArrowDropdown className="text-primary text-[20px]" />
-                <div className="w-[200px] absolute top-[28px] right-[0px]">
+                <div className="w-[200px] absolute top-[28px] right-[0px] z-10">
                   <ul
                     className={` ${account == true ? "bg-white" : "opacity-0"}`}
                   >
