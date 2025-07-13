@@ -11,7 +11,7 @@ const Navbar = () => {
     <nav className="bg-navbg lg:py-[25px] py-3">
       <Container>
         <div className="flex flex-wrap items-center lg:gap-0 gap-y-5">
-          <div className="lg:w-1/4 w-full relative inline-block ">
+          <div className="lg:w-1/4 w-full relative inline-block">
             <div className="flex items-center gap-x-[10px]  ">
               <div className="cursor-pointer" onClick={() => setShow(!show)}>
                 <HiBars3BottomLeft className="text-[18px]" />
@@ -20,8 +20,14 @@ const Navbar = () => {
                 Shop by Category
               </h6>
             </div>
-            <div className=" w-[250px] absolute top-[28px] left-0 z-10 duration-300 ease-in-out">
-              <ul className={` ${show == true ? "bg-primary" : "opacity-0"}`}>
+            <div
+              className={` w-[250px] absolute top-[28px] left-0 z-50 transition-all duration-300 ease-in-out origin-top-left ${
+                show == true
+                  ? "opacity-100 scale-100 pointer-events-auto"
+                  : "opacity-0 scale-0 pointer-events-none"
+              }`}
+            >
+              <ul className="bg-primary">
                 <li className=" border-b-1 border-b-[#2D2D2D]">
                   <a
                     className="text-[14px] text-[rgba(255,255,255,0.7)] font-dmsans font-normal px-[20px] py-[16px] inline-block hover:text-white hover:font-bold"
@@ -85,10 +91,14 @@ const Navbar = () => {
               >
                 <FaUser className="text-[18px] text-primary" />
                 <IoMdArrowDropdown className="text-primary text-[20px]" />
-                <div className="w-[200px] absolute top-[28px] right-[0px] z-10">
-                  <ul
-                    className={` ${account == true ? "bg-white" : "opacity-0"}`}
-                  >
+                <div
+                  className={`w-[200px] absolute top-[28px] right-[0px] z-50 transition-all duration-300 ease-in-out origin-top-right ${
+                    account == true
+                      ? "opacity-100 scale-100 pointer-events-auto"
+                      : "opacity-0 scale-0 pointer-events-none"
+                  }`}
+                >
+                  <ul className="bg-white">
                     <li className="group text-center hover:bg-[#2b2b2b]">
                       <a
                         href=""
