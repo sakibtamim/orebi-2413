@@ -1,48 +1,43 @@
 import React from "react";
 import Container from "./Container";
+import BanImg from "../assets/banimg.png";
 import { FaTruck } from "react-icons/fa";
 import { FaArrowRotateLeft } from "react-icons/fa6";
 import { PiNumberTwoBold } from "react-icons/pi";
+import Slider from "react-slick";
 
 const Banner = () => {
+  let settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <>
-      <section
-        className={`bg-[url(/banner.png)] bg-cover w-full pt-[201px] pb-[148px]`}
-      >
-        <Container>
+      <section {...settings}>
+        <Slider>
           <div>
-            <div className="w-1/4">
-              <h1 className="text-[49px] text-primary font-bold font-dmsans pb-[33px]">
-                Final Offer
-              </h1>
-              <div className="flex items-center gap-x-[8px] pb-[49px]">
-                <span className=" text-[16px] text-fadetxt font-normal font-dmsans">
-                  Up to
-                </span>
-                <span className="text-[40px] font-bold text-primary font-dmsans">
-                  50%
-                </span>
-                <span className=" text-[16px] text-fadetxt font-normal font-dmsans">
-                  sale for all furniture items!
-                </span>
-              </div>
-              <a
-                href=""
-                className="text-[14px] font-bold font-dmsans text-white capitalize px-[58px] py-[16px] bg-primary"
-              >
-                Shop now
-              </a>
-            </div>
+            <img src={BanImg} className="w-full" alt="" />
           </div>
-        </Container>
+          <div>
+            <img src={BanImg} className="w-full" alt="" />
+          </div>
+          <div>
+            <img src={BanImg} className="w-full" alt="" />
+          </div>
+          <div>
+            <img src={BanImg} className="w-full" alt="" />
+          </div>
+        </Slider>
       </section>
       <section className="py-[22px]">
         <Container>
           <div className="flex ">
             <div className="w-1/3 flex items-center">
               <div>
-                <PiNumberTwoBold className="text-[20px]"/>
+                <PiNumberTwoBold className="text-[20px]" />
               </div>
               <p>Two years warranty</p>
             </div>
