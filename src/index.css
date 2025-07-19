@@ -10,3 +10,8 @@
   --color-input: #c4c4c4;
   --color-border: #2b2b2b;
 }
+
+#banner .slick-dots .slick-active div {
+  border-right: 2px solid #262626 !important;
+  color: #262626 !important;
+}

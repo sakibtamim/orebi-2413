@@ -10,46 +10,81 @@ const Banner = () => {
   let settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    autoplay: false,
+    speed: 2000,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    pauseOnHover: true,
+    arrows: false,
+    vertical: true,
+    verticalSwiping: true,
+    swipeToSlide: true,
+    appendDots: (dots) => (
+      <div
+        style={{
+          borderRadius: "10px",
+          padding: "10px",
+          position: "absolute",
+          top: "50%",
+          left: "10%",
+          transform: "translateY(-50%)",
+        }}
+      >
+        <ul style={{ margin: "0px" }}> {dots} </ul>
+      </div>
+    ),
+    customPaging: (i) => (
+      <div
+        style={{
+          width: "20px",
+          color: "transparent",
+          padding: "10px 0",
+          borderRight: "2px white solid",
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: "10px",
+        }}
+      >
+        0{i + 1}
+      </div>
+    ),
   };
   return (
     <>
-      <section {...settings}>
-        <Slider>
+      <section id="banner" className="border-b-[1px] border-b-[#F0F0F0]">
+        <Slider {...settings}>
           <div>
-            <img src={BanImg} className="w-full" alt="" />
+            <img src={BanImg} className="w-full h-full" alt="" />
           </div>
           <div>
-            <img src={BanImg} className="w-full" alt="" />
+            <img src={BanImg} className="w-full h-full" alt="" />
           </div>
           <div>
-            <img src={BanImg} className="w-full" alt="" />
+            <img src={BanImg} className="w-full h-full" alt="" />
           </div>
           <div>
-            <img src={BanImg} className="w-full" alt="" />
+            <img src={BanImg} className="w-full h-full" alt="" />
           </div>
         </Slider>
-      </section>
-      <section className="py-[22px]">
         <Container>
-          <div className="flex ">
-            <div className="w-1/3 flex items-center">
+          <div className="flex py-[22px]">
+            <div className="w-1/3 flex items-center gap-x-[15px]">
               <div>
-                <PiNumberTwoBold className="text-[20px]" />
+                <PiNumberTwoBold className="text-[20px] text-primary" />
               </div>
-              <p>Two years warranty</p>
+              <p className="text-[16px] text-fadetxt font-normal font-dmsans">
+                Two years warranty
+              </p>
             </div>
-            <div className="w-1/3 flex items-center justify-center">
+            <div className="w-1/3 flex items-center justify-center gap-x-[15px]">
               <div>
-                <FaTruck />
+                <FaTruck className="text-[20px] text-primary" />
               </div>
               <p>Free shipping</p>
             </div>
-            <div className="w-1/3 flex items-center justify-end">
+            <div className="w-1/3 flex items-center justify-end gap-x-[15px]">
               <div>
-                <FaArrowRotateLeft />
+                <FaArrowRotateLeft className="text-[20px] text-primary" />
               </div>
               <p>Return policy in 30 days</p>
             </div>
