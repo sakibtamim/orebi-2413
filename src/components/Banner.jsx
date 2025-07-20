@@ -22,15 +22,15 @@ const Banner = () => {
     swipeToSlide: true,
     appendDots: (dots) => (
       <div
-        // className="absolute top-1/2 left-[10%] -translate-y-1/2 flex flex-col gap-2 z-10"
-        style={{
-          borderRadius: "10px",
-          padding: "10px",
-          position: "absolute",
-          top: "50%",
-          left: "10%",
-          transform: "translateY(-50%)",
-        }}
+      // className="absolute top-1/2 left-[10%] -translate-y-1/2 flex flex-col gap-2 z-10"
+      // style={{
+      //   borderRadius: "10px",
+      //   padding: "10px",
+      //   position: "absolute",
+      //   top: "50%",
+      //   left: "10%",
+      //   transform: "translateY(-50%)",
+      // }}
       >
         <ul
           // className="list-none m-0 p-0"
