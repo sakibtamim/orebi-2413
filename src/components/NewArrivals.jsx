@@ -1,23 +1,48 @@
 import React, { useContext } from "react";
 import Container from "./Container";
 
-import { FaHeart, FaShoppingCart } from "react-icons/fa";
+import {
+  FaHeart,
+  FaLongArrowAltLeft,
+  FaLongArrowAltRight,
+  FaShoppingCart,
+} from "react-icons/fa";
 import { IoGitCompare } from "react-icons/io5";
 import { ApiData } from "./ContextApi";
 import Slider from "react-slick";
 
+function ArrivalNextArrow(props) {
+  const { onClick } = props;
+  return (
+    <div className="nextBtn" onClick={onClick}>
+      <FaLongArrowAltRight />
+    </div>
+  );
+}
+
+function ArrivalPrevArrow(props) {
+  const { onClick } = props;
+  return (
+    <div className="prevBtn" onClick={onClick}>
+      <FaLongArrowAltLeft />
+    </div>
+  );
+}
+
 const NewArrivals = () => {
   let data = useContext(ApiData);
+
   let ArrivalSlider = {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-
     arrows: true,
+    nextArrow: <ArrivalNextArrow />,
+    prevArrow: <ArrivalPrevArrow />,
   };
   return (
-    <section>
+    <section id="new_arrivals">
       <Container>
         <div className="pb-[48px]">
           <h2 className="text-[39px] text-primary font-bold font-dmsans">
