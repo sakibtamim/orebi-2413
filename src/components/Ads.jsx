@@ -6,7 +6,7 @@ import AdsImg03 from "../assets/ads03.png";
 
 const Ads = () => {
   return (
-    <section className="pt-[174px] pb-[128px]">
+    <section className="lg:pt-[174px] pt-[40px] lg:pb-[128px] pb-[40px]">
       <Container>
         <div className="flex justify-between">
           <div className="w-[49%]">

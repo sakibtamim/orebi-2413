@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Container from "./Container";
-
 import {
   FaHeart,
   FaLongArrowAltLeft,
@@ -44,8 +43,8 @@ const NewArrivals = () => {
   return (
     <section id="new_arrivals">
       <Container>
-        <div className="pb-[48px]">
-          <h2 className="text-[39px] text-primary font-bold font-dmsans">
+        <div className="lg:pb-[48px] pb-[24px]">
+          <h2 className="lg:text-[39px] text-[20px] text-primary font-bold font-dmsans">
             New Arrivals
           </h2>
         </div>
@@ -90,16 +89,16 @@ const NewArrivals = () => {
                   </div>
                 </div>
                 <div className="">
-                  <div className="flex justify-between items-center pt-[24px] pb-[15px]">
-                    <h3 className="text-[18px] text-primary font-bold font-dmsans">
+                  <div className="lg:flex justify-between items-center pt-[24px] pb-[15px]">
+                    <h3 className="lg:text-[18px] text-[14px] text-primary font-bold font-dmsans">
                       {item.title}
                     </h3>
-                    <p className="text-[16px] text-secondary font-normal font-dmsans">
+                    <p className="lg:text-[16px] text-[12px] text-secondary font-normal font-dmsans">
                       ${item.price}
                     </p>
                   </div>
                   <div>
-                    <p className="text-[16px] text-secondary font-normal font-dmsans capitalize">
+                    <p className="lg:text-[16px] text-[12px] text-secondary font-normal font-dmsans capitalize">
                       {item.category}
                     </p>
                   </div>

@@ -8,7 +8,9 @@ const Header = () => {
 
   return (
     <header
-      className={`lg:py-[32px] pt-2 ${show ? "lg:mb-0 mb-1" : "lg:mb-0 mb-6"}`}
+      className={`lg:py-[32px] pt-2 ${
+        show ? "lg:mb-0 mb-1" : "lg:mb-0 mb-6"
+      } sticky top-0 z-50`}
     >
       <Container>
         <div className="lg:flex  items-center">

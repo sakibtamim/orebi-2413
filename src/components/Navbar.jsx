@@ -53,7 +53,7 @@ const Navbar = () => {
               </h6>
             </div>
             {cateShow && (
-              <div className=" lg:w-[250px] w-[160px] absolute lg:top-[60px] top-[47px] left-0 z-50 ">
+              <div className=" lg:w-[250px] w-[160px] absolute lg:top-[60px] top-[40px] left-0 z-50 ">
                 <ul className="bg-primary">
                   <li className="relative border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px] hover:text-white hover:font-bold lg:hover:pl-[30px] hover:pl-[24px] duration-300 ease-in-out group">
                     <a
@@ -199,7 +199,7 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="Search Products"
-                className="w-full bg-white py-[16px] px-[20px] text-input text-[14px] font-normal font-dmsans capitalize border-none outline-none rounded-sm"
+                className="w-full bg-white lg:py-[16px] lg:px-[20px] py-[10px] px-[14px] text-input lg:text-[14px] text-[12px] font-normal font-dmsans capitalize border-none outline-none rounded-sm"
               />
               <div className="absolute top-[50%] right-[20px] translate-y-[-50%]">
                 <FaSearch className="lg:text-[18px] text-[14px] text-primary" />
@@ -215,7 +215,7 @@ const Navbar = () => {
                 <FaUser className="lg:text-[18px] text-[16px] text-primary" />
                 <IoMdArrowDropdown className="text-primary lg:text-[20px] text-[16px] " />
                 {accountShow && (
-                  <div className="lg:w-[200px] w-[150px] absolute lg:top-[60px] top-[47px] right-0  transition-all duration-300 ease-in-out origin-top-right z-50">
+                  <div className="lg:w-[200px] w-[150px] absolute lg:top-[60px] top-[40px] right-0  transition-all duration-300 ease-in-out origin-top-right z-50">
                     <ul className="bg-white">
                       <li className="group text-center hover:bg-[#2b2b2b]">
                         <a
@@ -240,7 +240,7 @@ const Navbar = () => {
               <div className="relative" ref={cartRef}>
                 <FaShoppingCart className="lg:text-[18px] text-[16px] text-primary cursor-pointer" />
                 {cartShow && (
-                  <div className="absolute lg:top-[60px] right-0 top-[47px] lg:w-[360px] w-[240px] bg-white border-[#F0F0F0] border-[1px] z-50">
+                  <div className="absolute lg:top-[60px] right-0 top-[40px] lg:w-[360px] w-[240px] bg-white border-[#F0F0F0] border-[1px] z-50">
                     <div className=" lg:py-[20px] py-[10px] lg:px-0 px-[10px] bg-[#F5F5F3] flex lg:justify-around justify-between items-center">
                       <div className="">
                         <img
