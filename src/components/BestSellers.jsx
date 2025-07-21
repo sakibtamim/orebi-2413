@@ -8,7 +8,7 @@ const BestSellers = () => {
   let data = useContext(ApiData);
 
   return (
-    <section className="pt-[118px] pb-[130px]">
+    <section className="lg:pt-[118px] pt-[40px] lg:pb-[130px] pb-[40px]">
       <Container>
         <div className="lg:pb-[48px] pb-[24px]">
           <h2 className="lg:text-[39px] text-[20px] text-primary font-bold font-dmsans">
@@ -17,7 +17,7 @@ const BestSellers = () => {
         </div>
         <div className="flex justify-between flex-wrap">
           {data.slice(20, 24).map((item) => (
-            <div key={item.id} className="w-[24%]">
+            <div key={item.id} className="lg:w-[24%] w-[48%]">
               <div className="relative group">
                 <div className="bg-[#F9F9F9]">
                   <img src={item.thumbnail} alt="" />

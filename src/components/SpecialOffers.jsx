@@ -8,7 +8,7 @@ const SpecialOffers = () => {
   let data = useContext(ApiData);
   const selectedIndexes = [4, 8, 12, 16];
   return (
-    <section className="pb-[106px]">
+    <section className="lg:pb-[106px] pb-[40px]">
       <Container>
         <div className="lg:pb-[48px] pb-[24px]">
           <h2 className="lg:text-[39px] text-[20px] text-primary font-bold font-dmsans">
@@ -20,7 +20,7 @@ const SpecialOffers = () => {
             const item = data[index];
             if (!item) return null;
             return (
-              <div key={item.id} className="w-[24%]">
+              <div key={item.id} className="lg:w-[24%] w-[48%]">
                 <div className="relative group">
                   <div className="bg-[#F9F9F9]">
                     <img src={item.thumbnail} alt="" />

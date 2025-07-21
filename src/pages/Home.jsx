@@ -7,6 +7,7 @@ import NewArrivals from "../components/NewArrivals";
 import BestSellers from "../components/BestSellers";
 import AdsBtm from "../components/AdsBtm";
 import SpecialOffers from "../components/SpecialOffers.Jsx";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <BestSellers />
       <AdsBtm />
       <SpecialOffers />
+      <Footer />
     </>
   );
 };
