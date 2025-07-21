@@ -39,6 +39,22 @@ const NewArrivals = () => {
     arrows: true,
     nextArrow: <ArrivalNextArrow />,
     prevArrow: <ArrivalPrevArrow />,
+    responsive: [
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   return (
     <section id="new_arrivals">
@@ -53,7 +69,7 @@ const NewArrivals = () => {
             {data.map((item) => (
               <div className="!w-[95%]">
                 <div className="relative group">
-                  <div>
+                  <div className="bg-[#F9F9F9]">
                     <img src={item.thumbnail} alt="" />
                   </div>
                   <div className="absolute left-0 bottom-0 w-full bg-white scale-0 group-hover:scale-100 duration-300 ease-in-out origin-bottom-left">
@@ -87,9 +103,12 @@ const NewArrivals = () => {
                       </li>
                     </ul>
                   </div>
+                  <div className="absolute lg:top-[20px] top-[10px] lg:left-[20px] left-[10px] lg:px-[32px] px-[14px] lg:py-[8px] py-[6px] bg-primary lg:text-[14px] text-[10px] text-white lg:font-bold font-semibold font-dmsans">
+                    {item.discountPercentage}%
+                  </div>
                 </div>
                 <div className="">
-                  <div className="lg:flex justify-between items-center pt-[24px] pb-[15px]">
+                  <div className="flex justify-between items-center pt-[24px] pb-[15px]">
                     <h3 className="lg:text-[18px] text-[14px] text-primary font-bold font-dmsans">
                       {item.title}
                     </h3>

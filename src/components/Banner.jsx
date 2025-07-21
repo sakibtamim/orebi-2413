@@ -21,37 +21,12 @@ const Banner = () => {
     verticalSwiping: true,
     swipeToSlide: true,
     appendDots: (dots) => (
-      <div
-      // className="absolute top-1/2 left-[10%] -translate-y-1/2 flex flex-col gap-2 z-10"
-      // style={{
-      //   borderRadius: "10px",
-      //   padding: "10px",
-      //   position: "absolute",
-      //   top: "50%",
-      //   left: "10%",
-      //   transform: "translateY(-50%)",
-      // }}
-      >
-        <ul
-          // className="list-none m-0 p-0"
-          style={{ margin: "0px" }}
-        >
-          {dots}
-        </ul>
+      <div>
+        <ul style={{ margin: "0px" }}>{dots}</ul>
       </div>
     ),
     customPaging: (i) => (
-      <div
-        className="lg:w-[20px] w-[16px] text-transparent lg:py-[10px] py-[4px] border-r-[2px] border-r-[white] text-[10px] font-dmsans"
-        // style={{
-        //   width: "20px",
-        //   color: "transparent",
-        //   padding: "10px 0",
-        //   borderRight: "2px white solid",
-        //   fontFamily: "'DM Sans', sans-serif",
-        //   fontSize: "10px",
-        // }}
-      >
+      <div className="lg:w-[20px] w-[16px] text-transparent lg:py-[10px] py-[4px] border-r-[2px] border-r-[white] text-[10px] font-dmsans">
         0{i + 1}
       </div>
     ),

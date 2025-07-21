@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Banner from "../components/Banner";
 import Ads from "../components/Ads";
 import NewArrivals from "../components/NewArrivals";
+import BestSellers from "../components/BestSellers";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Banner />
       <Ads />
       <NewArrivals />
+      <BestSellers />
     </>
   );
 };

@@ -91,20 +91,51 @@
 
 /* for sm devices */
 @media (min-width: 576px) and (max-width: 767px) {
+  #banner .slick-dots {
+    padding: 6px;
+    left: 5%;
+  }
+
+  #new_arrivals .nextBtn,
+  #new_arrivals .prevBtn {
+    width: 40px;
+    height: 40px;
+  }
+  #new_arrivals .nextBtn {
+    right: 0;
+  }
+  #new_arrivals .nextBtn svg,
+  #new_arrivals .prevBtn svg {
+    font-size: 16px;
+  }
 }
 /* for sm devices */
 
 /* for md devices */
 @media (min-width: 768px) and (max-width: 991px) {
+  #new_arrivals .nextBtn,
+  #new_arrivals .prevBtn {
+    width: 60px;
+    height: 60px;
+  }
+  #new_arrivals .nextBtn {
+    right: 0;
+  }
 }
 /* for md devices */
 
 /* for lg devices */
 @media (min-width: 992px) and (max-width: 1199px) {
+  #new_arrivals .nextBtn {
+    right: 0;
+  }
 }
 /* for lg devices */
 
 /* for xl devices */
 @media (min-width: 1200px) and (max-width: 1399px) {
+  #new_arrivals .nextBtn {
+    right: 0;
+  }
 }
 /* for xl devices */
