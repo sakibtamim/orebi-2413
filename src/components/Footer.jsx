@@ -83,11 +83,7 @@ const Footer = () => {
             </h4>
           </div>
           <div className="lg:w-2/8 w-1/2 lg:mt-0 mt-[20px] lg:text-start text-right">
-            <img
-              src={FooterLogo}
-              className="lg:w-[32%] w-[50%] lg:block inline-block"
-              alt=""
-            />
+            <img src={FooterLogo} className=" lg:block inline-block" alt="" />
           </div>
         </div>
         <div className="lg:flex justify-between items-center ">
