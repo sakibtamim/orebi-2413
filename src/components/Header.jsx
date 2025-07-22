@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Container from "./Container";
 import Logo from "../assets/logo.png";
 import { IoClose, IoMenu } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   let [show, setShow] = useState(false);
@@ -26,44 +27,44 @@ const Header = () => {
               }`}
             >
               <li className="lg:border-none border-b-1 border-b-[#2D2D2D]">
-                <a
+                <Link
                   className="text-[14px] lg:text-secondary text-[rgba(255,255,255,0.7)] font-normal inline-block lg:hover:text-primary hover:text-[#fff] hover:font-bold duration-200 ease-in-out capitalize lg:p-0 p-2 "
-                  href=""
+                  to="/"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li className=" lg:border-none border-b-1 border-b-[#2D2D2D]">
-                <a
+                <Link
                   className="text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-normal inline-block lg:hover:text-primary hover:text-[#fff] hover:font-bold duration-200 ease-in-out capitalize lg:p-0 p-2"
-                  href=""
+                  to="/products"
                 >
                   Shop
-                </a>
+                </Link>
               </li>
               <li className="lg:border-none border-b-1 border-b-[#2D2D2D]">
-                <a
+                <Link
                   className="text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-normal inline-block lg:hover:text-primary hover:text-[#fff] hover:font-bold duration-200 ease-in-out capitalize lg:p-0 p-2"
-                  href=""
+                  to="/about"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li className="lg:border-none border-b-1 border-b-[#2D2D2D]">
-                <a
+                <Link
                   className="text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-normal inline-block lg:hover:text-primary hover:text-[#fff] hover:font-bold duration-200 ease-in-out capitalize lg:p-0 p-2"
-                  href=""
+                  to="/contacts"
                 >
                   Contacts
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-normal inline-block lg:hover:text-primary hover:text-[#fff] hover:font-bold duration-200 ease-in-out capitalize lg:p-0 p-2"
-                  href=""
+                  to="/journal"
                 >
                   Journal
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
