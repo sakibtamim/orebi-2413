@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import Shop from "./pages/Shop";
 import Error404 from "./components/Error404";
 import About from "./pages/About";
+import Contacts from "./pages/Contacts";
 let router = createBrowserRouter(
   createRoutesFromChildren(
     <>
@@ -16,6 +17,7 @@ let router = createBrowserRouter(
         <Route path="/" element={<Home />}></Route>
         <Route path="/products" element={<Shop />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/contacts" element={<Contacts />}></Route>
       </Route>
       <Route path="*" element={<Error404 />}></Route>
     </>
