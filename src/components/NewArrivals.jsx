@@ -67,7 +67,7 @@ const NewArrivals = () => {
         <div>
           <Slider {...ArrivalSlider}>
             {data.map((item) => (
-              <div className="!w-[95%]">
+              <div key={item.id} className="!w-[95%]">
                 <div className="relative group">
                   <div className="bg-[#F9F9F9]">
                     <img src={item.thumbnail} alt="" />

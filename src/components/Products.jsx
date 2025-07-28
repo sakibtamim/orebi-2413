@@ -8,7 +8,7 @@ const Products = () => {
   return (
     <>
       {data.map((item) => (
-        <div className="w-[31%]">
+        <div key={item.id} className="w-[31%]">
           <div className="relative group">
             <div className="bg-[#F9F9F9]">
               <img src={item.thumbnail} alt="" />
