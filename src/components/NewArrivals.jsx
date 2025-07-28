@@ -9,6 +9,7 @@ import {
 import { IoGitCompare } from "react-icons/io5";
 import { ApiData } from "./ContextApi";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 function ArrivalNextArrow(props) {
   const { onClick } = props;
@@ -86,60 +87,47 @@ const NewArrivals = () => {
             <Slider {...ArrivalSlider}>
               {data.map((item) => (
                 <div key={item.id} className="!w-[95%]">
-                  <div className="relative group">
-                    <div className="bg-[#F9F9F9]">
-                      <img src={item.thumbnail} alt="" />
-                    </div>
-                    <div className="absolute left-0 bottom-0 w-full bg-white scale-0 group-hover:scale-100 duration-300 ease-in-out origin-bottom-left">
-                      <ul className=" py-[25px] pr-[30px]">
-                        <li>
-                          <a
-                            href=""
-                            className="flex items-center justify-end gap-x-[16px] text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold"
-                          >
+                  <Link to="/products">
+                    <div className="relative group">
+                      <div className="bg-[#F9F9F9]">
+                        <img src={item.thumbnail} alt="" />
+                      </div>
+                      <div className="absolute left-0 bottom-0 w-full bg-white scale-0 group-hover:scale-100 duration-300 ease-in-out origin-bottom-left">
+                        <ul className=" py-[25px] pr-[30px]">
+                          <li className="flex items-center justify-end gap-x-[16px] text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold">
                             <span>Add to Wish List</span>
                             <FaHeart className="text-primary " />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href=""
-                            className="flex items-center justify-end gap-x-[16px] py-[20px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold"
-                          >
+                          </li>
+                          <li className="flex items-center justify-end gap-x-[16px] py-[20px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold">
                             <span>Compare</span>
                             <IoGitCompare className="text-primary " />
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href=""
-                            className="flex items-center justify-end gap-x-[16px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold"
-                          >
+                          </li>
+                          <li className="flex items-center justify-end gap-x-[16px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold">
                             <span>Add to Cart</span>
                             <FaShoppingCart className="text-primary " />
-                          </a>
-                        </li>
-                      </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="absolute lg:top-[20px] top-[10px] lg:left-[20px] left-[10px] lg:px-[32px] px-[14px] lg:py-[8px] py-[6px] bg-primary lg:text-[14px] text-[10px] text-white lg:font-bold font-semibold font-dmsans">
+                        {item.discountPercentage}%
+                      </div>
                     </div>
-                    <div className="absolute lg:top-[20px] top-[10px] lg:left-[20px] left-[10px] lg:px-[32px] px-[14px] lg:py-[8px] py-[6px] bg-primary lg:text-[14px] text-[10px] text-white lg:font-bold font-semibold font-dmsans">
-                      {item.discountPercentage}%
+                    <div className="">
+                      <div className="flex justify-between items-center pt-[24px] pb-[15px]">
+                        <h3 className="lg:text-[18px] text-[14px] text-primary font-bold font-dmsans">
+                          {item.title}
+                        </h3>
+                        <p className="lg:text-[16px] text-[12px] text-secondary font-normal font-dmsans">
+                          ${item.price}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="lg:text-[16px] text-[12px] text-secondary font-normal font-dmsans capitalize">
+                          {item.category}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="">
-                    <div className="flex justify-between items-center pt-[24px] pb-[15px]">
-                      <h3 className="lg:text-[18px] text-[14px] text-primary font-bold font-dmsans">
-                        {item.title}
-                      </h3>
-                      <p className="lg:text-[16px] text-[12px] text-secondary font-normal font-dmsans">
-                        ${item.price}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="lg:text-[16px] text-[12px] text-secondary font-normal font-dmsans capitalize">
-                        {item.category}
-                      </p>
-                    </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </Slider>

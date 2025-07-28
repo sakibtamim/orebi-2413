@@ -43,32 +43,17 @@ const BestSellers = () => {
                   </div>
                   <div className="absolute left-0 bottom-0 w-full bg-white scale-0 group-hover:scale-100 duration-300 ease-in-out origin-bottom-left">
                     <ul className=" py-[25px] pr-[30px]">
-                      <li>
-                        <a
-                          href=""
-                          className="flex items-center justify-end gap-x-[16px] text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold"
-                        >
-                          <span>Add to Wish List</span>
-                          <FaHeart className="text-primary " />
-                        </a>
+                      <li className="flex items-center justify-end gap-x-[16px] text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold cursor-pointer">
+                        <span>Add to Wish List</span>
+                        <FaHeart className="text-primary " />
                       </li>
-                      <li>
-                        <a
-                          href=""
-                          className="flex items-center justify-end gap-x-[16px] py-[20px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold"
-                        >
-                          <span>Compare</span>
-                          <IoGitCompare className="text-primary " />
-                        </a>
+                      <li className="flex items-center justify-end gap-x-[16px] py-[20px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold cursor-pointer">
+                        <span>Compare</span>
+                        <IoGitCompare className="text-primary " />
                       </li>
-                      <li>
-                        <a
-                          href=""
-                          className="flex items-center justify-end gap-x-[16px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold"
-                        >
-                          <span>Add to Cart</span>
-                          <FaShoppingCart className="text-primary " />
-                        </a>
+                      <li className="flex items-center justify-end gap-x-[16px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold cursor-pointer">
+                        <span>Add to Cart</span>
+                        <FaShoppingCart className="text-primary " />
                       </li>
                     </ul>
                   </div>
