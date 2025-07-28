@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Container from "../components/Container";
 import { Link } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { BsPlus } from "react-icons/bs";
 import { IoIosClose, IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { HiSquares2X2 } from "react-icons/hi2";
-import { FaHeart, FaShoppingCart, FaThList } from "react-icons/fa";
-import Headphone from "../assets/Headphone.png";
-import { IoGitCompare } from "react-icons/io5";
+import { FaThList } from "react-icons/fa";
 import Products from "../components/Products";
 import Pagination from "../components/Pagination";
+import { ApiData } from "../components/ContextApi";
 
 const Shop = () => {
+  let data = useContext(ApiData);
+
   let [cateShow, setCateShow] = useState(false);
   let [subCateShow1, setSubCateShow1] = useState(false);
   let [subCateShow2, setSubCateShow2] = useState(false);
@@ -21,6 +22,14 @@ const Shop = () => {
   let [colorShow, setColorShow] = useState(false);
   let [brandShow, setBrandShow] = useState(false);
   let [priceShow, setPriceShow] = useState(false);
+
+  let [perPage, SetPerPage] = useState(6);
+  let [currentPage, SetCurrentPage] = useState(1);
+
+  let lastPage = perPage * currentPage;
+  let firstPage = lastPage - perPage;
+  let allData = data.slice(firstPage, lastPage);
+
   return (
     <section>
       <Container>
@@ -393,7 +402,7 @@ const Shop = () => {
               </div>
             </div>
             <div className="flex flex-wrap justify-between pb-[50px] gap-y-[40px]">
-              <Products />
+              <Products allData={allData} />
             </div>
             <div>
               <Pagination />

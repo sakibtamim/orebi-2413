@@ -3,10 +3,10 @@ import React, { createContext, useEffect, useState } from "react";
 
 let ApiData = createContext();
 const ContextApi = ({ children }) => {
-  let [info, setInfo] = useState([]);
+  let [data, setData] = useState([]);
   let getData = () => {
     axios.get("https://dummyjson.com/products").then((response) => {
-      setInfo(response.data.products);
+      setData(response.data.products);
     });
   };
 
@@ -15,7 +15,7 @@ const ContextApi = ({ children }) => {
   }, []);
   return (
     <>
-      <ApiData.Provider value={info}>{children}</ApiData.Provider>
+      <ApiData.Provider value={data}>{children}</ApiData.Provider>
     </>
   );
 };

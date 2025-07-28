@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-import { ApiData } from "./ContextApi";
+import React from "react";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { IoGitCompare } from "react-icons/io5";
 
-const Products = () => {
-  let data = useContext(ApiData);
+const Products = ({ allData }) => {
   return (
     <>
-      {data.map((item) => (
+      {allData.map((item) => (
         <div key={item.id} className="w-[31%]">
           <div className="relative group">
             <div className="bg-[#F9F9F9]">
