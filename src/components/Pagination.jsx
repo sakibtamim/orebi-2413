@@ -1,6 +1,8 @@
 import React from "react";
 
-const Pagination = () => {
+const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
+  let startIndex = (currentPage - 1) * perPage + 1;
+  let endIndex = Math.min(currentPage * perPage, data.length);
   return (
     <div className="pb-[140px]">
       <div className="flex items-center justify-between bg-white">
@@ -18,14 +20,14 @@ const Pagination = () => {
             Next
           </a>
         </div>
-        <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+        <div className="hidden  sm:flex sm:flex-1 sm:items-center sm:justify-between">
           <div>
             <nav
               aria-label="Pagination"
               className="isolate inline-flex gap-x-[15px] -space-x-px rounded-md shadow-xs"
             >
               <a
-                href="#"
+                href=""
                 className="relative inline-flex items-center rounded-l-md px-2 py-2 text-secondary ring-1 ring-[#F0F0F0] ring-inset hover:bg-primary hover:text-white "
               >
                 <span className="sr-only">Previous</span>
@@ -43,47 +45,16 @@ const Pagination = () => {
                   />
                 </svg>
               </a>
-              {/* Current: "z-10 bg-indigo-600 text-white ", Default: "text-primary hover:text-white ring-1 ring-inset ring-[#F0F0F0]  focus:outline-offset-0"  */}
-              <a
-                href="#"
-                aria-current="page"
-                className="relative text-secondary  z-10 inline-flex items-center bg-transparent hover:text-[white] hover:bg-primary px-4 py-2 text-sm font-semibold  focus:z-20  ring-1 ring-[#F0F0F0] ring-inset"
-              >
-                1
-              </a>
-              <a
-                href="#"
-                className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-secondary hover:text-white hover:bg-primary ring-1 ring-[#F0F0F0] ring-inset  "
-              >
-                2
-              </a>
-              <a
-                href="#"
-                className="relative hidden items-center px-4 py-2 text-sm font-semibold text-secondary hover:text-[white] hover:bg-primary ring-1 ring-[#F0F0F0] ring-inset   md:inline-flex"
-              >
-                3
-              </a>
-              <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-[#F0F0F0] ring-inset focus:outline-offset-0">
-                ...
-              </span>
-              <a
-                href="#"
-                className="relative hidden items-center px-4 py-2 text-sm font-semibold text-secondary hover:text-[white] hover:bg-primary ring-1 ring-[#F0F0F0] ring-inset   md:inline-flex"
-              >
-                8
-              </a>
-              <a
-                href="#"
-                className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-secondary hover:text-[white] hover:bg-primary ring-1 ring-[#F0F0F0] ring-inset  "
-              >
-                9
-              </a>
-              <a
-                href="#"
-                className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-secondary hover:text-[white] hover:bg-primary ring-1 ring-[#F0F0F0] ring-inset  "
-              >
-                10
-              </a>
+              {pageNumber.map((item, i) => (
+                <a
+                  onClick={() => paginate(i)}
+                  aria-current="page"
+                  className="relative text-secondary  z-10 inline-flex items-center bg-transparent hover:text-[white] hover:bg-primary px-4 py-2 text-sm font-semibold  focus:z-20  ring-1 ring-[#F0F0F0] ring-inset"
+                >
+                  {item + 1}
+                </a>
+              ))}
+
               <a
                 href="#"
                 className="relative inline-flex items-center rounded-r-md px-2 py-2 text-secondary ring-1 ring-[#F0F0F0] ring-inset  hover:text-[white] hover:bg-primary"
@@ -107,9 +78,9 @@ const Pagination = () => {
           </div>
           <div>
             <p className="text-sm text-gray-700">
-              Products from <span className="font-medium">1</span> to{" "}
-              <span className="font-medium">12</span> of{" "}
-              <span className="font-medium">80</span>
+              Products from <span className="font-medium">{startIndex}</span> to{" "}
+              <span className="font-medium">{endIndex}</span> of{" "}
+              <span className="font-medium">{data.length}</span>
             </p>
           </div>
         </div>

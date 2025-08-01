@@ -30,6 +30,15 @@ const Shop = () => {
   let firstPage = lastPage - perPage;
   let allData = data.slice(firstPage, lastPage);
 
+  let pageNumber = [];
+  for (let i = 0; i < Math.ceil(data.length / perPage); i++) {
+    pageNumber.push(i);
+  }
+
+  let paginate = (index) => {
+    SetCurrentPage(index + 1);
+  };
+
   return (
     <section>
       <Container>
@@ -405,7 +414,13 @@ const Shop = () => {
               <Products allData={allData} />
             </div>
             <div>
-              <Pagination />
+              <Pagination
+                pageNumber={pageNumber}
+                paginate={paginate}
+                data={data}
+                perPage={perPage}
+                currentPage={currentPage}
+              />
             </div>
           </div>
         </div>
