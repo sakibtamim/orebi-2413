@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { IoGitCompare } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { ApiData } from "./ContextApi";
 
 const Products = ({ allData }) => {
+  let { loading } = useContext(ApiData);
+
+  if (loading) {
+    return (
+      <>
+        <div className="w-full h-100  flex justify-center items-center ">
+          <div className=" w-16 h-16 border-6 border-primary border-t-transparent  rounded-full animate-spin"></div>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div className="flex flex-wrap justify-between pb-[50px] gap-y-[40px]">

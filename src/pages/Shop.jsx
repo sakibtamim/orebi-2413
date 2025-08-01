@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Container from "../components/Container";
 import { Link } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
@@ -11,7 +11,7 @@ import Pagination from "../components/Pagination";
 import { ApiData } from "../components/ContextApi";
 
 const Shop = () => {
-  let { data, loading } = useContext(ApiData);
+  let { data } = useContext(ApiData);
 
   let [cateShow, setCateShow] = useState(false);
   let [subCateShow1, setSubCateShow1] = useState(false);
@@ -29,19 +29,6 @@ const Shop = () => {
   let lastPage = perPage * currentPage;
   let firstPage = lastPage - perPage;
   let allData = data.slice(firstPage, lastPage);
-
-  let [showLoading, setShowLoading] = useState(true);
-
-  useEffect(() => {
-    if (!loading) {
-      const timer = setTimeout(() => {
-        setShowLoading(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    } else {
-      setShowLoading(true);
-    }
-  }, [loading]);
 
   return (
     <section>
@@ -415,13 +402,7 @@ const Shop = () => {
               </div>
             </div>
             <div>
-              {showLoading ? (
-                <div className="w-full h-100  flex justify-center items-center ">
-                  <div className=" w-16 h-16 border-6 border-primary border-t-transparent  rounded-full animate-spin"></div>
-                </div>
-              ) : (
-                <Products allData={allData} />
-              )}
+              <Products allData={allData} />
             </div>
             <div>
               <Pagination />
