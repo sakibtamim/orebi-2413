@@ -27,7 +27,11 @@ const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
               className="isolate inline-flex gap-x-[15px] -space-x-px rounded-md shadow-xs"
             >
               <a
-                href=""
+                onClick={() => {
+                  if (currentPage > 1) {
+                    paginate(currentPage - 2);
+                  }
+                }}
                 className="relative inline-flex items-center rounded-l-md px-2 py-2 text-secondary ring-1 ring-[#F0F0F0] ring-inset hover:bg-primary hover:text-white "
               >
                 <span className="sr-only">Previous</span>
@@ -47,16 +51,26 @@ const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
               </a>
               {pageNumber.map((item, i) => (
                 <a
+                  key={i}
                   onClick={() => paginate(i)}
-                  aria-current="page"
-                  className="relative text-secondary  z-10 inline-flex items-center bg-transparent hover:text-[white] hover:bg-primary px-4 py-2 text-sm font-semibold  focus:z-20  ring-1 ring-[#F0F0F0] ring-inset"
+                  aria-current={currentPage === i + 1 ? "page" : undefined}
+                  className={`relative text-secondary  z-10 inline-flex items-center  px-4 py-2 text-sm font-semibold  focus:z-20  ring-1 ring-[#F0F0F0] ring-inset cursor-pointer 
+                  ${
+                    currentPage === i + 1
+                      ? "bg-primary !text-[white]"
+                      : "bg-transparent hover:text-[white] hover:bg-primary"
+                  } `}
                 >
                   {item + 1}
                 </a>
               ))}
 
               <a
-                href="#"
+                onClick={() => {
+                  if (currentPage < pageNumber.length) {
+                    paginate(currentPage);
+                  }
+                }}
                 className="relative inline-flex items-center rounded-r-md px-2 py-2 text-secondary ring-1 ring-[#F0F0F0] ring-inset  hover:text-[white] hover:bg-primary"
               >
                 <span className="sr-only">Next</span>
