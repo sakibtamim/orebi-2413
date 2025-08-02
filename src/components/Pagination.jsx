@@ -6,19 +6,34 @@ const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
   return (
     <div className="pb-[140px]">
       <div className="flex items-center justify-between bg-white">
-        <div className="flex flex-1 justify-between sm:hidden">
-          <a
-            href="#"
-            className="relative inline-flex items-center rounded-md border border-[#F0F0F0] bg-white px-4 py-2 text-sm font-medium text-secondary hover:bg-primary"
-          >
-            Previous
-          </a>
-          <a
-            href="#"
-            className="relative ml-3 inline-flex items-center rounded-md border border-[#F0F0F0] bg-white px-4 py-2 text-sm font-medium text-secondary hover:bg-primary"
-          >
-            Next
-          </a>
+        <div className="w-full text-center sm:hidden">
+          <div className="flex flex-1 justify-between ">
+            <a
+              onClick={() => {
+                if (currentPage > 1) {
+                  paginate(currentPage - 2);
+                }
+              }}
+              className="relative inline-flex items-center rounded-md border border-[#F0F0F0] bg-white px-4 py-2 text-sm font-medium text-secondary hover:bg-primary cursor-pointer"
+            >
+              Previous
+            </a>
+            <a
+              onClick={() => {
+                if (currentPage < pageNumber.length) {
+                  paginate(currentPage);
+                }
+              }}
+              className="relative ml-3 inline-flex items-center rounded-md border border-[#F0F0F0] bg-white px-4 py-2 text-sm font-medium text-secondary hover:bg-primary cursor-pointer"
+            >
+              Next
+            </a>
+          </div>
+          <p className="text-sm text-primary lg:pt-0 pt-[16px]">
+            Products from <span className="font-medium">{startIndex}</span> to{" "}
+            <span className="font-medium">{endIndex}</span> of{" "}
+            <span className="font-medium">{data.length}</span>
+          </p>
         </div>
         <div className="hidden  sm:flex sm:flex-1 sm:items-center sm:justify-between">
           <div>
@@ -32,7 +47,11 @@ const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
                     paginate(currentPage - 2);
                   }
                 }}
-                className="relative inline-flex items-center rounded-l-md px-2 py-2 text-secondary ring-1 ring-[#F0F0F0] ring-inset hover:bg-primary hover:text-white "
+                className={` ${
+                  currentPage === 1
+                    ? "hidden"
+                    : "visible relative inline-flex items-center rounded-l-md   hover:bg-primary hover:text-white  text-secondary px-2 py-2 ring-1 ring-[#F0F0F0] ring-inset"
+                }`}
               >
                 <span className="sr-only">Previous</span>
                 <svg
@@ -71,7 +90,11 @@ const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
                     paginate(currentPage);
                   }
                 }}
-                className="relative inline-flex items-center rounded-r-md px-2 py-2 text-secondary ring-1 ring-[#F0F0F0] ring-inset  hover:text-[white] hover:bg-primary"
+                className={`${
+                  currentPage === pageNumber.length
+                    ? "hidden"
+                    : "relative inline-flex items-center rounded-r-md px-2 py-2 text-secondary ring-1 ring-[#F0F0F0] ring-inset  hover:text-[white] hover:bg-primary"
+                }`}
               >
                 <span className="sr-only">Next</span>
                 <svg
@@ -91,7 +114,7 @@ const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
             </nav>
           </div>
           <div>
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-primary">
               Products from <span className="font-medium">{startIndex}</span> to{" "}
               <span className="font-medium">{endIndex}</span> of{" "}
               <span className="font-medium">{data.length}</span>
