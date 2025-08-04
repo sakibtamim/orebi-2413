@@ -6,9 +6,8 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import CartImg from "../assets/cartimg.png";
 import { RxCross2 } from "react-icons/rx";
-import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const NavbarUser = () => {
   let [cateShow, setCateShow] = useState(false);
   let [accountShow, setAccountShow] = useState(false);
   let [cartShow, setCartShow] = useState(false);
@@ -36,7 +35,6 @@ const Navbar = () => {
       }
     });
   }, [cateShow, accountShow, cartShow]);
-
   return (
     <nav className="bg-navbg lg:py-[25px] py-3">
       <Container>
@@ -219,16 +217,13 @@ const Navbar = () => {
                   <div className="lg:w-[200px] w-[150px] absolute lg:top-[60px] top-[40px] right-0  transition-all duration-300 ease-in-out origin-top-right z-50 shadow">
                     <ul className="bg-white">
                       <li className="group text-center hover:bg-[#2b2b2b] border-b-[1px] border-b-[#F0F0F0]">
-                        <Link
-                          to=""
-                          className="lg:text-[14px] text-[12px] text-primary inline-block font-normal lg:py-[16px] py-[12px]  group-hover:text-white group-hover:font-bold"
-                        >
-                          Log In
-                        </Link>
+                        <a className="lg:text-[14px] text-[12px] text-primary inline-block font-normal lg:py-[16px] py-[12px]  group-hover:text-white group-hover:font-bold">
+                          My Account
+                        </a>
                       </li>
                       <li className="group text-center hover:bg-[#2b2b2b]">
                         <a className="lg:text-[14px] text-[12px] text-primary inline-block font-normal lg:py-[16px] py-[12px] group-hover:text-white group-hover:font-bold">
-                          Sing In
+                          Log Out
                         </a>
                       </li>
                     </ul>
@@ -294,4 +289,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarUser;
