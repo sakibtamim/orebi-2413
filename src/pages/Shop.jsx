@@ -42,7 +42,7 @@ const Shop = () => {
 
   return (
     <>
-      <section>
+      <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
         <Container>
           <div className="pb-[130px]">
             <h2 className="text-[49px] text-primary font-dmsans font-bold pb-[12px]">

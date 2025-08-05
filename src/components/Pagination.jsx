@@ -4,7 +4,7 @@ const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
   let startIndex = (currentPage - 1) * perPage + 1;
   let endIndex = Math.min(currentPage * perPage, data.length);
   return (
-    <div className="pb-[140px]">
+    <div>
       <div className="flex items-center justify-between bg-white">
         <div className="w-full text-center sm:hidden">
           <div className="flex flex-1 justify-between ">

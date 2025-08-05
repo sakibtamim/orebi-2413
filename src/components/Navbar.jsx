@@ -220,15 +220,15 @@ const Navbar = () => {
                     <ul className="bg-white">
                       <li className="group text-center hover:bg-[#2b2b2b] border-b-[1px] border-b-[#F0F0F0]">
                         <Link
-                          to=""
-                          className="lg:text-[14px] text-[12px] text-primary inline-block font-normal lg:py-[16px] py-[12px]  group-hover:text-white group-hover:font-bold"
+                          to="/login"
+                          className=" lg:text-[14px] text-[12px] text-primary block font-normal lg:py-[16px] py-[12px]  group-hover:text-white group-hover:font-bold"
                         >
                           Log In
                         </Link>
                       </li>
                       <li className="group text-center hover:bg-[#2b2b2b]">
-                        <a className="lg:text-[14px] text-[12px] text-primary inline-block font-normal lg:py-[16px] py-[12px] group-hover:text-white group-hover:font-bold">
-                          Sing In
+                        <a className="lg:text-[14px] text-[12px] text-primary block font-normal lg:py-[16px] py-[12px] group-hover:text-white group-hover:font-bold">
+                          Sing Up
                         </a>
                       </li>
                     </ul>
