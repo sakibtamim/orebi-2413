@@ -28,10 +28,10 @@ const Login = () => {
         </div>
 
         <div className="w-2/3 pt-[58px] pb-[70px]  border-b-[#F0F0F0] border-b-1">
-          <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
-            Returning Customer
-          </h2>
           <form action="">
+            <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
+              Returning Customer
+            </h2>
             <div className="flex justify-between pb-[29px]">
               <div className="flex flex-col gap-y-[10px] w-[48%]">
                 <label

@@ -17,7 +17,9 @@ const Header = () => {
         <div className="lg:flex  items-center">
           <div className="w-1/3">
             <div>
-              <img src={Logo} alt="" />
+              <Link to="/">
+                <img src={Logo} alt="" />
+              </Link>
             </div>
           </div>
           <div className="lg:w-2/3 w-full">
