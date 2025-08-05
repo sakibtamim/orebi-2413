@@ -9,8 +9,8 @@ const Header = () => {
 
   return (
     <header
-      className={`lg:py-[32px] pt-2 bg-white ${
-        show ? "lg:mb-0 mb-1  " : "lg:mb-0 mb-6 shadow-md"
+      className={`lg:py-[32px] pt-2 lg:bg-transparent backdrop-blur-md lg:shadow-md ${
+        show ? "lg:mb-0 mb-1 bg-white" : "lg:mb-0 mb-6 "
       } sticky top-0 z-50`}
     >
       <Container>

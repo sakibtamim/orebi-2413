@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import ProductDetails from "./pages/ProductDetails";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 let router = createBrowserRouter(
   createRoutesFromChildren(
     <>
@@ -22,6 +23,7 @@ let router = createBrowserRouter(
         <Route path="/contacts" element={<Contacts />}></Route>
         <Route path="/products/:id" element={<ProductDetails />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
       </Route>
       <Route path="*" element={<Error404 />}></Route>
     </>
