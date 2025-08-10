@@ -47,10 +47,10 @@ const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
                     paginate(currentPage - 2);
                   }
                 }}
-                className={` ${
+                className={`relative inline-flex items-center rounded-l-md    text-secondary px-2 py-2 ring-1 ring-[#F0F0F0] ring-inset ${
                   currentPage === 1
-                    ? "hidden"
-                    : "visible relative inline-flex items-center rounded-l-md   hover:bg-primary hover:text-white  text-secondary px-2 py-2 ring-1 ring-[#F0F0F0] ring-inset"
+                    ? "opacity-[0.1] cursor-not-allowed "
+                    : "opacity-100 hover:bg-primary hover:text-white "
                 }`}
               >
                 <span className="sr-only">Previous</span>
@@ -90,10 +90,10 @@ const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
                     paginate(currentPage);
                   }
                 }}
-                className={`${
+                className={`relative inline-flex items-center rounded-r-md px-2 py-2 text-secondary ring-1 ring-[#F0F0F0] ring-inset   ${
                   currentPage === pageNumber.length
-                    ? "hidden"
-                    : "relative inline-flex items-center rounded-r-md px-2 py-2 text-secondary ring-1 ring-[#F0F0F0] ring-inset  hover:text-[white] hover:bg-primary"
+                    ? " opacity-[0.1] cursor-not-allowed"
+                    : "hover:text-[white] hover:bg-primary"
                 }`}
               >
                 <span className="sr-only">Next</span>
