@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "../components/Container";
 import { Link } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
@@ -9,23 +9,21 @@ import { FaThList } from "react-icons/fa";
 import Products from "../components/Products";
 import Pagination from "../components/Pagination";
 import { ApiData } from "../components/ContextApi";
-import Navbar from "../components/Navbar";
 
 const Shop = () => {
   let { data } = useContext(ApiData);
 
   let [cateShow, setCateShow] = useState(false);
-  let [subCateShow1, setSubCateShow1] = useState(false);
   let [subCateShow2, setSubCateShow2] = useState(false);
-  let [subCateShow3, setSubCateShow3] = useState(false);
-  let [subCateShow4, setSubCateShow4] = useState(false);
-  let [subCateShow5, setSubCateShow5] = useState(false);
   let [colorShow, setColorShow] = useState(false);
   let [brandShow, setBrandShow] = useState(false);
   let [priceShow, setPriceShow] = useState(false);
 
-  let [perPage, SetPerPage] = useState(6);
-  let [currentPage, SetCurrentPage] = useState(1);
+  let [perPage, setPerPage] = useState(6);
+  let [currentPage, setCurrentPage] = useState(1);
+
+  let [category, setCategory] = useState([]);
+  let [cateFilter, setCateFilter] = useState([]);
 
   let lastPage = perPage * currentPage;
   let firstPage = lastPage - perPage;
@@ -37,7 +35,16 @@ const Shop = () => {
   }
 
   let paginate = (index) => {
-    SetCurrentPage(index + 1);
+    setCurrentPage(index + 1);
+  };
+
+  useEffect(() => {
+    setCategory([...new Set(data.map((item) => item.category))]);
+  }, [data]);
+
+  let handleCategory = (citem) => {
+    let cateFilter = data.filter((item) => item.category == citem);
+    setCateFilter(cateFilter);
   };
 
   return (
@@ -59,7 +66,7 @@ const Shop = () => {
             <div className="w-[25%]">
               <div className="pb-[53px]">
                 <h5
-                  className="text-[20px] text-primary font-bold font-dmsans pb-[35px] flex items-center justify-between"
+                  className="text-[20px] text-primary font-bold font-dmsans pb-[25px] flex items-center justify-between"
                   onClick={() => {
                     setCateShow(!cateShow);
                   }}
@@ -77,42 +84,18 @@ const Shop = () => {
                 </h5>
                 {cateShow && (
                   <ul>
-                    <li
-                      onClick={() => {
-                        setSubCateShow1(!subCateShow1);
-                      }}
-                      className="text-[16px] text-secondary font-normal font-dmsans pb-[20px] border-b-[1px] border-b-[#F0F0F0] "
-                    >
-                      <div className="flex justify-between items-center">
-                        <span>Category 1 </span>
-                        {subCateShow1 ? (
-                          <div>
-                            <IoIosClose className="text-[24px]" />
-                          </div>
-                        ) : (
-                          <div>
-                            <BsPlus className="text-[20px]" />
-                          </div>
-                        )}
-                      </div>
-                      {subCateShow1 && (
-                        <ul className="pl-[20px]">
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 1
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 2
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 3
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans pt-[20px] ">
-                            Sub Category 4
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                    <li
+                    {category.map((item) => (
+                      <li
+                        onClick={() => handleCategory(item)}
+                        className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0] capitalize"
+                      >
+                        <div className="flex justify-between items-center">
+                          <span>{item} </span>
+                        </div>
+                      </li>
+                    ))}
+
+                    {/* <li
                       onClick={() => {
                         setSubCateShow2(!subCateShow2);
                       }}
@@ -146,112 +129,7 @@ const Shop = () => {
                           </li>
                         </ul>
                       )}
-                    </li>
-                    <li
-                      onClick={() => {
-                        setSubCateShow3(!subCateShow3);
-                      }}
-                      className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0] "
-                    >
-                      <div className="flex justify-between items-center">
-                        <span>Category 3 </span>
-                        {subCateShow3 ? (
-                          <div>
-                            <IoIosClose className="text-[24px]" />
-                          </div>
-                        ) : (
-                          <div>
-                            <BsPlus className="text-[20px]" />
-                          </div>
-                        )}
-                      </div>
-                      {subCateShow3 && (
-                        <ul className="pl-[20px]">
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 1
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 2
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 3
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans pt-[20px] ">
-                            Sub Category 4
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                    <li
-                      onClick={() => {
-                        setSubCateShow4(!subCateShow4);
-                      }}
-                      className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0] "
-                    >
-                      <div className="flex justify-between items-center">
-                        <span>Category 4 </span>
-                        {subCateShow4 ? (
-                          <div>
-                            <IoIosClose className="text-[24px]" />
-                          </div>
-                        ) : (
-                          <div>
-                            <BsPlus className="text-[20px]" />
-                          </div>
-                        )}
-                      </div>
-                      {subCateShow4 && (
-                        <ul className="pl-[20px]">
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 1
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 2
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 3
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans pt-[20px] ">
-                            Sub Category 4
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                    <li
-                      onClick={() => {
-                        setSubCateShow5(!subCateShow5);
-                      }}
-                      className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0] "
-                    >
-                      <div className="flex justify-between items-center">
-                        <span>Category 5 </span>
-                        {subCateShow5 ? (
-                          <div>
-                            <IoIosClose className="text-[24px]" />
-                          </div>
-                        ) : (
-                          <div>
-                            <BsPlus className="text-[20px]" />
-                          </div>
-                        )}
-                      </div>
-                      {subCateShow5 && (
-                        <ul className="pl-[20px]">
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 1
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 2
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 3
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans pt-[20px] ">
-                            Sub Category 4
-                          </li>
-                        </ul>
-                      )}
-                    </li>
+                    </li> */}
                   </ul>
                 )}
               </div>
@@ -413,7 +291,7 @@ const Shop = () => {
                 </div>
               </div>
               <div>
-                <Products allData={allData} />
+                <Products allData={allData} cateFilter={cateFilter} />
               </div>
               <div>
                 <Pagination
