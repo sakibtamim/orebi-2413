@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { IoGitCompare } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { ApiData } from "./ContextApi";
 
-const Products = ({ allData, cateFilter }) => {
+const Products = ({ allData, cateFilter, brandFilter }) => {
   let { loading } = useContext(ApiData);
 
   if (loading) {
@@ -16,11 +16,13 @@ const Products = ({ allData, cateFilter }) => {
       </>
     );
   }
-  const productsToShow = cateFilter.length > 0 ? cateFilter : allData;
+  let productsToShow = cateFilter.length > 0 ? cateFilter : allData;
+  let brandProductsToSHow =
+    brandFilter.length > 0 ? brandFilter : productsToShow;
   return (
     <>
       <div className="flex flex-wrap justify-between pb-[50px] gap-y-[40px]">
-        {productsToShow.map((item) => (
+        {brandProductsToSHow.map((item) => (
           <div key={item.id} className="w-[31%]">
             <div className="relative group">
               <Link to={`/products/${item.id}`}>

@@ -14,7 +14,7 @@ const Shop = () => {
   let { data } = useContext(ApiData);
 
   let [cateShow, setCateShow] = useState(false);
-  let [subCateShow2, setSubCateShow2] = useState(false);
+  // let [subCateShow2, setSubCateShow2] = useState(false);
   let [colorShow, setColorShow] = useState(false);
   let [brandShow, setBrandShow] = useState(false);
   let [priceShow, setPriceShow] = useState(false);
@@ -24,6 +24,9 @@ const Shop = () => {
 
   let [category, setCategory] = useState([]);
   let [cateFilter, setCateFilter] = useState([]);
+
+  let [brand, setBrand] = useState([]);
+  let [brandFilter, setBrandFilter] = useState([]);
 
   let lastPage = perPage * currentPage;
   let firstPage = lastPage - perPage;
@@ -40,11 +43,16 @@ const Shop = () => {
 
   useEffect(() => {
     setCategory([...new Set(data.map((item) => item.category))]);
+    setBrand([...new Set(data.map((item) => item.brand))]);
   }, [data]);
 
   let handleCategory = (citem) => {
     let cateFilter = data.filter((item) => item.category == citem);
     setCateFilter(cateFilter);
+  };
+  let handleBrand = (bitem) => {
+    let brandFilter = data.filter((item) => item.brand == bitem);
+    setBrandFilter(brandFilter);
   };
 
   return (
@@ -66,7 +74,7 @@ const Shop = () => {
             <div className="w-[25%]">
               <div className="pb-[53px]">
                 <h5
-                  className="text-[20px] text-primary font-bold font-dmsans pb-[25px] flex items-center justify-between"
+                  className="text-[20px] text-primary font-bold font-dmsans pb-[15px] flex items-center justify-between"
                   onClick={() => {
                     setCateShow(!cateShow);
                   }}
@@ -86,8 +94,9 @@ const Shop = () => {
                   <ul>
                     {category.map((item) => (
                       <li
+                        key={item}
                         onClick={() => handleCategory(item)}
-                        className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0] capitalize"
+                        className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0] cursor-pointer capitalize"
                       >
                         <div className="flex justify-between items-center">
                           <span>{item} </span>
@@ -178,7 +187,7 @@ const Shop = () => {
               </div>
               <div className="pb-[53px]">
                 <h5
-                  className="text-[20px] text-primary font-bold font-dmsans pb-[35px] flex justify-between items-center"
+                  className="text-[20px] text-primary font-bold font-dmsans pb-[15px] flex justify-between items-center"
                   onClick={() => {
                     setBrandShow(!brandShow);
                   }}
@@ -196,21 +205,15 @@ const Shop = () => {
                 </h5>
                 {brandShow && (
                   <ul>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal pb-[20px] border-b-[#F0F0F0] border-b-[1px]">
-                      Brand 1
-                    </li>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
-                      Brand 2
-                    </li>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
-                      Brand 3
-                    </li>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
-                      Brand 4
-                    </li>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
-                      Brand 5
-                    </li>
+                    {brand.map((item) => (
+                      <li
+                        key={item}
+                        onClick={() => handleBrand(item)}
+                        className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px] cursor-pointer"
+                      >
+                        {item ? item : "Unknown Brand"}
+                      </li>
+                    ))}
                   </ul>
                 )}
               </div>
@@ -291,7 +294,11 @@ const Shop = () => {
                 </div>
               </div>
               <div>
-                <Products allData={allData} cateFilter={cateFilter} />
+                <Products
+                  allData={allData}
+                  cateFilter={cateFilter}
+                  brandFilter={brandFilter}
+                />
               </div>
               <div>
                 <Pagination
