@@ -19,6 +19,7 @@ const Products = ({ allData, cateFilter, brandFilter }) => {
   let productsToShow = cateFilter.length > 0 ? cateFilter : allData;
   let brandProductsToSHow =
     brandFilter.length > 0 ? brandFilter : productsToShow;
+
   return (
     <>
       <div className="flex flex-wrap justify-between pb-[50px] gap-y-[40px]">

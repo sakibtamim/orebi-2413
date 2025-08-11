@@ -46,13 +46,21 @@ const Shop = () => {
     setBrand([...new Set(data.map((item) => item.brand))]);
   }, [data]);
 
+  let [selectedCategory, setSelectedCategory] = useState(null);
+  let [selectedBrand, setSelectedbrand] = useState(null);
+
   let handleCategory = (citem) => {
-    let cateFilter = data.filter((item) => item.category == citem);
+    let cateFilter = data.filter((item) => item.category === citem);
     setCateFilter(cateFilter);
+    setSelectedCategory(citem);
+    setSelectedbrand(null);
+    setBrandFilter([]);
   };
   let handleBrand = (bitem) => {
-    let brandFilter = data.filter((item) => item.brand == bitem);
+    let brandFilter = data.filter((item) => item.brand === bitem);
     setBrandFilter(brandFilter);
+    setSelectedbrand(bitem);
+    setSelectedCategory(null);
   };
 
   return (
@@ -96,7 +104,11 @@ const Shop = () => {
                       <li
                         key={item}
                         onClick={() => handleCategory(item)}
-                        className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0] cursor-pointer capitalize"
+                        className={`${
+                          item === selectedCategory
+                            ? "bg-primary text-white pl-2 "
+                            : "bg-white"
+                        } text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0] cursor-pointer capitalize`}
                       >
                         <div className="flex justify-between items-center">
                           <span>{item} </span>
@@ -209,7 +221,11 @@ const Shop = () => {
                       <li
                         key={item}
                         onClick={() => handleBrand(item)}
-                        className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px] cursor-pointer"
+                        className={`${
+                          item === selectedBrand
+                            ? "bg-primary text-white pl-2 "
+                            : "bg-white"
+                        } text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px] cursor-pointer`}
                       >
                         {item ? item : "Unknown Brand"}
                       </li>
