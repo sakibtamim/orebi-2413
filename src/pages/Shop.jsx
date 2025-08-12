@@ -217,9 +217,9 @@ const Shop = () => {
                 </h5>
                 {brandShow && (
                   <ul>
-                    {brand.map((item) => (
+                    {brand.map((item, index) => (
                       <li
-                        key={item}
+                        key={`${item}-${index}`}
                         onClick={() => handleBrand(item)}
                         className={`${
                           item === selectedBrand
