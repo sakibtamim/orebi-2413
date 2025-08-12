@@ -1,8 +1,17 @@
 import React from "react";
 
-const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
+const Pagination = ({
+  pageNumber,
+  paginate,
+  data,
+  perPage,
+  currentPage,
+  cateFilter,
+}) => {
+  let activeData = cateFilter.length > 0 ? cateFilter : data;
   let startIndex = (currentPage - 1) * perPage + 1;
-  let endIndex = Math.min(currentPage * perPage, data.length);
+  let endIndex = Math.min(currentPage * perPage, activeData.length);
+
   return (
     <div>
       <div className="flex items-center justify-between bg-white">
@@ -116,8 +125,10 @@ const Pagination = ({ pageNumber, paginate, data, perPage, currentPage }) => {
           <div>
             <p className="text-sm text-primary">
               Products from <span className="font-medium">{startIndex}</span> to{" "}
-              <span className="font-medium">{endIndex}</span> of{" "}
-              <span className="font-medium">{data.length}</span>
+              <span className="font-medium">
+                {cateFilter.length > 0 ? activeData.length : endIndex}
+              </span>{" "}
+              of <span className="font-medium">{activeData.length}</span>
             </p>
           </div>
         </div>

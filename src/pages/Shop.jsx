@@ -276,6 +276,7 @@ const Shop = () => {
                   data={data}
                   perPage={perPage}
                   currentPage={currentPage}
+                  cateFilter={cateFilter}
                 />
               </div>
             </div>
