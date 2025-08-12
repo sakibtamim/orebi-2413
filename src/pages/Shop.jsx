@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Container from "../components/Container";
 import { Link } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { BsPlus } from "react-icons/bs";
-import { IoIosClose, IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { HiSquares2X2 } from "react-icons/hi2";
 import { FaThList } from "react-icons/fa";
 import Products from "../components/Products";
@@ -14,7 +13,6 @@ const Shop = () => {
   let { data } = useContext(ApiData);
 
   let [cateShow, setCateShow] = useState(false);
-  // let [subCateShow2, setSubCateShow2] = useState(false);
   let [colorShow, setColorShow] = useState(false);
   let [brandShow, setBrandShow] = useState(false);
   let [priceShow, setPriceShow] = useState(false);
@@ -26,7 +24,6 @@ const Shop = () => {
   let [cateFilter, setCateFilter] = useState([]);
 
   let [brand, setBrand] = useState([]);
-  let [brandFilter, setBrandFilter] = useState([]);
 
   let lastPage = perPage * currentPage;
   let firstPage = lastPage - perPage;
@@ -46,21 +43,17 @@ const Shop = () => {
     setBrand([...new Set(data.map((item) => item.brand))]);
   }, [data]);
 
-  let [selectedCategory, setSelectedCategory] = useState(null);
-  let [selectedBrand, setSelectedbrand] = useState(null);
+  let [activeCategory, setActiveCategory] = useState(null);
 
   let handleCategory = (citem) => {
     let cateFilter = data.filter((item) => item.category === citem);
     setCateFilter(cateFilter);
-    setSelectedCategory(citem);
-    setSelectedbrand(null);
-    setBrandFilter([]);
+    setActiveCategory(citem);
   };
   let handleBrand = (bitem) => {
     let brandFilter = data.filter((item) => item.brand === bitem);
-    setBrandFilter(brandFilter);
-    setSelectedbrand(bitem);
-    setSelectedCategory(null);
+    setCateFilter(brandFilter);
+    setActiveCategory(bitem);
   };
 
   return (
@@ -105,7 +98,7 @@ const Shop = () => {
                         key={item}
                         onClick={() => handleCategory(item)}
                         className={`${
-                          item === selectedCategory
+                          item === activeCategory
                             ? "bg-primary text-white pl-2 "
                             : "bg-white"
                         } text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0] cursor-pointer capitalize`}
@@ -115,42 +108,6 @@ const Shop = () => {
                         </div>
                       </li>
                     ))}
-
-                    {/* <li
-                      onClick={() => {
-                        setSubCateShow2(!subCateShow2);
-                      }}
-                      className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0] "
-                    >
-                      <div className="flex justify-between items-center">
-                        <span>Category 2 </span>
-                        {subCateShow2 ? (
-                          <div>
-                            <IoIosClose className="text-[24px]" />
-                          </div>
-                        ) : (
-                          <div>
-                            <BsPlus className="text-[20px]" />
-                          </div>
-                        )}
-                      </div>
-                      {subCateShow2 && (
-                        <ul className="pl-[20px]">
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 1
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 2
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans py-[20px] border-b-[1px] border-b-[#F0F0F0]">
-                            Sub Category 3
-                          </li>
-                          <li className="text-[16px] text-secondary font-normal font-dmsans pt-[20px] ">
-                            Sub Category 4
-                          </li>
-                        </ul>
-                      )}
-                    </li> */}
                   </ul>
                 )}
               </div>
@@ -222,7 +179,7 @@ const Shop = () => {
                         key={`${item}-${index}`}
                         onClick={() => handleBrand(item)}
                         className={`${
-                          item === selectedBrand
+                          item === activeCategory
                             ? "bg-primary text-white pl-2 "
                             : "bg-white"
                         } text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px] cursor-pointer`}
@@ -310,11 +267,7 @@ const Shop = () => {
                 </div>
               </div>
               <div>
-                <Products
-                  allData={allData}
-                  cateFilter={cateFilter}
-                  brandFilter={brandFilter}
-                />
+                <Products allData={allData} cateFilter={cateFilter} />
               </div>
               <div>
                 <Pagination

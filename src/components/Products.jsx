@@ -4,7 +4,7 @@ import { IoGitCompare } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { ApiData } from "./ContextApi";
 
-const Products = ({ allData, cateFilter, brandFilter }) => {
+const Products = ({ allData, cateFilter }) => {
   let { loading } = useContext(ApiData);
 
   if (loading) {
@@ -17,13 +17,11 @@ const Products = ({ allData, cateFilter, brandFilter }) => {
     );
   }
   let productsToShow = cateFilter.length > 0 ? cateFilter : allData;
-  let brandProductsToSHow =
-    brandFilter.length > 0 ? brandFilter : productsToShow;
 
   return (
     <>
       <div className="flex flex-wrap justify-between pb-[50px] gap-y-[40px]">
-        {brandProductsToSHow.map((item) => (
+        {productsToShow.map((item) => (
           <div key={item.id} className="w-[31%]">
             <div className="relative group">
               <Link to={`/products/${item.id}`}>
