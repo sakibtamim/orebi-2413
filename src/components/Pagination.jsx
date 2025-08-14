@@ -16,7 +16,11 @@ const Pagination = ({
     <div>
       <div className="flex items-center justify-between bg-white">
         <div className="w-full text-center sm:hidden">
-          <div className="flex flex-1 justify-between ">
+          <div
+            className={`flex flex-1 justify-between ${
+              cateFilter.length > 0 ? "hidden" : ""
+            }`}
+          >
             <a
               onClick={() => {
                 if (currentPage > 1) {
@@ -40,12 +44,14 @@ const Pagination = ({
           </div>
           <p className="text-sm text-primary lg:pt-0 pt-[16px]">
             Products from <span className="font-medium">{startIndex}</span> to{" "}
-            <span className="font-medium">{endIndex}</span> of{" "}
-            <span className="font-medium">{data.length}</span>
+            <span className="font-medium">
+              {cateFilter.length > 0 ? activeData.length : endIndex}
+            </span>{" "}
+            of <span className="font-medium">{activeData.length}</span>
           </p>
         </div>
         <div className="hidden  sm:flex sm:flex-1 sm:items-center sm:justify-between">
-          <div>
+          <div className={`${cateFilter.length > 0 ? "hidden" : ""}`}>
             <nav
               aria-label="Pagination"
               className="isolate inline-flex gap-x-[15px] -space-x-px rounded-md shadow-xs"
