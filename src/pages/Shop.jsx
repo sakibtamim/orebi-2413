@@ -56,6 +56,16 @@ const Shop = () => {
     setActiveCategory(bitem);
   };
 
+  let resetFilters = () => {
+    setCateFilter([]);
+    setActiveCategory(null);
+    setCurrentPage(1);
+    setCateShow(false);
+    setColorShow(false);
+    setBrandShow(false);
+    setPriceShow(false);
+  };
+
   return (
     <>
       <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
@@ -192,7 +202,7 @@ const Shop = () => {
               </div>
               <div className="pb-[53px]">
                 <h5
-                  className="text-[20px] text-primary font-bold font-dmsans pb-[35px] flex justify-between items-center"
+                  className="text-[20px] text-primary font-bold font-dmsans pb-[15px] flex justify-between items-center"
                   onClick={() => {
                     setPriceShow(!priceShow);
                   }}
@@ -210,7 +220,7 @@ const Shop = () => {
                 </h5>
                 {priceShow && (
                   <ul>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal pb-[20px] border-b-[#F0F0F0] border-b-[1px]">
+                    <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
                       $0.00 - $9.99
                     </li>
                     <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
@@ -227,6 +237,14 @@ const Shop = () => {
                     </li>
                   </ul>
                 )}
+              </div>
+              <div className="">
+                <button
+                  onClick={resetFilters}
+                  className="bg-primary text-white px-4 py-2 rounded font-dmsans hover:bg-primary/80"
+                >
+                  Reset Filters
+                </button>
               </div>
             </div>
             <div className="w-[72%]">
