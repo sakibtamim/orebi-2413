@@ -40,7 +40,26 @@ const MyAccount = () => {
               </li>
             </ul>
           </div>
-          <div className="w-[72%]"></div>
+          <div className="w-[72%]">
+            <div className="">
+              <p className="text-[16px] text-secondary font-dmsans font-normal pb-[30px]">
+                Hello <span className="text-primary">admin</span> (not{" "}
+                <span className="text-primary">admin</span>?{" "}
+                <span className="text-primary">Log out</span>)
+              </p>
+              <p className="w-[918px] text-[16px] text-secondary font-dmsans font-normal pb-[30px]">
+                From your account dashboard you can view your{" "}
+                <span className="text-primary">recent orders</span>, manage your{" "}
+                <span className="text-primary">
+                  shipping and billing addresses
+                </span>
+                , and{" "}
+                <span className="text-primary">
+                  edit your password and account details.
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
       </Container>
     </section>
