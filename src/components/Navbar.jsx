@@ -51,7 +51,7 @@ const Navbar = () => {
   let handleLogout = async () => {
     await signOut(auth);
     setAccountShow(false);
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   return (

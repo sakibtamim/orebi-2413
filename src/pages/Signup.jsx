@@ -101,6 +101,7 @@ const Signup = () => {
                   <input
                     type="text"
                     placeholder="First Name"
+                    required
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
                     onChange={(e) => setFName(e.target.value)}
                   />
@@ -115,6 +116,7 @@ const Signup = () => {
                   <input
                     type="text"
                     placeholder="Last Name"
+                    required
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
                     onChange={(e) => setLName(e.target.value)}
                   />
@@ -129,6 +131,7 @@ const Signup = () => {
                   <input
                     type="email"
                     placeholder="company@domain.com"
+                    required
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -143,6 +146,7 @@ const Signup = () => {
                   <input
                     type="tel"
                     placeholder="Your phone number"
+                    required
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
                     onChange={(e) => setPhone(e.target.value)}
                   />
@@ -164,6 +168,7 @@ const Signup = () => {
                   <input
                     type="text"
                     placeholder="4279 Zboncak Port Suite 6212"
+                    required
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
                     onChange={(e) => setAddress1(e.target.value)}
                   />
@@ -192,6 +197,7 @@ const Signup = () => {
                   <input
                     type="text"
                     placeholder="Your city"
+                    required
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
                     onChange={(e) => setCity(e.target.value)}
                   />
@@ -206,6 +212,7 @@ const Signup = () => {
                   <input
                     type="text"
                     placeholder="5228"
+                    required
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
                     onChange={(e) => setPostCode(e.target.value)}
                   />
@@ -220,6 +227,7 @@ const Signup = () => {
                   <select
                     name=""
                     id=""
+                    required
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
                     onChange={(e) => setDivision(e.target.value)}
                   >
@@ -244,6 +252,7 @@ const Signup = () => {
                   <select
                     name=""
                     id=""
+                    required
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
                     onChange={(e) => setDistrict(e.target.value)}
                   >
@@ -331,6 +340,7 @@ const Signup = () => {
                   <input
                     type="password"
                     placeholder="Password"
+                    required
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -346,6 +356,7 @@ const Signup = () => {
                     type="password"
                     placeholder="Repeat password"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    required
                     onChange={(e) => setRPassword(e.target.value)}
                   />
                 </div>
@@ -358,6 +369,7 @@ const Signup = () => {
                   type="checkbox"
                   name=""
                   id=""
+                  required
                   className="appearance-none h-3.5 w-3.5  border-1 border-secondary checked:bg-secondary checked:shadow-[inset_0_0_0_2px_white]"
                 />
                 <label className="text-[14px] text-secondary font-dmsans font-normal">
