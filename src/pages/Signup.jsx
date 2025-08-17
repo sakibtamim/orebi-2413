@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../components/firebase";
 import { setDoc, doc } from "firebase/firestore";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   let [fname, setFName] = useState("");
@@ -23,14 +25,13 @@ const Signup = () => {
   let handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== rPassword) {
-      window.alert("Passwords do not match!");
+      toast.error("Passwords do not match!", { position: "top-center" });
       return;
     }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       let user = auth.currentUser;
-      console.log(user);
-      console.log("success ");
+
       if (user) {
         await setDoc(doc(db, "User", user.uid), {
           email: user.email,
@@ -45,8 +46,14 @@ const Signup = () => {
           district: district,
         });
       }
+
+      toast.success("User Registered Successfully!", {
+        position: "top-center",
+      });
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message, {
+        position: "top-center",
+      });
     }
   };
 
