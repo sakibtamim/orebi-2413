@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "../components/Container";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../components/firebase";
 import { setDoc, doc } from "firebase/firestore";
@@ -21,6 +21,8 @@ const Signup = () => {
   let [postCode, setPostCode] = useState("");
   let [division, setDivision] = useState("");
   let [district, setDistrict] = useState("");
+
+  let navigate = useNavigate();
 
   let handleSignUp = async (e) => {
     e.preventDefault();
@@ -50,6 +52,8 @@ const Signup = () => {
       toast.success("User Registered Successfully!", {
         position: "top-center",
       });
+
+      navigate("/login");
     } catch (error) {
       toast.error(error.message, {
         position: "top-center",

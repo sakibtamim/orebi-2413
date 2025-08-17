@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../components/Container";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../components/firebase";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let navigate = useNavigate();
+
+  let handleLogIn = async (e) => {
+    e.preventDefault();
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+
+      toast.success("User Logged in Successfully!", {
+        position: "top-center",
+      });
+      navigate("/myaccount");
+    } catch (error) {
+      toast.error(error.message, {
+        position: "top-center",
+      });
+    }
+  };
+
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
       <Container>
@@ -28,7 +52,7 @@ const Login = () => {
         </div>
 
         <div className="w-2/3 pt-[58px] pb-[70px]  border-b-[#F0F0F0] border-b-1">
-          <form action="">
+          <form action="" onSubmit={handleLogIn}>
             <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
               Returning Customer
             </h2>
@@ -44,6 +68,7 @@ const Login = () => {
                   type="email"
                   placeholder="company@domain.com"
                   className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="flex flex-col gap-y-[10px] w-[48%] ">
@@ -57,6 +82,7 @@ const Login = () => {
                   type="password"
                   placeholder="******"
                   className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
