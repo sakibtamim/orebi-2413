@@ -1,9 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../components/Container";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../components/firebase";
+import { setDoc, doc } from "firebase/firestore";
 
 const Signup = () => {
+  let [fname, setFName] = useState("");
+  let [lname, setLName] = useState("");
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [rPassword, setRPassword] = useState("");
+  let [phone, setPhone] = useState("");
+  let [address1, setAddress1] = useState("");
+  let [address2, setAddress2] = useState("");
+  let [city, setCity] = useState("");
+  let [postCode, setPostCode] = useState("");
+  let [division, setDivision] = useState("");
+  let [district, setDistrict] = useState("");
+
+  let handleSignUp = async (e) => {
+    e.preventDefault();
+    if (password !== rPassword) {
+      window.alert("Passwords do not match!");
+      return;
+    }
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      let user = auth.currentUser;
+      console.log(user);
+      console.log("success ");
+      if (user) {
+        await setDoc(doc(db, "User", user.uid), {
+          email: user.email,
+          firstName: fname,
+          lastName: lname,
+          phone: phone,
+          address1: address1,
+          address2: address2,
+          city: city,
+          postCode: postCode,
+          division: division,
+          district: district,
+        });
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
       <Container>
@@ -28,7 +74,7 @@ const Signup = () => {
         </div>
 
         <div className="pt-[58px]">
-          <form action="">
+          <form action="" onSubmit={handleSignUp}>
             <div className="pb-[69px] border-b-[#F0F0F0] border-b-1">
               <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
                 Returning Customer
@@ -45,6 +91,7 @@ const Signup = () => {
                     type="text"
                     placeholder="First Name"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setFName(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
@@ -58,6 +105,7 @@ const Signup = () => {
                     type="text"
                     placeholder="Last Name"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setLName(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
@@ -71,6 +119,7 @@ const Signup = () => {
                     type="email"
                     placeholder="company@domain.com"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
@@ -84,6 +133,7 @@ const Signup = () => {
                     type="tel"
                     placeholder="Your phone number"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
               </div>
@@ -104,6 +154,7 @@ const Signup = () => {
                     type="text"
                     placeholder="4279 Zboncak Port Suite 6212"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setAddress1(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
@@ -117,6 +168,7 @@ const Signup = () => {
                     type="text"
                     placeholder="-"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setAddress2(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
@@ -130,6 +182,7 @@ const Signup = () => {
                     type="text"
                     placeholder="Your city"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setCity(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
@@ -140,9 +193,10 @@ const Signup = () => {
                     Post Code
                   </label>
                   <input
-                    type="number"
-                    placeholder="05228"
+                    type="text"
+                    placeholder="5228"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setPostCode(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
@@ -156,16 +210,17 @@ const Signup = () => {
                     name=""
                     id=""
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setDivision(e.target.value)}
                   >
                     <option value="">Please select</option>
-                    <option value="">Barisal</option>
-                    <option value="">Chittagong</option>
-                    <option value="">Dhaka</option>
-                    <option value="">Khulna</option>
-                    <option value="">Mymensingh</option>
-                    <option value="">Rajshahi</option>
-                    <option value="">Rangpur</option>
-                    <option value="">Sylhet</option>
+                    <option value="Barisal">Barisal</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Mymensingh">Mymensingh</option>
+                    <option value="Rajshahi">Rajshahi</option>
+                    <option value="Rangpur">Rangpur</option>
+                    <option value="Sylhet">Sylhet</option>
                   </select>
                 </div>
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
@@ -179,71 +234,72 @@ const Signup = () => {
                     name=""
                     id=""
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setDistrict(e.target.value)}
                   >
                     <option value="">Please select</option>
-                    <option value="">Dhaka</option>
-                    <option value="">Faridpur</option>
-                    <option value="">Tangail</option>
-                    <option value="">Gazipur</option>
-                    <option value="">Narayanganj</option>
-                    <option value="">Kishoreganj</option>
-                    <option value="">Narsingdi</option>
-                    <option value="">Munshiganj</option>
-                    <option value="">Gopalganj</option>
-                    <option value="">Shariatpur</option>
-                    <option value="">Madaripur</option>
-                    <option value="">Rajbari</option>
-                    <option value="">Chittagong</option>
-                    <option value="">Comilla</option>
-                    <option value="">Noakhali</option>
-                    <option value="">Rangamati</option>
-                    <option value="">Bandarban</option>
-                    <option value="">Khagrachhari</option>
-                    <option value="">Brahmanbaria</option>
-                    <option value="">Cox's Bazar</option>
-                    <option value="">Chandpur</option>
-                    <option value="">Lakshmipur</option>
-                    <option value="">Feni</option>
-                    <option value="">Rajshahi</option>
-                    <option value="">Bogura</option>
-                    <option value="">Pabna</option>
-                    <option value="">Joypurhat</option>
-                    <option value="">Sirajganj</option>
-                    <option value="">Naogaon</option>
-                    <option value="">Natore</option>
-                    <option value="">Chapai Nawabganj</option>
-                    <option value="">Jashore</option>
-                    <option value="">Khulna</option>
-                    <option value="">Kushtia</option>
-                    <option value="">Satkhira</option>
-                    <option value="">Jhenaidah</option>
-                    <option value="">Bagerhat</option>
-                    <option value="">Chuadanga</option>
-                    <option value="">Magura</option>
-                    <option value="">Narail</option>
-                    <option value="">Meherpur</option>
-                    <option value="">Barishal</option>
-                    <option value="">Patuakhali</option>
-                    <option value="">Bhola</option>
-                    <option value="">Pirojpur</option>
-                    <option value="">Barguna</option>
-                    <option value="">Jhalokati</option>
-                    <option value="">Sylhet</option>
-                    <option value="">Sunamganj</option>
-                    <option value="">Habiganj</option>
-                    <option value="">Moulvibazar</option>
-                    <option value="">Rangpur</option>
-                    <option value="">Dinajpur</option>
-                    <option value="">Gaibandha</option>
-                    <option value="">Kurigram</option>
-                    <option value="">Nilphamari</option>
-                    <option value="">Thakurgaon</option>
-                    <option value="">Lalmonirhat</option>
-                    <option value="">Panchagarh</option>
-                    <option value="">Mymensingh</option>
-                    <option value="">Jamalpur</option>
-                    <option value="">Netrokona</option>
-                    <option value="">Sherpur</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Faridpur">Faridpur</option>
+                    <option value="Tangail">Tangail</option>
+                    <option value="Gazipur">Gazipur</option>
+                    <option value="Narayanganj">Narayanganj</option>
+                    <option value="Kishoreganj">Kishoreganj</option>
+                    <option value="Narsingdi">Narsingdi</option>
+                    <option value="Munshiganj">Munshiganj</option>
+                    <option value="Gopalganj">Gopalganj</option>
+                    <option value="Shariatpur">Shariatpur</option>
+                    <option value="Madaripur">Madaripur</option>
+                    <option value="Rajbari">Rajbari</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Comilla">Comilla</option>
+                    <option value="Noakhali">Noakhali</option>
+                    <option value="Rangamati">Rangamati</option>
+                    <option value="Bandarban">Bandarban</option>
+                    <option value="Khagrachhari">Khagrachhari</option>
+                    <option value="Brahmanbaria">Brahmanbaria</option>
+                    <option value="Cox's Bazar">Cox's Bazar</option>
+                    <option value="Chandpur">Chandpur</option>
+                    <option value="Lakshmipur">Lakshmipur</option>
+                    <option value="Feni">Feni</option>
+                    <option value="Rajshahi">Rajshahi</option>
+                    <option value="Bogura">Bogura</option>
+                    <option value="Pabna">Pabna</option>
+                    <option value="Joypurhat">Joypurhat</option>
+                    <option value="Sirajganj">Sirajganj</option>
+                    <option value="Naogaon">Naogaon</option>
+                    <option value="Natore">Natore</option>
+                    <option value="Chapai Nawabganj">Chapai Nawabganj</option>
+                    <option value="Jashore">Jashore</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Kushtia">Kushtia</option>
+                    <option value="Satkhira">Satkhira</option>
+                    <option value="Jhenaidah">Jhenaidah</option>
+                    <option value="Bagerhat">Bagerhat</option>
+                    <option value="Chuadanga">Chuadanga</option>
+                    <option value="Magura">Magura</option>
+                    <option value="Narail">Narail</option>
+                    <option value="Meherpur">Meherpur</option>
+                    <option value="Barishal">Barishal</option>
+                    <option value="Patuakhali">Patuakhali</option>
+                    <option value="Bhola">Bhola</option>
+                    <option value="Pirojpur">Pirojpur</option>
+                    <option value="Barguna">Barguna</option>
+                    <option value="Jhalokati">Jhalokati</option>
+                    <option value="Sylhet">Sylhet</option>
+                    <option value="Sunamganj">Sunamganj</option>
+                    <option value="Habiganj">Habiganj</option>
+                    <option value="Moulvibazar">Moulvibazar</option>
+                    <option value="Rangpur">Rangpur</option>
+                    <option value="Dinajpur">Dinajpur</option>
+                    <option value="Gaibandha">Gaibandha</option>
+                    <option value="Kurigram">Kurigram</option>
+                    <option value="Nilphamari">Nilphamari</option>
+                    <option value="Thakurgaon">Thakurgaon</option>
+                    <option value="Lalmonirhat">Lalmonirhat</option>
+                    <option value="Panchagarh">Panchagarh</option>
+                    <option value="Mymensingh">Mymensingh</option>
+                    <option value="Jamalpur">Jamalpur</option>
+                    <option value="Netrokona">Netrokona</option>
+                    <option value="Sherpur">Sherpur</option>
                   </select>
                 </div>
               </div>
@@ -265,6 +321,7 @@ const Signup = () => {
                     type="password"
                     placeholder="Password"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
@@ -278,6 +335,7 @@ const Signup = () => {
                     type="password"
                     placeholder="Repeat password"
                     className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                    onChange={(e) => setRPassword(e.target.value)}
                   />
                 </div>
               </div>
