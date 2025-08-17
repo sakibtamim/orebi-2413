@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import { Link } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { auth, db } from "../components/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 
 const MyAccount = () => {
+  let [userDetails, setUserDeatils] = useState(null);
+  let fetchUserData = async () => {
+    auth.onAuthStateChanged(async (user) => {
+      console.log(user);
+      let docRef = doc(db, "User", user.uid);
+      let docSnap = await getDoc(docRef);
+      if (docSnap) {
+        setUserDeatils(docSnap.data());
+      } else {
+        console.log("no user");
+      }
+    });
+  };
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  let handleLogout = async () => {
+    await signOut(auth);
+    window.location.href = "/login";
+  };
+
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
       <Container>
@@ -42,22 +67,42 @@ const MyAccount = () => {
           </div>
           <div className="w-[72%]">
             <div className="">
-              <p className="text-[16px] text-secondary font-dmsans font-normal pb-[30px]">
-                Hello <span className="text-primary">admin</span> (not{" "}
-                <span className="text-primary">admin</span>?{" "}
-                <span className="text-primary">Log out</span>)
-              </p>
-              <p className="w-[918px] text-[16px] text-secondary font-dmsans font-normal pb-[30px]">
-                From your account dashboard you can view your{" "}
-                <span className="text-primary">recent orders</span>, manage your{" "}
-                <span className="text-primary">
-                  shipping and billing addresses
-                </span>
-                , and{" "}
-                <span className="text-primary">
-                  edit your password and account details.
-                </span>
-              </p>
+              {userDetails ? (
+                <>
+                  <p className="text-[16px] text-secondary font-dmsans font-normal pb-[30px]">
+                    Hello{" "}
+                    <span className="text-primary">
+                      {userDetails.firstName}
+                    </span>{" "}
+                    (not{" "}
+                    <span className="text-primary">
+                      {userDetails.firstName}
+                    </span>
+                    ?{" "}
+                    <button
+                      onClick={handleLogout}
+                      className="text-primary cursor-pointer"
+                    >
+                      Log out
+                    </button>
+                    )
+                  </p>
+                  <p className="w-[918px] text-[16px] text-secondary font-dmsans font-normal pb-[30px]">
+                    From your account dashboard you can view your{" "}
+                    <span className="text-primary">recent orders</span>, manage
+                    your{" "}
+                    <span className="text-primary">
+                      shipping and billing addresses
+                    </span>
+                    , and{" "}
+                    <span className="text-primary">
+                      edit your password and account details.
+                    </span>
+                  </p>
+                </>
+              ) : (
+                "loading..........."
+              )}
             </div>
           </div>
         </div>

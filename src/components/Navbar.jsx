@@ -7,15 +7,26 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import CartImg from "../assets/cartimg.png";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "./firebase";
 
 const Navbar = () => {
   let [cateShow, setCateShow] = useState(false);
   let [accountShow, setAccountShow] = useState(false);
   let [cartShow, setCartShow] = useState(false);
+  let [user, setUser] = useState(null);
 
   let cateRef = useRef();
   let accRef = useRef();
   let cartRef = useRef();
+
+  useEffect(() => {
+    let user = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => user();
+  }, []);
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
@@ -36,6 +47,12 @@ const Navbar = () => {
       }
     });
   }, [cateShow, accountShow, cartShow]);
+
+  let handleLogout = async () => {
+    await signOut(auth);
+    setAccountShow(false);
+    window.location.href = "/login";
+  };
 
   return (
     <nav className="bg-navbg lg:py-[25px] py-3">
@@ -218,22 +235,45 @@ const Navbar = () => {
                 {accountShow && (
                   <div className="lg:w-[200px] w-[150px] absolute lg:top-[60px] top-[40px] right-0  transition-all duration-300 ease-in-out origin-top-right z-50 shadow">
                     <ul className="bg-white">
-                      <li className="group text-center hover:bg-[#2b2b2b] border-b-[1px] border-b-[#F0F0F0]">
-                        <Link
-                          to="/login"
-                          className=" lg:text-[14px] text-[12px] text-primary block font-normal lg:py-[16px] py-[12px]  group-hover:text-white group-hover:font-bold"
-                        >
-                          Log In
-                        </Link>
-                      </li>
-                      <li className="group text-center hover:bg-[#2b2b2b]">
-                        <Link
-                          to="/signup"
-                          className="lg:text-[14px] text-[12px] text-primary block font-normal lg:py-[16px] py-[12px] group-hover:text-white group-hover:font-bold"
-                        >
-                          Sing Up
-                        </Link>
-                      </li>
+                      {!user ? (
+                        <>
+                          <li className="group text-center hover:bg-[#2b2b2b] border-b-[1px] border-b-[#F0F0F0]">
+                            <Link
+                              to="/login"
+                              className=" lg:text-[14px] text-[12px] text-primary block font-normal lg:py-[16px] py-[12px]  group-hover:text-white group-hover:font-bold"
+                            >
+                              Log In
+                            </Link>
+                          </li>
+                          <li className="group text-center hover:bg-[#2b2b2b]">
+                            <Link
+                              to="/signup"
+                              className="lg:text-[14px] text-[12px] text-primary block font-normal lg:py-[16px] py-[12px] group-hover:text-white group-hover:font-bold"
+                            >
+                              Sing Up
+                            </Link>
+                          </li>
+                        </>
+                      ) : (
+                        <>
+                          <li className="group text-center hover:bg-[#2b2b2b] border-b-[1px] border-b-[#F0F0F0]">
+                            <Link
+                              to="/myaccount"
+                              className=" lg:text-[14px] text-[12px] text-primary block font-normal lg:py-[16px] py-[12px]  group-hover:text-white group-hover:font-bold"
+                            >
+                              My Account
+                            </Link>
+                          </li>
+                          <li className="group text-center hover:bg-[#2b2b2b]">
+                            <button
+                              onClick={handleLogout}
+                              className="lg:text-[14px] text-[12px] text-primary  font-normal lg:py-[16px] py-[12px] group-hover:text-white group-hover:font-bold cursor-pointer"
+                            >
+                              Log Out
+                            </button>
+                          </li>
+                        </>
+                      )}
                     </ul>
                   </div>
                 )}
