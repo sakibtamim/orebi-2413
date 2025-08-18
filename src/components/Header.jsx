@@ -30,7 +30,7 @@ const Header = () => {
             >
               <li className="lg:border-none border-b-1 border-b-[#2D2D2D]">
                 <Link
-                  className="text-[14px] lg:text-secondary text-[rgba(255,255,255,0.7)] font-normal inline-block lg:hover:text-primary hover:text-[#fff] hover:font-bold duration-200 ease-in-out capitalize lg:p-0 p-2 "
+                  className=" text-[14px] lg:text-secondary text-[rgba(255,255,255,0.7)] font-bold inline-block lg:hover:text-primary hover:text-[#fff]  duration-200 ease-in-out capitalize lg:p-0 p-2 "
                   to="/"
                 >
                   Home
@@ -38,7 +38,7 @@ const Header = () => {
               </li>
               <li className=" lg:border-none border-b-1 border-b-[#2D2D2D]">
                 <Link
-                  className="text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-normal inline-block lg:hover:text-primary hover:text-[#fff] hover:font-bold duration-200 ease-in-out capitalize lg:p-0 p-2"
+                  className="text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-bold inline-block lg:hover:text-primary hover:text-[#fff]  duration-200 ease-in-out capitalize lg:p-0 p-2"
                   to="/products"
                 >
                   Shop
@@ -46,7 +46,7 @@ const Header = () => {
               </li>
               <li className="lg:border-none border-b-1 border-b-[#2D2D2D]">
                 <Link
-                  className="text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-normal inline-block lg:hover:text-primary hover:text-[#fff] hover:font-bold duration-200 ease-in-out capitalize lg:p-0 p-2"
+                  className="text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-bold inline-block lg:hover:text-primary hover:text-[#fff]  duration-200 ease-in-out capitalize lg:p-0 p-2"
                   to="/about"
                 >
                   About
@@ -54,7 +54,7 @@ const Header = () => {
               </li>
               <li className="lg:border-none border-b-1 border-b-[#2D2D2D]">
                 <Link
-                  className="text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-normal inline-block lg:hover:text-primary hover:text-[#fff] hover:font-bold duration-200 ease-in-out capitalize lg:p-0 p-2"
+                  className=" text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-bold inline-block lg:hover:text-primary hover:text-[#fff]  duration-200 ease-in-out capitalize lg:p-0 p-2"
                   to="/contacts"
                 >
                   Contacts
@@ -62,7 +62,7 @@ const Header = () => {
               </li>
               <li>
                 <Link
-                  className="text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-normal inline-block lg:hover:text-primary hover:text-[#fff] hover:font-bold duration-200 ease-in-out capitalize lg:p-0 p-2"
+                  className=" text-[14px]  lg:text-secondary text-[rgba(255,255,255,0.7)] font-bold inline-block lg:hover:text-primary hover:text-[#fff]  duration-200 ease-in-out capitalize lg:p-0 p-2"
                   to="/journal"
                 >
                   Journal
