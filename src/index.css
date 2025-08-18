@@ -56,10 +56,10 @@
   -o-transform: translateY(-50%);
 }
 #new_arrivals .nextBtn {
-  right: 20px;
+  right: -10px;
 }
 #new_arrivals .prevBtn {
-  left: 0;
+  left: -30px;
 }
 #new_arrivals .nextBtn svg,
 #new_arrivals .prevBtn svg {

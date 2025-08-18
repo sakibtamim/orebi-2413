@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Container from "./Container";
 import {
   FaHeart,
@@ -78,32 +78,34 @@ const NewArrivals = () => {
           <Slider {...ArrivalSlider}>
             {data.map((item) => (
               <div key={item.id} className="!w-[95%]">
-                <Link to="/products">
-                  <div className="relative group">
+                <div className="relative group">
+                  <Link to="/products">
                     <div className="bg-[#F9F9F9]">
                       <img src={item.thumbnail} alt="" />
                     </div>
-                    <div className="absolute left-0 bottom-0 w-full bg-white scale-0 group-hover:scale-100 duration-300 ease-in-out origin-bottom-left">
-                      <ul className=" py-[25px] pr-[30px]">
-                        <li className="flex items-center justify-end gap-x-[16px] text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold">
-                          <span>Add to Wish List</span>
-                          <FaHeart className="text-primary " />
-                        </li>
-                        <li className="flex items-center justify-end gap-x-[16px] py-[20px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold">
-                          <span>Compare</span>
-                          <IoGitCompare className="text-primary " />
-                        </li>
-                        <li className="flex items-center justify-end gap-x-[16px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold">
-                          <span>Add to Cart</span>
-                          <FaShoppingCart className="text-primary " />
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="absolute lg:top-[20px] top-[10px] lg:left-[20px] left-[10px] lg:px-[32px] px-[14px] lg:py-[8px] py-[6px] bg-primary lg:text-[14px] text-[10px] text-white lg:font-bold font-semibold font-dmsans">
-                      {item.discountPercentage}%
-                    </div>
+                  </Link>
+                  <div className="absolute left-0 bottom-0 w-full bg-white scale-0 group-hover:scale-100 duration-300 ease-in-out origin-bottom-left">
+                    <ul className=" py-[25px] pr-[30px]">
+                      <li className="flex items-center justify-end gap-x-[16px] text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold">
+                        <span>Add to Wish List</span>
+                        <FaHeart className="text-primary " />
+                      </li>
+                      <li className="flex items-center justify-end gap-x-[16px] py-[20px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold">
+                        <span>Compare</span>
+                        <IoGitCompare className="text-primary " />
+                      </li>
+                      <li className="flex items-center justify-end gap-x-[16px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold">
+                        <span>Add to Cart</span>
+                        <FaShoppingCart className="text-primary " />
+                      </li>
+                    </ul>
                   </div>
-                  <div className="">
+                  <div className="absolute lg:top-[20px] top-[10px] lg:left-[20px] left-[10px] lg:px-[32px] px-[14px] lg:py-[8px] py-[6px] bg-primary lg:text-[14px] text-[10px] text-white lg:font-bold font-semibold font-dmsans">
+                    {item.discountPercentage}%
+                  </div>
+                </div>
+                <div className="">
+                  <Link to="/products">
                     <div className="flex justify-between items-center pt-[24px] pb-[15px]">
                       <h3 className="lg:text-[18px] text-[14px] text-primary font-bold font-dmsans">
                         {item.title}
@@ -117,8 +119,8 @@ const NewArrivals = () => {
                         {item.category}
                       </p>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               </div>
             ))}
           </Slider>
