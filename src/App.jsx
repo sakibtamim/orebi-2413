@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import MyAccount from "./pages/MyAccount";
 import { ToastContainer } from "react-toastify";
+import Cart from "./pages/Cart";
 
 let router = createBrowserRouter(
   createRoutesFromChildren(
@@ -28,6 +29,7 @@ let router = createBrowserRouter(
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/myaccount" element={<MyAccount />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
       </Route>
       <Route path="*" element={<Error404 />}></Route>
     </>
