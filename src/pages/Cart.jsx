@@ -144,12 +144,12 @@ const Cart = () => {
               </div>
             </div>
             <div className="text-end">
-              <a
-                href="#"
+              <Link
+                to="/checkout"
                 className=" text-[14px] text-white font-bold font-dmsans py-[16px] px-[28px] bg-primary inline-block"
               >
                 Proceed to Checkout
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -309,20 +309,20 @@ const Navbar = () => {
                       </h3>
                       <ul className="flex justify-between">
                         <li className="">
-                          <a
-                            href=""
+                          <Link
+                            to="/cart"
                             className=" inline-block lg:text-[14px] text-[12px] text-primary font-bold font-dmsans lg:py-[16px] py-[12px] lg:px-[40px] px-[20px] border-[1px] border-border hover:bg-primary hover:text-white duration-300 ease-in-out"
                           >
                             View Cart
-                          </a>
+                          </Link>
                         </li>
                         <li className="">
-                          <a
-                            href=""
+                          <Link
+                            to="/checkout"
                             className=" inline-block lg:text-[14px] text-[12px] text-primary font-bold font-dmsans lg:py-[16px] py-[12px] lg:px-[40px] px-[20px] border-[1px] border-border hover:bg-primary hover:text-white duration-300 ease-in-out"
                           >
                             Checkout
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
