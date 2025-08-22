@@ -17,6 +17,19 @@ const CheckOut = () => {
             <Link to="/checkout">Checkout</Link>
           </div>
         </div>
+        <div className="pb-[119px]">
+          <p className="text-[16px] text-secondary font-normal font-dmsans">
+            Have a coupon?{" "}
+            <span className="text-primary">Click here to enter your code</span>
+          </p>
+        </div>
+        <div className="">
+          <form action="">
+            <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
+              Billing Details
+            </h2>
+          </form>
+        </div>
       </Container>
     </section>
   );
