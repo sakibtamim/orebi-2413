@@ -23,11 +23,147 @@ const CheckOut = () => {
             <span className="text-primary">Click here to enter your code</span>
           </p>
         </div>
-        <div className="">
+        <div className="pb-[129px]">
           <form action="">
             <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
               Billing Details
             </h2>
+            <div className="flex justify-between pb-[24px]">
+              <div className="w-[48%] flex flex-col gap-y-[10px]">
+                <label
+                  htmlFor=""
+                  className="text-[16px] text-primary font-dmsans font-bold"
+                >
+                  First Name *
+                </label>
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  required
+                  className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                />
+              </div>
+              <div className="w-[48%] flex flex-col gap-y-[10px]">
+                <label
+                  htmlFor=""
+                  className="text-[16px] text-primary font-dmsans font-bold"
+                >
+                  Last Name *
+                </label>
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  required
+                  className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-y-[10px] pb-[24px]">
+              <label
+                htmlFor=""
+                className="text-[16px] text-primary font-dmsans font-bold"
+              >
+                Companye Name (optional)
+              </label>
+              <input
+                type="text"
+                placeholder="Company Name"
+                required
+                className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-y-[10px] pb-[24px]">
+              <label
+                htmlFor=""
+                className="text-[16px] text-primary font-dmsans font-bold"
+              >
+                Country *
+              </label>
+              <select
+                name=""
+                id=""
+                required
+                className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+              >
+                <option value="">Please select</option>
+                <option value="Bangladesh">Bangladesh</option>
+              </select>
+            </div>
+            <div className="flex flex-col gap-y-[10px] pb-[24px]">
+              <label
+                htmlFor=""
+                className="text-[16px] text-primary font-dmsans font-bold"
+              >
+                Street Address *
+              </label>
+              <input
+                type="text"
+                placeholder="House number and street name"
+                required
+                className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+              />
+              <input
+                type="text"
+                placeholder="Apartment, suite, unit etc. (optional)"
+                className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-y-[10px] pb-[24px]">
+              <label
+                htmlFor=""
+                className="text-[16px] text-primary font-dmsans font-bold"
+              >
+                Town/City *
+              </label>
+              <input
+                type="text"
+                placeholder="Town/City"
+                required
+                className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-y-[10px] pb-[24px]">
+              <label
+                htmlFor=""
+                className="text-[16px] text-primary font-dmsans font-bold"
+              >
+                Post Code *
+              </label>
+              <input
+                type="text"
+                placeholder="Post Code"
+                required
+                className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-y-[10px] pb-[24px]">
+              <label
+                htmlFor=""
+                className="text-[16px] text-primary font-dmsans font-bold"
+              >
+                Phone *
+              </label>
+              <input
+                type="tel"
+                placeholder="Phone"
+                required
+                className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+              />
+            </div>
+            <div className="flex flex-col gap-y-[10px] pb-[24px]">
+              <label
+                htmlFor=""
+                className="text-[16px] text-primary font-dmsans font-bold"
+              >
+                Email Address *
+              </label>
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+              />
+            </div>
           </form>
         </div>
       </Container>
