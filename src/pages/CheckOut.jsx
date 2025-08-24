@@ -23,7 +23,7 @@ const CheckOut = () => {
             <span className="text-primary">Click here to enter your code</span>
           </p>
         </div>
-        <div className="pb-[129px]">
+        <div className="pb-[129px] w-2/3">
           <form action="">
             <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
               Billing Details
@@ -165,6 +165,80 @@ const CheckOut = () => {
               />
             </div>
           </form>
+        </div>
+        <div className="pb-[129px] w-2/3">
+          <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
+            Additional Information
+          </h2>
+          <div className=" flex flex-col gap-y-[10px]">
+            <label
+              htmlFor=""
+              className="text-[16px] text-primary font-dmsans font-bold"
+            >
+              Other Notes (optional)
+            </label>
+            <textarea
+              name=""
+              id=""
+              placeholder="Notes about your order, e.g. special notes for delivery."
+              className="pb-[86px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
+            ></textarea>
+          </div>
+        </div>
+        <div className="w-2/3">
+          <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
+            Your Order
+          </h2>
+          <div className="w-[70%] border border-[#F0F0F0] mb-[60px]">
+            <div className="flex border-b-1 border-b-[#F0F0F0]">
+              <div className="w-1/2  border-r-1 border-r-[#F0F0F0]">
+                <h4 className="py-[16px] pl-[20px] text-[16px] text-primary font-bold font-dmsans">
+                  Product
+                </h4>
+              </div>
+              <div className="w-1/2 ">
+                <p className="py-[16px] pl-[20px] text-[16px] text-secondary font-normal font-dmsans">
+                  Total
+                </p>
+              </div>
+            </div>
+            <div className="flex border-b-1 border-b-[#F0F0F0]">
+              <div className="w-1/2  border-r-1 border-r-[#F0F0F0]">
+                <h4 className="py-[16px] pl-[20px] text-[16px] text-primary font-bold font-dmsans">
+                  Product name x 1
+                </h4>
+              </div>
+              <div className="w-1/2 ">
+                <p className="py-[16px] pl-[20px] text-[16px] text-secondary font-normal font-dmsans">
+                  389.99 $
+                </p>
+              </div>
+            </div>
+            <div className="flex border-b-1 border-b-[#F0F0F0]">
+              <div className="w-1/2  border-r-1 border-r-[#F0F0F0]">
+                <h4 className="py-[16px] pl-[20px] text-[16px] text-primary font-bold font-dmsans">
+                  Subtotal
+                </h4>
+              </div>
+              <div className="w-1/2 ">
+                <p className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
+                  389.99 $
+                </p>
+              </div>
+            </div>
+            <div className="flex border-b-1 border-b-[#F0F0F0]">
+              <div className="w-1/2  border-r-1 border-r-[#F0F0F0]">
+                <h4 className="py-[16px] pl-[20px] text-[16px] text-primary font-bold font-dmsans">
+                  Total
+                </h4>
+              </div>
+              <div className="w-1/2 ">
+                <p className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
+                  389.99 $
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     </section>

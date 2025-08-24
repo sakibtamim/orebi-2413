@@ -125,9 +125,9 @@ const Cart = () => {
                   </h4>
                 </div>
                 <div className="w-1/2 ">
-                  <h4 className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
+                  <p className="py-[16px] pl-[20px] text-[16px] text-secondary font-normal font-dmsans">
                     389.99 $
-                  </h4>
+                  </p>
                 </div>
               </div>
               <div className="flex ">
@@ -137,9 +137,9 @@ const Cart = () => {
                   </h4>
                 </div>
                 <div className="w-1/2 ">
-                  <h4 className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
+                  <p className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
                     389.99 $
-                  </h4>
+                  </p>
                 </div>
               </div>
             </div>
