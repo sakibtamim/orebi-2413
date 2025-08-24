@@ -250,7 +250,7 @@ const Navbar = () => {
                               to="/signup"
                               className="lg:text-[14px] text-[12px] text-primary block font-normal lg:py-[16px] py-[12px] group-hover:text-white group-hover:font-bold"
                             >
-                              Sing Up
+                              Sign Up
                             </Link>
                           </li>
                         </>
@@ -265,12 +265,12 @@ const Navbar = () => {
                             </Link>
                           </li>
                           <li className="group text-center hover:bg-[#2b2b2b]">
-                            <button
+                            <p
                               onClick={handleLogout}
-                              className="lg:text-[14px] text-[12px] text-primary  font-normal lg:py-[16px] py-[12px] group-hover:text-white group-hover:font-bold cursor-pointer"
+                              className="lg:text-[14px] text-[12px] text-primary  font-normal lg:py-[16px] py-[12px] group-hover:text-white group-hover:font-bold"
                             >
                               Log Out
-                            </button>
+                            </p>
                           </li>
                         </>
                       )}
