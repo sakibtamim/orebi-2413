@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { IoGitCompare } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -6,6 +6,23 @@ import { ApiData } from "./ContextApi";
 
 const Products = ({ allData, cateFilter }) => {
   let { loading } = useContext(ApiData);
+  let [cateMain, letCateMain] = useState([]);
+  let [showAll, setShowAll] = useState(true);
+
+  useEffect(() => {
+    let cateAll = cateFilter.slice(0, 5);
+    letCateMain(cateAll);
+  }, [cateFilter]);
+
+  let hancleShowAll = () => {
+    letCateMain(cateFilter);
+    setShowAll(false);
+  };
+
+  let hancleShowLess = () => {
+    letCateMain(cateFilter.slice(0, 5));
+    setShowAll(true);
+  };
 
   if (loading) {
     return (
@@ -16,7 +33,8 @@ const Products = ({ allData, cateFilter }) => {
       </>
     );
   }
-  let productsToShow = cateFilter.length > 0 ? cateFilter : allData;
+
+  let productsToShow = cateFilter.length > 0 ? cateMain : allData;
 
   return (
     <>
@@ -69,6 +87,21 @@ const Products = ({ allData, cateFilter }) => {
           </div>
         ))}
       </div>
+      {showAll ? (
+        cateFilter.length > 5 && (
+          <div className="pb-[16px]" onClick={hancleShowAll}>
+            <h5 className="text-[16px] text-white font-dmsans font-bold capitalize py-2 px-4 bg-primary inline-block rounded hover:bg-primary/80 cursor-pointer">
+              show all
+            </h5>
+          </div>
+        )
+      ) : (
+        <div className="pb-[16px]" onClick={hancleShowLess}>
+          <h5 className="text-[16px] text-white font-dmsans font-bold capitalize py-2 px-4 bg-primary inline-block rounded hover:bg-primary/80 cursor-pointer">
+            show less
+          </h5>
+        </div>
+      )}
     </>
   );
 };
