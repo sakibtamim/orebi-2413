@@ -22,6 +22,7 @@ const Shop = () => {
 
   let [category, setCategory] = useState([]);
   let [cateFilter, setCateFilter] = useState([]);
+  let [showAll, setShowAll] = useState(true);
 
   let [brand, setBrand] = useState([]);
 
@@ -56,6 +57,11 @@ const Shop = () => {
     setActiveCategory(bitem);
   };
 
+  let [activeList, setActiveList] = useState("");
+  let handleList = () => {
+    setActiveList("active");
+  };
+
   let resetFilters = () => {
     setCateFilter([]);
     setActiveCategory(null);
@@ -64,11 +70,7 @@ const Shop = () => {
     setColorShow(false);
     setBrandShow(false);
     setPriceShow(false);
-  };
-
-  let [activeList, setActiveList] = useState("");
-  let handleList = () => {
-    setActiveList("active");
+    setShowAll(true);
   };
 
   return (
@@ -300,6 +302,8 @@ const Shop = () => {
                   allData={allData}
                   cateFilter={cateFilter}
                   activeList={activeList}
+                  showAll={showAll}
+                  setShowAll={setShowAll}
                 />
               </div>
               <div>

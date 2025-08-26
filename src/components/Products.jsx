@@ -4,10 +4,9 @@ import { IoGitCompare } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { ApiData } from "./ContextApi";
 
-const Products = ({ allData, cateFilter, activeList }) => {
+const Products = ({ allData, cateFilter, activeList, showAll, setShowAll }) => {
   let { loading } = useContext(ApiData);
   let [cateMain, letCateMain] = useState([]);
-  let [showAll, setShowAll] = useState(true);
 
   useEffect(() => {
     let cateAll = cateFilter.slice(0, 5);
@@ -114,21 +113,21 @@ const Products = ({ allData, cateFilter, activeList }) => {
         ))}
       </div>
 
-      {showAll ? (
-        cateFilter.length > 5 && (
-          <div className="pb-[16px]" onClick={hancleShowAll}>
-            <h5 className="text-[16px] text-white font-dmsans font-bold capitalize py-2 px-4 bg-primary inline-block rounded hover:bg-primary/80 cursor-pointer">
-              show all
-            </h5>
-          </div>
-        )
-      ) : (
-        <div className="pb-[16px]" onClick={hancleShowLess}>
-          <h5 className="text-[16px] text-white font-dmsans font-bold capitalize py-2 px-4 bg-primary inline-block rounded hover:bg-primary/80 cursor-pointer">
-            show less
-          </h5>
-        </div>
-      )}
+      {showAll
+        ? cateFilter.length > 5 && (
+            <div className="pb-[16px]" onClick={hancleShowAll}>
+              <h5 className="text-[16px] text-white font-dmsans font-bold capitalize py-2 px-4 bg-primary inline-block rounded hover:bg-primary/80 cursor-pointer">
+                show all
+              </h5>
+            </div>
+          )
+        : cateFilter.length > 5 && (
+            <div className="pb-[16px]" onClick={hancleShowLess}>
+              <h5 className="text-[16px] text-white font-dmsans font-bold capitalize py-2 px-4 bg-primary inline-block rounded hover:bg-primary/80 cursor-pointer">
+                show less
+              </h5>
+            </div>
+          )}
     </>
   );
 };
