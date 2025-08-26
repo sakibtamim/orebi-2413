@@ -8,19 +8,18 @@ const Pagination = ({
   currentPage,
   cateFilter,
 }) => {
-  let activeData = cateFilter.length > 0 ? cateFilter : data;
   let startIndex = (currentPage - 1) * perPage + 1;
-  let endIndex = Math.min(currentPage * perPage, activeData.length);
+  let endIndex = Math.min(currentPage * perPage, data.length);
 
   return (
     <div>
       <div className="flex items-center justify-between bg-white">
-        <div className="w-full text-center sm:hidden">
-          <div
-            className={`flex flex-1 justify-between ${
-              cateFilter.length > 0 ? "hidden" : ""
-            }`}
-          >
+        <div
+          className={`w-full text-center sm:hidden ${
+            cateFilter.length > 0 ? "hidden" : ""
+          }`}
+        >
+          <div className="flex flex-1 justify-between">
             <a
               onClick={() => {
                 if (currentPage > 1) {
@@ -42,12 +41,10 @@ const Pagination = ({
               Next
             </a>
           </div>
-          <p className="text-sm text-primary lg:pt-0 pt-[16px]">
+          <p className={`text-sm text-primary lg:pt-0 pt-[16px] `}>
             Products from <span className="font-medium">{startIndex}</span> to{" "}
-            <span className="font-medium">
-              {cateFilter.length > 0 ? activeData.length : endIndex}
-            </span>{" "}
-            of <span className="font-medium">{activeData.length}</span>
+            <span className="font-medium">{endIndex}</span> of{" "}
+            <span className="font-medium">{data.length}</span>
           </p>
         </div>
         <div className="hidden  sm:flex sm:flex-1 sm:items-center sm:justify-between">
@@ -128,13 +125,11 @@ const Pagination = ({
               </a>
             </nav>
           </div>
-          <div>
+          <div className={`${cateFilter.length > 0 ? "hidden" : ""}`}>
             <p className="text-sm text-primary">
               Products from <span className="font-medium">{startIndex}</span> to{" "}
-              <span className="font-medium">
-                {cateFilter.length > 0 ? activeData.length : endIndex}
-              </span>{" "}
-              of <span className="font-medium">{activeData.length}</span>
+              <span className="font-medium">{endIndex}</span> of{" "}
+              <span className="font-medium">{data.length}</span>
             </p>
           </div>
         </div>
