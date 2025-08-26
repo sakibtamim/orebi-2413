@@ -4,7 +4,7 @@ import { IoGitCompare } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { ApiData } from "./ContextApi";
 
-const Products = ({ allData, cateFilter }) => {
+const Products = ({ allData, cateFilter, activeList }) => {
   let { loading } = useContext(ApiData);
   let [cateMain, letCateMain] = useState([]);
   let [showAll, setShowAll] = useState(true);
@@ -38,10 +38,30 @@ const Products = ({ allData, cateFilter }) => {
 
   return (
     <>
-      <div className="flex flex-wrap justify-between pb-[50px] gap-y-[40px]">
+      <div
+        className={`
+          ${
+            activeList === "active"
+              ? "w-[100%] pb-[50px]"
+              : "flex flex-wrap justify-between pb-[50px] gap-y-[40px]"
+          } `}
+      >
         {productsToShow.map((item) => (
-          <div key={item.id} className="w-[31%]">
-            <div className="relative group">
+          <div
+            key={item.id}
+            className={`${
+              activeList === "active"
+                ? "flex justify-between items-center pb-[30px]"
+                : "w-[31%]"
+            }`}
+          >
+            <div
+              className={`${
+                activeList === "active"
+                  ? "w-[1/3] relative group"
+                  : "relative group"
+              }`}
+            >
               <Link to={`/products/${item.id}`}>
                 <div className="bg-[#F9F9F9]">
                   <img src={item.thumbnail} alt="" />
@@ -67,9 +87,15 @@ const Products = ({ allData, cateFilter }) => {
                 {item.discountPercentage}%
               </div>
             </div>
-            <div className="">
+            <div className={`${activeList === "active" ? "w-[2/3] " : ""}`}>
               <Link to={`/products/${item.id}`}>
-                <div className="flex justify-between items-center pt-[24px] pb-[15px]">
+                <div
+                  className={`${
+                    activeList === "active"
+                      ? "text-end"
+                      : "flex justify-between items-center pt-[24px] pb-[15px]"
+                  }`}
+                >
                   <h3 className="lg:text-[18px] text-[14px] text-primary font-bold font-dmsans">
                     {item.title}
                   </h3>
@@ -77,7 +103,7 @@ const Products = ({ allData, cateFilter }) => {
                     ${item.price}
                   </p>
                 </div>
-                <div>
+                <div className={`${activeList === "active" ? "text-end" : ""}`}>
                   <p className="lg:text-[16px] text-[12px] text-secondary font-normal font-dmsans capitalize">
                     {item.category}
                   </p>
@@ -87,6 +113,7 @@ const Products = ({ allData, cateFilter }) => {
           </div>
         ))}
       </div>
+
       {showAll ? (
         cateFilter.length > 5 && (
           <div className="pb-[16px]" onClick={hancleShowAll}>

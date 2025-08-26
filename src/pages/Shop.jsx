@@ -66,6 +66,11 @@ const Shop = () => {
     setPriceShow(false);
   };
 
+  let [activeList, setActiveList] = useState("");
+  let handleList = () => {
+    setActiveList("active");
+  };
+
   return (
     <>
       <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
@@ -250,10 +255,16 @@ const Shop = () => {
             <div className="w-[72%]">
               <div className="flex justify-between pb-[60px]">
                 <div className="1/2 flex gap-x-[20px]">
-                  <div className="relative w-[36px] h-[36px] border-[1px] border-[#F0F0F0] hover:bg-primary group">
+                  <div
+                    onClick={() => setActiveList("")}
+                    className="relative w-[36px] h-[36px] border-[1px] border-[#F0F0F0] hover:bg-primary group"
+                  >
                     <HiSquares2X2 className="text-[24px] text-[#737373] absolute top-[50%] left-[50%] transform-[translate(-50%,-50%)] group-hover:text-white" />
                   </div>
-                  <div className="relative w-[36px] h-[36px] border-[1px] border-[#F0F0F0] hover:bg-primary group">
+                  <div
+                    onClick={handleList}
+                    className="relative w-[36px] h-[36px] border-[1px] border-[#F0F0F0] hover:bg-primary group"
+                  >
                     <FaThList className="text-[18px] text-[#737373] absolute top-[50%] left-[50%] transform-[translate(-50%,-50%)] group-hover:text-white" />
                   </div>
                 </div>
@@ -285,7 +296,11 @@ const Shop = () => {
                 </div>
               </div>
               <div>
-                <Products allData={allData} cateFilter={cateFilter} />
+                <Products
+                  allData={allData}
+                  cateFilter={cateFilter}
+                  activeList={activeList}
+                />
               </div>
               <div>
                 <Pagination
