@@ -62,7 +62,12 @@ const Shop = () => {
     setActiveList("active");
   };
 
+  let handleShow = (e) => {
+    setPerPage(e.target.value);
+  };
+
   let resetFilters = () => {
+    setPerPage(6);
     setCateFilter([]);
     setActiveCategory(null);
     setCurrentPage(1);
@@ -259,15 +264,23 @@ const Shop = () => {
                 <div className="1/2 flex gap-x-[20px]">
                   <div
                     onClick={() => setActiveList("")}
-                    className="relative w-[36px] h-[36px] border-[1px] border-[#F0F0F0] hover:bg-primary group"
+                    className={`${
+                      activeList === ""
+                        ? "relative text-white w-[36px] h-[36px] border-[1px] border-[#F0F0F0] hover:bg-primary bg-primary"
+                        : "relative text-[#737373] w-[36px] h-[36px] border-[1px] border-[#F0F0F0] hover:bg-primary hover:text-white"
+                    }`}
                   >
-                    <HiSquares2X2 className="text-[24px] text-[#737373] absolute top-[50%] left-[50%] transform-[translate(-50%,-50%)] group-hover:text-white" />
+                    <HiSquares2X2 className="text-[24px]  absolute top-[50%] left-[50%] transform-[translate(-50%,-50%)] " />
                   </div>
                   <div
                     onClick={handleList}
-                    className="relative w-[36px] h-[36px] border-[1px] border-[#F0F0F0] hover:bg-primary group"
+                    className={`${
+                      activeList === "active"
+                        ? "relative w-[36px] h-[36px] border-[1px] border-[#F0F0F0] hover:bg-primary  bg-primary text-white hover:text-white"
+                        : "relative w-[36px] h-[36px] border-[1px] border-[#F0F0F0] hover:bg-primary text-[#737373] hover:text-white"
+                    }`}
                   >
-                    <FaThList className="text-[18px] text-[#737373] absolute top-[50%] left-[50%] transform-[translate(-50%,-50%)] group-hover:text-white" />
+                    <FaThList className="text-[18px]  absolute top-[50%] left-[50%] transform-[translate(-50%,-50%)] " />
                   </div>
                 </div>
                 <div className="1/2 flex gap-x-[40px]">
@@ -288,11 +301,16 @@ const Shop = () => {
                     <label className="text-[16px] text-secondary font-dmsans font-normal pr-[14px]">
                       Show:
                     </label>
-                    <select className="h-[36px] w-[139px] border-[#F0F0F0] border-[1px] text-[16px] text-secondary font-dmsans font-normal outline-none">
-                      <option>10</option>
-                      <option>20</option>
-                      <option>30</option>
-                      <option>40</option>
+                    <select
+                      value={perPage}
+                      onChange={handleShow}
+                      className="h-[36px] w-[139px] border-[#F0F0F0] border-[1px] text-[16px] text-secondary font-dmsans font-normal outline-none"
+                    >
+                      <option value="6">6</option>
+                      <option value="12">12</option>
+                      <option value="18">18</option>
+                      <option value="24">24</option>
+                      <option value="30">30</option>
                     </select>
                   </div>
                 </div>
