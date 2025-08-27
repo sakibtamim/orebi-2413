@@ -26,6 +26,9 @@ const Shop = () => {
 
   let [brand, setBrand] = useState([]);
 
+  let [low, setLow] = useState("");
+  let [high, setHigh] = useState("");
+
   let lastPage = perPage * currentPage;
   let firstPage = lastPage - perPage;
   let allData = data.slice(firstPage, lastPage);
@@ -57,6 +60,16 @@ const Shop = () => {
     setActiveCategory(bitem);
   };
 
+  let handlePrice = (value) => {
+    setLow(value.low);
+    setHigh(value.high);
+    let priceRange = data.filter(
+      (item) => item.price > value.low && item.price < value.high
+    );
+    setCateFilter(priceRange);
+    setActiveCategory(value);
+  };
+
   let [activeList, setActiveList] = useState("");
   let handleList = () => {
     setActiveList("active");
@@ -64,6 +77,33 @@ const Shop = () => {
 
   let handleShow = (e) => {
     setPerPage(e.target.value);
+  };
+
+  let [sortValue, setSortValue] = useState("default");
+
+  let handleSort = (e) => {
+    const value = e.target.value;
+    setSortValue(value);
+
+    let sortedData = [...data];
+
+    switch (value) {
+      case "Name(A > Z)":
+        sortedData.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "Name(Z > A)":
+        sortedData.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      case "Price(Low > High)":
+        sortedData.sort((a, b) => a.price - b.price);
+        break;
+      case "Price(High > Low)":
+        sortedData.sort((a, b) => b.price - a.price);
+        break;
+      default:
+        sortedData = [...data];
+    }
+    setCateFilter(sortedData);
   };
 
   let resetFilters = () => {
@@ -76,6 +116,7 @@ const Shop = () => {
     setBrandShow(false);
     setPriceShow(false);
     setShowAll(true);
+    setSortValue("default");
   };
 
   return (
@@ -232,20 +273,48 @@ const Shop = () => {
                 </h5>
                 {priceShow && (
                   <ul>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
+                    <li
+                      onClick={() => handlePrice({ low: 0, high: 9 })}
+                      className={`${
+                        activeCategory?.low === 0 && activeCategory?.high === 9
+                          ? "bg-primary text-white pl-2 "
+                          : "bg-white"
+                      } text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px] cursor-pointer`}
+                    >
                       $0.00 - $9.99
                     </li>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
+                    <li
+                      onClick={() => handlePrice({ low: 10, high: 19 })}
+                      className={`${
+                        activeCategory?.low === 10 &&
+                        activeCategory?.high === 19
+                          ? "bg-primary text-white pl-2 "
+                          : ""
+                      } text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px] cursor-pointer`}
+                    >
                       $10.00 - $19.99
                     </li>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
-                      $20.00 - $29.99
+                    <li
+                      onClick={() => handlePrice({ low: 20, high: 99 })}
+                      className={`${
+                        activeCategory?.low === 20 &&
+                        activeCategory?.high === 99
+                          ? "bg-primary text-white pl-2 "
+                          : ""
+                      } text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px] cursor-pointer`}
+                    >
+                      $20.00 - $99.99
                     </li>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
-                      $30.00 - $39.99
-                    </li>
-                    <li className=" text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px]">
-                      $40.00 - $69.99
+                    <li
+                      onClick={() => handlePrice({ low: 100, high: 4000 })}
+                      className={`${
+                        activeCategory?.low === 100 &&
+                        activeCategory?.high === 4000
+                          ? "bg-primary text-white pl-2 "
+                          : ""
+                      } text-[16px] text-secondary font-dmsans font-normal py-[20px] border-b-[#F0F0F0] border-b-[1px] cursor-pointer`}
+                    >
+                      $100.00 - $999.99+
                     </li>
                   </ul>
                 )}
@@ -289,12 +358,20 @@ const Shop = () => {
                       Sort by:
                     </label>
 
-                    <select className="h-[36px] w-[239px] border-[#F0F0F0] border-[1px] text-[16px] text-secondary font-dmsans font-normal outline-none">
-                      <option>Default</option>
-                      <option>Name(A &gt; Z)</option>
-                      <option>Name(Z &gt; A)</option>
-                      <option>Price(Low &gt; High)</option>
-                      <option>Price(High &gt; Low)</option>
+                    <select
+                      value={sortValue}
+                      onChange={handleSort}
+                      className="h-[36px] w-[239px] border-[#F0F0F0] border-[1px] text-[16px] text-secondary font-dmsans font-normal outline-none "
+                    >
+                      <option value="default">Default</option>
+                      <option value="Name(A > Z)">Name(A &gt; Z)</option>
+                      <option value="Name(Z > A)">Name(Z &gt; A)</option>
+                      <option value="Price(Low > High)">
+                        Price(Low &gt; High)
+                      </option>
+                      <option value="Price(High > Low)">
+                        Price(High &gt; Low)
+                      </option>
                     </select>
                   </div>
                   <div>

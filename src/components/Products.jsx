@@ -9,7 +9,7 @@ const Products = ({ allData, cateFilter, activeList, showAll, setShowAll }) => {
   let [cateMain, letCateMain] = useState([]);
 
   useEffect(() => {
-    let cateAll = cateFilter.slice(0, 5);
+    let cateAll = cateFilter.slice(0, 6);
     letCateMain(cateAll);
   }, [cateFilter]);
 
@@ -19,7 +19,7 @@ const Products = ({ allData, cateFilter, activeList, showAll, setShowAll }) => {
   };
 
   let hancleShowLess = () => {
-    letCateMain(cateFilter.slice(0, 5));
+    letCateMain(cateFilter.slice(0, 6));
     setShowAll(true);
   };
 
@@ -114,14 +114,14 @@ const Products = ({ allData, cateFilter, activeList, showAll, setShowAll }) => {
       </div>
 
       {showAll
-        ? cateFilter.length > 5 && (
+        ? cateFilter.length > 6 && (
             <div className="pb-[16px]" onClick={hancleShowAll}>
               <h5 className="text-[16px] text-white font-dmsans font-bold capitalize py-2 px-4 bg-primary inline-block rounded hover:bg-primary/80 cursor-pointer">
                 show all
               </h5>
             </div>
           )
-        : cateFilter.length > 5 && (
+        : cateFilter.length > 6 && (
             <div className="pb-[16px]" onClick={hancleShowLess}>
               <h5 className="text-[16px] text-white font-dmsans font-bold capitalize py-2 px-4 bg-primary inline-block rounded hover:bg-primary/80 cursor-pointer">
                 show less
