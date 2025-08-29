@@ -361,7 +361,7 @@ const Shop = () => {
                     <select
                       value={sortValue}
                       onChange={handleSort}
-                      className="h-[36px] w-[239px] border-[#F0F0F0] border-[1px] text-[16px] text-secondary font-dmsans font-normal outline-none "
+                      className="pl-[20px] h-[36px] w-[239px] border-[#F0F0F0] border-[1px] text-[16px] text-secondary font-dmsans font-normal outline-none "
                     >
                       <option value="default">Default</option>
                       <option value="Name(A > Z)">Name(A &gt; Z)</option>
@@ -375,13 +375,13 @@ const Shop = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="text-[16px] text-secondary font-dmsans font-normal pr-[14px]">
+                    <label className=" text-[16px] text-secondary font-dmsans font-normal pr-[14px]">
                       Show:
                     </label>
                     <select
                       value={perPage}
                       onChange={handleShow}
-                      className="h-[36px] w-[139px] border-[#F0F0F0] border-[1px] text-[16px] text-secondary font-dmsans font-normal outline-none"
+                      className="pl-[20px] h-[36px] w-[139px] border-[#F0F0F0] border-[1px] text-[16px] text-secondary font-dmsans font-normal outline-none"
                     >
                       <option value="6">6</option>
                       <option value="12">12</option>
