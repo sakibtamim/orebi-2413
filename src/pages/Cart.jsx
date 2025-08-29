@@ -7,7 +7,7 @@ import CartProduct from "../assets/cartproduct.png";
 import { BiMinus, BiPlus } from "react-icons/bi";
 
 const Cart = () => {
-  let [count, setCount] = useState(0);
+  let [count, setCount] = useState(1);
   let countUp = () => {
     setCount(count + 1);
   };
