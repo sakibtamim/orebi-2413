@@ -34,7 +34,7 @@ const ProductDetails = () => {
   };
   useEffect(() => {
     getProductDetailsData();
-  }, []);
+  }, [productId]);
 
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Container from "./Container";
 import { HiBars3BottomLeft } from "react-icons/hi2";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
@@ -9,8 +9,13 @@ import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./firebase";
+import { ApiData } from "./ContextApi";
 
 const Navbar = () => {
+  let { data } = useContext(ApiData);
+  let [category, setCategory] = useState([]);
+  let [cateFilter, setCateFilter] = useState([]);
+
   let [cateShow, setCateShow] = useState(false);
   let [accountShow, setAccountShow] = useState(false);
   let [cartShow, setCartShow] = useState(false);
@@ -19,6 +24,15 @@ const Navbar = () => {
   let cateRef = useRef();
   let accRef = useRef();
   let cartRef = useRef();
+
+  useEffect(() => {
+    setCategory([...new Set(data.map((item) => item.category))]);
+  }, [data]);
+
+  let handleCategory = (citem) => {
+    let categoryShow = data.filter((item) => item.category === citem);
+    setCateFilter(categoryShow);
+  };
 
   useEffect(() => {
     let user = onAuthStateChanged(auth, (currentUser) => {
@@ -73,141 +87,31 @@ const Navbar = () => {
             {cateShow && (
               <div className=" lg:w-[250px] w-[160px] absolute lg:top-[60px] top-[40px] left-0 z-50 ">
                 <ul className="bg-primary">
-                  <li className="relative border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px] hover:text-white hover:font-bold lg:hover:pl-[30px] hover:pl-[24px] duration-300 ease-in-out group">
-                    <a
-                      className="lg:text-[14px] text-[12px] text-[rgba(255,255,255,0.7)] font-dmsans font-normal  "
-                      href=""
+                  {category.map((item) => (
+                    <li
+                      key={item}
+                      onMouseEnter={() => handleCategory(item)}
+                      className="relative border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px] hover:text-white hover:font-bold lg:hover:pl-[30px] hover:pl-[24px] duration-300 ease-in-out group capitalize"
                     >
-                      <div className="flex justify-between items-center">
-                        <span>Accesories</span>
-                        <div className="pr-[20px]">
-                          <MdKeyboardArrowRight />
+                      <div className="lg:text-[14px] text-[12px] text-[rgba(255,255,255,0.7)] font-dmsans font-normal  ">
+                        <div className="flex justify-between items-center">
+                          <span>{item}</span>
+                          <div className="pr-[20px]">
+                            <MdKeyboardArrowRight />
+                          </div>
                         </div>
+                        <ul className="absolute top-0 left-[100%] bg-primary lg:w-[320px] w-[350px] scale-0 group-hover:scale-100">
+                          {cateFilter.map((pitem) => (
+                            <Link key={pitem.id} to={`/products/${pitem.id}`}>
+                              <li className=" border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
+                                {pitem.title}
+                              </li>
+                            </Link>
+                          ))}
+                        </ul>
                       </div>
-                      <ul className="absolute top-0 left-[100%] bg-primary lg:w-[150px] w-[120px] scale-0 group-hover:scale-100">
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Accesories 1</a>
-                        </li>
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Accesories 2</a>
-                        </li>
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Accesories 3</a>
-                        </li>
-                        <li className=" lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Accesories 4</a>
-                        </li>
-                      </ul>
-                    </a>
-                  </li>
-                  <li className="relative border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white hover:font-bold lg:hover:pl-[30px] hover:pl-[24px] duration-300 ease-in-out group">
-                    <a
-                      href=""
-                      className="lg:text-[14px] text-[12px] text-[rgba(255,255,255,0.7)] font-dmsans font-normal "
-                    >
-                      <div className="flex justify-between items-center">
-                        <span>Furniture</span>
-                        <div className="pr-[20px]">
-                          <MdKeyboardArrowRight />
-                        </div>
-                      </div>
-                      <ul className="absolute top-0 left-[100%] bg-primary lg:w-[150px] w-[120px] scale-0 group-hover:scale-100">
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Furniture 1</a>
-                        </li>
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Furniture 2</a>
-                        </li>
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Furniture 3</a>
-                        </li>
-                        <li className=" lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Furniture 4</a>
-                        </li>
-                      </ul>
-                    </a>
-                  </li>
-                  <li className="relative group border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white hover:font-bold lg:hover:pl-[30px] hover:pl-[24px] duration-300 ease-in-out">
-                    <a
-                      href=""
-                      className="lg:text-[14px] text-[12px] text-[rgba(255,255,255,0.7)] font-dmsans font-normal "
-                    >
-                      <div className="flex justify-between items-center">
-                        <span>Electronics</span>
-                        <div className="pr-[20px]">
-                          <MdKeyboardArrowRight />
-                        </div>
-                      </div>
-                      <ul className="absolute top-0 left-[100%] bg-primary lg:w-[150px] w-[120px] scale-0 group-hover:scale-100">
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Electronics 1</a>
-                        </li>
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Electronics 2</a>
-                        </li>
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Electronics 3</a>
-                        </li>
-                        <li className=" lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Electronics 4</a>
-                        </li>
-                      </ul>
-                    </a>
-                  </li>
-                  <li className="relative group border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white hover:font-bold lg:hover:pl-[30px] hover:pl-[24px] duration-300 ease-in-out">
-                    <a
-                      href=""
-                      className="lg:text-[14px] text-[12px] text-[rgba(255,255,255,0.7)] font-dmsans font-normal "
-                    >
-                      <div className="flex justify-between items-center">
-                        <span>Clothes</span>
-                        <div className="pr-[20px]">
-                          <MdKeyboardArrowRight />
-                        </div>
-                      </div>
-                      <ul className="absolute top-0 left-[100%] bg-primary lg:w-[150px] w-[120px] scale-0 group-hover:scale-100">
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Clothes 1</a>
-                        </li>
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Clothes 2</a>
-                        </li>
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Clothes 3</a>
-                        </li>
-                        <li className=" lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Clothes 4</a>
-                        </li>
-                      </ul>
-                    </a>
-                  </li>
-                  <li className="relative group lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white hover:font-bold lg:hover:pl-[30px] hover:pl-[24px] duration-300 ease-in-out">
-                    <a
-                      href=""
-                      className="lg:text-[14px] text-[12px] text-[rgba(255,255,255,0.7)] font-dmsans font-normal "
-                    >
-                      <div className="flex justify-between items-center">
-                        <span>Bags</span>
-                        <div className="pr-[20px]">
-                          <MdKeyboardArrowRight />
-                        </div>
-                      </div>
-                      <ul className="absolute top-0 left-[100%] bg-primary lg:w-[150px] w-[120px] scale-0 group-hover:scale-100">
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Bags 1</a>
-                        </li>
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Bags 2</a>
-                        </li>
-                        <li className="border-b-1 border-b-[#2D2D2D] lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Bags 3</a>
-                        </li>
-                        <li className=" lg:pl-[20px] pl-[16px] lg:py-[16px] py-[12px]  hover:text-white">
-                          <a href="">Bags 4</a>
-                        </li>
-                      </ul>
-                    </a>
-                  </li>
+                    </li>
+                  ))}
                 </ul>
               </div>
             )}
