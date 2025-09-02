@@ -32,8 +32,8 @@ let router = createBrowserRouter(
         <Route path="/myaccount" element={<MyAccount />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/checkout" element={<CheckOut />}></Route>
+        <Route path="*" element={<Error404 />}></Route>
       </Route>
-      <Route path="*" element={<Error404 />}></Route>
     </>
   )
 );

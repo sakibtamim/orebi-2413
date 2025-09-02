@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "./Container";
 import FooterLogo from "../assets/footerlogo.png";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { ApiData } from "./ContextApi";
 
 const Footer = () => {
+  let { data } = useContext(ApiData);
+  let [category, setCategory] = useState([]);
+  useEffect(() => {
+    setCategory([...new Set(data.map((item) => item.category))]);
+  }, [data]);
+
   return (
     <section className="bg-[#F5F5F3] lg:py-[55px] py-[30px] ">
       <Container>
@@ -14,19 +22,19 @@ const Footer = () => {
             </h3>
             <ul>
               <li className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal lg:pb-[6px] pb-[4px] capitalize">
-                <a href="">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal capitalize lg:pb-[6px] pb-[4px]">
-                <a href="">Shop</a>
+                <Link to="/products">Shop</Link>
               </li>
               <li className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal capitalize lg:pb-[6px] pb-[4px]">
-                <a href="">About</a>
+                <Link to="/about">About</Link>
               </li>
               <li className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal capitalize lg:pb-[6px] pb-[4px]">
-                <a href="">Contact</a>
+                <Link to="/contacts">Contacts</Link>
               </li>
               <li className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal capitalize ">
-                <a href="">Journal</a>
+                <Link>Journal</Link>
               </li>
             </ul>
           </div>
@@ -35,21 +43,14 @@ const Footer = () => {
               SHOP
             </h3>
             <ul>
-              <li className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal lg:pb-[6px] pb-[4px] capitalize">
-                <a href="">Category 1</a>
-              </li>
-              <li className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal lg:pb-[6px] pb-[4px] capitalize">
-                <a href="">Category 2</a>
-              </li>
-              <li className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal lg:pb-[6px] pb-[4px] capitalize">
-                <a href="">Category 3</a>
-              </li>
-              <li className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal lg:pb-[6px] pb-[4px] capitalize">
-                <a href="">Category 4</a>
-              </li>
-              <li className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal capitalize">
-                <a href="">Category 5</a>
-              </li>
+              {category.map((item) => (
+                <li
+                  key={item}
+                  className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal lg:pb-[6px] pb-[4px] capitalize"
+                >
+                  <Link to="/products">{item}</Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="lg:w-1/8 w-1/3">
@@ -83,19 +84,27 @@ const Footer = () => {
             </h4>
           </div>
           <div className="lg:w-2/8 w-1/2 lg:mt-0 mt-[20px] lg:text-start text-right">
-            <img src={FooterLogo} className=" lg:block inline-block" alt="" />
+            <Link to="/">
+              <img src={FooterLogo} className=" lg:block inline-block" alt="" />
+            </Link>
           </div>
         </div>
         <div className="lg:flex justify-between items-center ">
           <div className="flex lg:gap-x-[26px] gap-x-[50px] lg:justify-start justify-center lg:mb-0 mb-[16px]">
             <div className="">
-              <FaFacebookF className="text-primary" />
+              <Link to="https://www.facebook.com">
+                <FaFacebookF className="text-primary" />
+              </Link>
             </div>
             <div className="">
-              <FaLinkedinIn className="text-primary" />
+              <Link to="https://www.linkedin.com">
+                <FaLinkedinIn className="text-primary" />
+              </Link>
             </div>
             <div className="">
-              <FaInstagram className="text-primary" />
+              <Link to="https://www.instagram.com">
+                <FaInstagram className="text-primary" />
+              </Link>
             </div>
           </div>
           <div className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal text-center">
