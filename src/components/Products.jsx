@@ -42,7 +42,7 @@ const Products = ({ allData, cateFilter, activeList, showAll, setShowAll }) => {
           ${
             activeList === "active"
               ? "w-[100%] pb-[50px]"
-              : "flex flex-wrap justify-between pb-[50px] gap-y-[40px]"
+              : "flex flex-wrap  pb-[50px] gap-[38px]"
           } `}
       >
         {productsToShow.map((item) => (
