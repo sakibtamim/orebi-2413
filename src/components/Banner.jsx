@@ -5,6 +5,7 @@ import { FaTruck } from "react-icons/fa";
 import { FaArrowRotateLeft } from "react-icons/fa6";
 import { PiNumberTwoBold } from "react-icons/pi";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   let settings = {
@@ -37,16 +38,24 @@ const Banner = () => {
         <div className="lg:px-0 px-2">
           <Slider {...settings}>
             <div>
-              <img src={BanImg} className="w-full " alt="" />
+              <Link to="/products">
+                <img src={BanImg} className="w-full " alt="" />
+              </Link>
             </div>
             <div>
-              <img src={BanImg} className="w-full " alt="" />
+              <Link to="/products">
+                <img src={BanImg} className="w-full " alt="" />
+              </Link>
             </div>
             <div>
-              <img src={BanImg} className="w-full " alt="" />
+              <Link to="/products">
+                <img src={BanImg} className="w-full " alt="" />
+              </Link>
             </div>
             <div>
-              <img src={BanImg} className="w-full " alt="" />
+              <Link to="/products">
+                <img src={BanImg} className="w-full " alt="" />
+              </Link>
             </div>
           </Slider>
         </div>
