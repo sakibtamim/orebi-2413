@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
@@ -23,21 +23,17 @@ const ProductDetails = () => {
     }
   };
 
-  let productId = useParams();
+  let { id } = useParams();
+
   let [productData, setProductData] = useState({});
   let [productLoading, setProductLoading] = useState(true);
 
-  let getProductDetailsData = () => {
-    axios
-      .get(`https://dummyjson.com/products/${productId.id}`)
-      .then((response) => {
-        setProductData(response.data);
-        setProductLoading(false);
-      });
-  };
   useEffect(() => {
-    getProductDetailsData();
-  }, [productId]);
+    axios.get(`https://dummyjson.com/products/${id}`).then((response) => {
+      setProductData(response.data);
+      setProductLoading(false);
+    });
+  }, [id]);
 
   if (productLoading) {
     return (
