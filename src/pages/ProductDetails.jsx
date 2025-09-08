@@ -9,10 +9,19 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 
 const ProductDetails = () => {
   let [count, setCount] = useState(1);
+  let [color, setColor] = useState(null);
   let [showShipping, setShowShipping] = useState(false);
   let [showDetails, setShowDetails] = useState(false);
   let [showReview, setShowReview] = useState(false);
   let [showDescription, setShowDescription] = useState(true);
+
+  let colors = [
+    "rgba(0,0,0,0.19)",
+    "#FF8686",
+    "rgba(125,211,33,0.19)",
+    "rgba(182,182,182,0.19)",
+    "rgba(21,203,164,0.19)",
+  ];
 
   let countUp = () => {
     setCount(count + 1);
@@ -92,10 +101,22 @@ const ProductDetails = () => {
               ${productData.price}
             </h5>
           </div>
-          <div className="py-[30px] ">
+          <div className=" flex items-center gap-x-[53px] py-[30px] ">
             <h6 className="text-[16px] text-primary font-bold font-dmsans uppercase">
               COLOR:
             </h6>
+            <div className="flex items-center gap-x-[15px]">
+              {colors.map((clr, index) => (
+                <div
+                  key={index}
+                  onClick={() => setColor(clr)}
+                  className={`${
+                    color === clr ? "w-[28px] h-[28px]" : "w-[20px] h-[20px]"
+                  } rounded-full`}
+                  style={{ background: clr }}
+                ></div>
+              ))}
+            </div>
           </div>
           <div className="flex items-center gap-x-[76px] pb-[30px]">
             <h6 className="text-[16px] text-primary font-bold font-dmsans uppercase">
