@@ -6,6 +6,7 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { IoMdStar } from "react-icons/io";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import ProductRatings from "../components/ProductRatings";
 
 const ProductDetails = () => {
   let [count, setCount] = useState(1);
@@ -84,13 +85,9 @@ const ProductDetails = () => {
           <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[15px]">
             {productData.title}
           </h2>
-          <div className="flex gap-x-[25px] pb-[24px]">
-            <div className="text-[16px] text-[#FFD881] flex ">
-              <IoMdStar />
-              <IoMdStar />
-              <IoMdStar />
-              <IoMdStar />
-              <IoMdStar />
+          <div className="flex items-center gap-x-[25px] pb-[24px]">
+            <div className="text-[16px] text-[#FFD881] ">
+              <ProductRatings rating={productData.rating} />
             </div>
             <p className="text-[14px] text-secondary font-dmsans font-normal">
               {productData.reviews?.length} Review
@@ -311,12 +308,8 @@ const ProductDetails = () => {
                     <h6 className="text-[16px] text-primary font-dmsans font-normal">
                       {reviews.reviewerName}
                     </h6>
-                    <div className="text-[16px] text-[#FFD881] flex ">
-                      <IoMdStar />
-                      <IoMdStar />
-                      <IoMdStar />
-                      <IoMdStar />
-                      <IoMdStar />
+                    <div className="text-[16px] text-[#FFD881]  ">
+                      <ProductRatings rating={reviews.rating} />
                     </div>
                   </div>
                   <div className="w-[1/2]">
