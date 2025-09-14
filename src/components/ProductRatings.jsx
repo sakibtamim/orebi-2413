@@ -8,12 +8,12 @@ const ProductRatings = ({ rating }) => {
 
   return (
     <div className="flex">
-      {[...Array(fullRating)].map(() => (
-        <IoMdStar />
+      {[...Array(fullRating)].map((_, i) => (
+        <IoMdStar key={i} />
       ))}
       {halfRating && <IoMdStarHalf />}
-      {[...Array(emptyRating)].map(() => (
-        <IoMdStarOutline />
+      {[...Array(emptyRating)].map((_, i) => (
+        <IoMdStarOutline key={i} />
       ))}
     </div>
   );
