@@ -10,8 +10,11 @@ import { Link } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./firebase";
 import { ApiData } from "./ContextApi";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const cartItems = useSelector((state) => state.cartDetails.cartItems);
+
   let { data } = useContext(ApiData);
   let [category, setCategory] = useState([]);
   let [cateFilter, setCateFilter] = useState([]);
@@ -186,24 +189,48 @@ const Navbar = () => {
                 <FaShoppingCart className="lg:text-[18px] text-[16px] text-primary cursor-pointer" />
                 {cartShow && (
                   <div className="absolute lg:top-[60px] right-0 top-[40px] lg:w-[360px] w-[240px] bg-white border-[#F0F0F0] border-[1px] z-50">
-                    <div className=" lg:py-[20px] py-[10px] lg:px-0 px-[10px] bg-[#F5F5F3] flex lg:justify-around justify-between items-center">
-                      <div className="">
-                        <img
-                          src={CartImg}
-                          className="lg:w-full w-[70%] "
-                          alt=""
-                        />
+                    {cartItems.length ? (
+                      cartItems.map((item) => (
+                        <div className=" lg:py-[20px] py-[10px] lg:px-0 px-[10px] bg-[#F5F5F3] flex lg:justify-evenly justify-between items-center border-b border-b-[#F0F0F0]">
+                          <div className="w-[25%]">
+                            <img
+                              src={item.thumbnail}
+                              className="w-[80px] h-[80px] "
+                              alt=""
+                            />
+                          </div>
+                          <div className="w-[55%] font-bold font-dmsans lg:text-[14px] text-[12px] text-primary lg:ml-0 ml-[-16px]">
+                            <h4 className="lg:pb-[12px] pb-[2px]">
+                              {item.title}
+                            </h4>
+                            <h5>${item.price}</h5>
+                          </div>
+                          <div className="w-[5%]">
+                            <RxCross2 className="lg:text-[16px] text-[14px]" />
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className=" lg:py-[20px] py-[10px] lg:px-0 px-[10px] bg-[#F5F5F3] flex lg:justify-evenly justify-between items-center border-b border-b-[#F0F0F0]">
+                        <div className="w-[25%]">
+                          <img
+                            src={CartImg}
+                            className="w-[80px] h-[80px] "
+                            alt=""
+                          />
+                        </div>
+                        <div className="w-[55%] font-bold font-dmsans lg:text-[14px] text-[12px] text-primary lg:ml-0 ml-[-16px]">
+                          <h4 className="lg:pb-[12px] pb-[2px]">
+                            Product Name
+                          </h4>
+                          <h5>$11</h5>
+                        </div>
+                        <div className="w-[5%]">
+                          <RxCross2 className="lg:text-[16px] text-[14px]" />
+                        </div>
                       </div>
-                      <div className="font-bold font-dmsans lg:text-[14px] text-[12px] text-primary lg:ml-0 ml-[-16px]">
-                        <h4 className="lg:pb-[12px] pb-[2px]">
-                          Black Smart Watch
-                        </h4>
-                        <h5>$44.00</h5>
-                      </div>
-                      <div>
-                        <RxCross2 className="lg:text-[16px] text-[14px]" />
-                      </div>
-                    </div>
+                    )}
+
                     <div className="lg:p-[20px] p-[10px]">
                       <h3 className="lg:text-[16px] text-[14px] text-primary font-bold font-dmsans lg:pb-[14px] pb-[8px] ">
                         <span className=" text-secondary font-normal">

@@ -50,7 +50,6 @@ const ProductDetails = () => {
   }, [id]);
 
   const handleCart = () => {
-    console.log("ami");
     dispatch(cartTotal(productData));
   };
 
