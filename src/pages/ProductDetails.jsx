@@ -7,8 +7,12 @@ import { IoMdStar } from "react-icons/io";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import ProductRatings from "../components/ProductRatings";
+import { useDispatch } from "react-redux";
+import { cartTotal } from "../slice/cartSlice";
 
 const ProductDetails = () => {
+  const dispatch = useDispatch();
+
   let [count, setCount] = useState(1);
   let [color, setColor] = useState(null);
   let [showShipping, setShowShipping] = useState(false);
@@ -44,6 +48,11 @@ const ProductDetails = () => {
       setProductLoading(false);
     });
   }, [id]);
+
+  const handleCart = () => {
+    console.log("ami");
+    dispatch(cartTotal(productData));
+  };
 
   if (productLoading) {
     return (
@@ -156,12 +165,15 @@ const ProductDetails = () => {
             </p>
           </div>
           <div className="flex gap-x-[20px] py-[30px] border-b border-b-[#F0F0F0]">
-            <Link className="text-[14px] text-primary font-bold font-dmsans px-[44px] py-[16px] border border-primary  hover:bg-primary hover:text-white">
+            <div className="text-[14px] text-primary font-bold font-dmsans px-[44px] py-[16px] border border-primary  hover:bg-primary hover:text-white cursor-pointer">
               Add to Wish List
-            </Link>
-            <Link className="text-[14px] text-primary font-bold font-dmsans px-[60px] py-[16px] border border-primary  hover:bg-primary hover:text-white">
+            </div>
+            <div
+              onClick={handleCart}
+              className="text-[14px] text-primary font-bold font-dmsans px-[60px] py-[16px] border border-primary  hover:bg-primary hover:text-white cursor-pointer"
+            >
               Add to Cart
-            </Link>
+            </div>
           </div>
           <div
             onClick={() => setShowDetails(!showDetails)}
