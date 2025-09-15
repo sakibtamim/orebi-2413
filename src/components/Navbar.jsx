@@ -191,7 +191,10 @@ const Navbar = () => {
                   <div className="absolute lg:top-[60px] right-0 top-[40px] lg:w-[360px] w-[240px] bg-white border-[#F0F0F0] border-[1px] z-50">
                     {cartItems.length ? (
                       cartItems.map((item) => (
-                        <div className=" lg:py-[20px] py-[10px] lg:px-0 px-[10px] bg-[#F5F5F3] flex lg:justify-evenly justify-between items-center border-b border-b-[#F0F0F0]">
+                        <div
+                          className=" lg:py-[20px] py-[10px] lg:px-0 px-[10px] bg-[#F5F5F3] flex lg:justify-evenly justify-between items-center border-b border-b-[#F0F0F0]"
+                          key={item.id}
+                        >
                           <div className="w-[25%]">
                             <img
                               src={item.thumbnail}

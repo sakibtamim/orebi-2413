@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import CartProduct from "../assets/cartproduct.png";
 import { BiMinus, BiPlus } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
+  const cartItems = useSelector((state) => state.cartDetails.cartItems);
   let [count, setCount] = useState(1);
   let countUp = () => {
     setCount(count + 1);
@@ -31,63 +33,69 @@ const Cart = () => {
         </div>
         <div className="border border-[#F0F0F0]">
           <div className="flex bg-[#F5F5F3] py-[34px] px-[20px] ">
-            <div className="w-1/4 ">
+            <div className="w-2/5 ">
               <h4 className="text-[16px] text-primary font-bold font-dmsans">
                 Product
               </h4>
             </div>
-            <div className="w-1/4 ">
+            <div className="w-1/5 ">
               <h4 className="text-[16px] text-primary font-bold font-dmsans">
                 Price
               </h4>
             </div>
-            <div className="w-1/4 ">
+            <div className="w-1/5 ">
               <h4 className="text-[16px] text-primary font-bold font-dmsans">
                 Quantity
               </h4>
             </div>
-            <div className="w-1/4 ">
+            <div className="w-1/5 ">
               <h4 className="text-[16px] text-primary font-bold font-dmsans">
                 Total
               </h4>
             </div>
           </div>
-          <div className="flex items-center py-[30px] px-[20px] ">
-            <div className="w-1/4 flex items-center">
-              <div className="pr-[40px]">
-                <IoClose className="text-primary" />
-              </div>
-              <div className="w-[100px] h-[100px] ">
-                <img src={CartProduct} alt="" />
-              </div>
-              <h4 className="text-[16px] text-primary font-bold font-dmsans pl-[20px]">
-                Product name
-              </h4>
-            </div>
-            <div className="w-1/4">
-              <h4 className="text-[16px] text-primary font-bold font-dmsans">
-                $44.00
-              </h4>
-            </div>
-            <div className="w-1/4 ">
-              <div className="w-[140px] py-[8px] flex justify-around  items-center border border-[#F0F0F0]">
-                <div className="" onClick={countDown}>
-                  <BiMinus className="text-secondary" />
+          {cartItems.map((item) => (
+            <div
+              className="flex items-center py-[30px] px-[20px] "
+              key={item.id}
+            >
+              <div className="w-2/5 flex items-center">
+                <div className="pr-[40px]">
+                  <IoClose className="text-primary" />
                 </div>
-                <div className="text-[16px] text-secondary font-normal font-dmsans">
-                  {count}
+                <div className="w-[100px] h-[100px] bg-[#F3F3F3] ">
+                  <img src={item.thumbnail} className="w-full" alt="" />
                 </div>
-                <div className="" onClick={countUp}>
-                  <BiPlus className="text-secondary" />
+                <h4 className="text-[16px] text-primary font-bold font-dmsans pl-[20px]">
+                  {item.title}
+                </h4>
+              </div>
+              <div className="w-1/5">
+                <h4 className="text-[16px] text-primary font-bold font-dmsans">
+                  ${item.price}
+                </h4>
+              </div>
+              <div className="w-1/5 ">
+                <div className="w-[140px] py-[8px] flex justify-around  items-center border border-[#F0F0F0]">
+                  <div className="" onClick={countDown}>
+                    <BiMinus className="text-secondary" />
+                  </div>
+                  <div className="text-[16px] text-secondary font-normal font-dmsans">
+                    {count}
+                  </div>
+                  <div className="" onClick={countUp}>
+                    <BiPlus className="text-secondary" />
+                  </div>
                 </div>
               </div>
+              <div className="w-1/5">
+                <h4 className="text-[16px] text-primary font-bold font-dmsans">
+                  ${item.price * count}
+                </h4>
+              </div>
             </div>
-            <div className="w-1/4">
-              <h4 className="text-[16px] text-primary font-bold font-dmsans">
-                $44.00
-              </h4>
-            </div>
-          </div>
+          ))}
+
           <div className="flex  p-[20px] border-t-1 border-t-[#F0F0F0]">
             <div className="w-1/2 flex items-center gap-x-[24px]">
               <div className="">
