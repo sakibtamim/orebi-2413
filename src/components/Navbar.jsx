@@ -187,6 +187,15 @@ const Navbar = () => {
               </div>
               <div className="relative" ref={cartRef}>
                 <FaShoppingCart className="lg:text-[18px] text-[16px] text-primary cursor-pointer" />
+                <div
+                  className={`${
+                    cartItems.length
+                      ? "w-[14px] h-[14px] bg-white  rounded-full absolute top-[-6px] right-[-6px] text-[12px] font-semibold font-dmsans text-primary flex items-center justify-center shadow-md"
+                      : "hidden"
+                  }`}
+                >
+                  {cartItems.length}
+                </div>
                 {cartShow && (
                   <div className="absolute lg:top-[60px] right-0 top-[40px] lg:w-[360px] w-[240px] bg-white border-[#F0F0F0] border-[1px] z-50">
                     {cartItems.length ? (
