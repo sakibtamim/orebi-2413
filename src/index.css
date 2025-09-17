@@ -82,6 +82,9 @@
   #new_arrivals .nextBtn {
     right: 0;
   }
+  #new_arrivals .prevBtn {
+    left: 0;
+  }
   #new_arrivals .nextBtn svg,
   #new_arrivals .prevBtn svg {
     font-size: 16px;

@@ -81,7 +81,7 @@ const Cart = () => {
                     <BiMinus className="text-secondary" />
                   </div>
                   <div className="text-[16px] text-secondary font-normal font-dmsans">
-                    {count}
+                    {item.cartQuantity}
                   </div>
                   <div className="" onClick={countUp}>
                     <BiPlus className="text-secondary" />
@@ -90,7 +90,7 @@ const Cart = () => {
               </div>
               <div className="w-1/5">
                 <h4 className="text-[16px] text-primary font-bold font-dmsans">
-                  ${item.price * count}
+                  ${item.price * item.cartQuantity}
                 </h4>
               </div>
             </div>
