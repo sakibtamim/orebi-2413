@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "../components/Container";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import CartProduct from "../assets/cartproduct.png";
 import { BiMinus, BiPlus } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { cartQuantity } from "../slice/cartSlice";
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartDetails.cartItems);
-  let [count, setCount] = useState(1);
-  let countUp = () => {
-    setCount(count + 1);
+
+  let countUp = (item) => {
+    dispatch(cartQuantity({ ...item, increment: true }));
   };
-  let countDown = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
+  let countDown = (item) => {
+    dispatch(cartQuantity({ ...item, decrement: true }));
   };
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
@@ -78,13 +78,19 @@ const Cart = () => {
                   </div>
                   <div className="w-1/5 ">
                     <div className="w-[140px] py-[8px] flex justify-around  items-center border border-[#F0F0F0]">
-                      <div className="" onClick={countDown}>
+                      <div
+                        className="cursor-pointer"
+                        onClick={() => countDown(item)}
+                      >
                         <BiMinus className="text-secondary" />
                       </div>
                       <div className="text-[16px] text-secondary font-normal font-dmsans">
                         {item.cartQuantity}
                       </div>
-                      <div className="" onClick={countUp}>
+                      <div
+                        className="cursor-pointer"
+                        onClick={() => countUp(item)}
+                      >
                         <BiPlus className="text-secondary" />
                       </div>
                     </div>
