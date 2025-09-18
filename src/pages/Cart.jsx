@@ -54,47 +54,49 @@ const Cart = () => {
               </h4>
             </div>
           </div>
-          {cartItems.map((item) => (
-            <div
-              className="flex items-center py-[30px] px-[20px] "
-              key={item.id}
-            >
-              <div className="w-2/5 flex items-center">
-                <div className="pr-[40px]">
-                  <IoClose className="text-primary" />
-                </div>
-                <div className="w-[100px] h-[100px] bg-[#F3F3F3] ">
-                  <img src={item.thumbnail} className="w-full" alt="" />
-                </div>
-                <h4 className="text-[16px] text-primary font-bold font-dmsans pl-[20px]">
-                  {item.title}
-                </h4>
-              </div>
-              <div className="w-1/5">
-                <h4 className="text-[16px] text-primary font-bold font-dmsans">
-                  ${item.price}
-                </h4>
-              </div>
-              <div className="w-1/5 ">
-                <div className="w-[140px] py-[8px] flex justify-around  items-center border border-[#F0F0F0]">
-                  <div className="" onClick={countDown}>
-                    <BiMinus className="text-secondary" />
+          {cartItems.length > 0
+            ? cartItems?.map((item) => (
+                <div
+                  className="flex items-center py-[30px] px-[20px] "
+                  key={item.id}
+                >
+                  <div className="w-2/5 flex items-center">
+                    <div className="pr-[40px]">
+                      <IoClose className="text-primary" />
+                    </div>
+                    <div className="w-[100px] h-[100px] bg-[#F3F3F3] ">
+                      <img src={item.thumbnail} className="w-full" alt="" />
+                    </div>
+                    <h4 className="text-[16px] text-primary font-bold font-dmsans pl-[20px]">
+                      {item.title}
+                    </h4>
                   </div>
-                  <div className="text-[16px] text-secondary font-normal font-dmsans">
-                    {item.cartQuantity}
+                  <div className="w-1/5">
+                    <h4 className="text-[16px] text-primary font-bold font-dmsans">
+                      ${item.price}
+                    </h4>
                   </div>
-                  <div className="" onClick={countUp}>
-                    <BiPlus className="text-secondary" />
+                  <div className="w-1/5 ">
+                    <div className="w-[140px] py-[8px] flex justify-around  items-center border border-[#F0F0F0]">
+                      <div className="" onClick={countDown}>
+                        <BiMinus className="text-secondary" />
+                      </div>
+                      <div className="text-[16px] text-secondary font-normal font-dmsans">
+                        {item.cartQuantity}
+                      </div>
+                      <div className="" onClick={countUp}>
+                        <BiPlus className="text-secondary" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-1/5">
+                    <h4 className="text-[16px] text-primary font-bold font-dmsans">
+                      ${item.price * item.cartQuantity}
+                    </h4>
                   </div>
                 </div>
-              </div>
-              <div className="w-1/5">
-                <h4 className="text-[16px] text-primary font-bold font-dmsans">
-                  ${item.price * item.cartQuantity}
-                </h4>
-              </div>
-            </div>
-          ))}
+              ))
+            : "no Data found"}
 
           <div className="flex  p-[20px] border-t-1 border-t-[#F0F0F0]">
             <div className="w-1/2 flex items-center gap-x-[24px]">
