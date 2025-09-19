@@ -2,8 +2,12 @@ import React from "react";
 import Container from "../components/Container";
 import { Link } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const CheckOut = () => {
+  const cartItems = useSelector((state) => state.cartDetails.cartItems);
+  console.log(cartItems);
+
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
       <Container>
@@ -202,18 +206,26 @@ const CheckOut = () => {
                 </p>
               </div>
             </div>
-            <div className="flex border-b-1 border-b-[#F0F0F0]">
-              <div className="w-1/2  border-r-1 border-r-[#F0F0F0]">
-                <h4 className="py-[16px] pl-[20px] text-[16px] text-primary font-bold font-dmsans">
-                  Product name x 1
-                </h4>
+            {cartItems.map((item) => (
+              <div className="flex flex-wrap border-b-1 border-b-[#F0F0F0]">
+                <div className="flex w-1/2 gap-x-[4px] py-[16px] pl-[20px]  border-r-1 border-r-[#F0F0F0]">
+                  <h4 className=" text-[16px] text-primary font-bold font-dmsans">
+                    {item.title}
+                  </h4>
+                  <div className=" text-[16px] text-primary font-bold font-dmsans">
+                    x
+                  </div>
+                  <h4 className=" text-[16px] text-primary font-bold font-dmsans">
+                    {item.cartQuantity}
+                  </h4>
+                </div>
+                <div className="w-1/2 ">
+                  <p className="py-[16px] pl-[20px] text-[16px] text-secondary font-normal font-dmsans">
+                    $ {item.price * item.cartQuantity}
+                  </p>
+                </div>
               </div>
-              <div className="w-1/2 ">
-                <p className="py-[16px] pl-[20px] text-[16px] text-secondary font-normal font-dmsans">
-                  389.99 $
-                </p>
-              </div>
-            </div>
+            ))}
             <div className="flex border-b-1 border-b-[#F0F0F0]">
               <div className="w-1/2  border-r-1 border-r-[#F0F0F0]">
                 <h4 className="py-[16px] pl-[20px] text-[16px] text-primary font-bold font-dmsans">
@@ -222,7 +234,13 @@ const CheckOut = () => {
               </div>
               <div className="w-1/2 ">
                 <p className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
-                  389.99 $
+                  ${" "}
+                  {cartItems
+                    .reduce(
+                      (index, item) => index + item.price * item.cartQuantity,
+                      0
+                    )
+                    .toFixed(2)}
                 </p>
               </div>
             </div>
@@ -234,7 +252,13 @@ const CheckOut = () => {
               </div>
               <div className="w-1/2 ">
                 <p className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
-                  389.99 $
+                  ${" "}
+                  {cartItems
+                    .reduce(
+                      (index, item) => index + item.price * item.cartQuantity,
+                      0
+                    )
+                    .toFixed(2)}
                 </p>
               </div>
             </div>
