@@ -3,7 +3,6 @@ import Container from "../components/Container";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { IoMdStar } from "react-icons/io";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import ProductRatings from "../components/ProductRatings";
@@ -12,8 +11,6 @@ import { cartTotal } from "../slice/cartSlice";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-
-  let [count, setCount] = useState(1);
   let [color, setColor] = useState(null);
   let [showShipping, setShowShipping] = useState(false);
   let [showDetails, setShowDetails] = useState(false);
@@ -27,15 +24,6 @@ const ProductDetails = () => {
     "rgba(182,182,182,0.19)",
     "rgba(21,203,164,0.19)",
   ];
-
-  let countUp = () => {
-    setCount(count + 1);
-  };
-  let countDown = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
 
   let { id } = useParams();
 
@@ -143,13 +131,15 @@ const ProductDetails = () => {
             </h6>
             <div className="">
               <div className="w-[139px] py-[8px] flex justify-around  items-center border border-[#F0F0F0]">
-                <div className="" onClick={countDown}>
+                <div className="">
                   <BiMinus className="text-secondary" />
                 </div>
+
                 <div className="text-[16px] text-secondary font-normal font-dmsans">
-                  {count}
+                  1
                 </div>
-                <div className="" onClick={countUp}>
+
+                <div className="">
                   <BiPlus className="text-secondary" />
                 </div>
               </div>
