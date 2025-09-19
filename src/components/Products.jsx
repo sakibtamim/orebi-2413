@@ -3,8 +3,11 @@ import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { IoGitCompare } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { ApiData } from "./ContextApi";
+import { useDispatch } from "react-redux";
+import { cartTotal } from "../slice/cartSlice";
 
 const Products = ({ allData, cateFilter, activeList, showAll, setShowAll }) => {
+  let dispatch = useDispatch();
   let { loading } = useContext(ApiData);
   let [cateMain, letCateMain] = useState([]);
 
@@ -21,6 +24,10 @@ const Products = ({ allData, cateFilter, activeList, showAll, setShowAll }) => {
   let hancleShowLess = () => {
     letCateMain(cateFilter.slice(0, 6));
     setShowAll(true);
+  };
+
+  let handleCart = (item) => {
+    dispatch(cartTotal(item));
   };
 
   if (loading) {
@@ -76,7 +83,10 @@ const Products = ({ allData, cateFilter, activeList, showAll, setShowAll }) => {
                     <span>Compare</span>
                     <IoGitCompare className="text-primary " />
                   </li>
-                  <li className="flex items-center justify-end gap-x-[16px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold cursor-pointer">
+                  <li
+                    className="flex items-center justify-end gap-x-[16px]  text-secondary text-[16px] font-dmsans font-normal hover:text-primary hover:font-bold cursor-pointer"
+                    onClick={() => handleCart(item)}
+                  >
                     <span>Add to Cart</span>
                     <FaShoppingCart className="text-primary " />
                   </li>
