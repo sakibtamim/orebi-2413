@@ -6,7 +6,7 @@ import { IoClose } from "react-icons/io5";
 import CartProduct from "../assets/cartproduct.png";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { cartQuantity } from "../slice/cartSlice";
+import { cartQuantity, removeCart } from "../slice/cartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,9 @@ const Cart = () => {
   };
   let countDown = (item) => {
     dispatch(cartQuantity({ ...item, decrement: true }));
+  };
+  let handleRemove = (item) => {
+    dispatch(removeCart(item));
   };
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
@@ -61,14 +64,17 @@ const Cart = () => {
                   key={item.id}
                 >
                   <div className="w-2/5 flex items-center">
-                    <div className="pr-[40px]">
+                    <div
+                      className="pr-[40px] "
+                      onClick={() => handleRemove(item)}
+                    >
                       <IoClose className="text-primary" />
                     </div>
                     <div className="w-[100px] h-[100px] bg-[#F3F3F3] ">
                       <img src={item.thumbnail} className="w-full" alt="" />
                     </div>
                     <h4 className="text-[16px] text-primary font-bold font-dmsans pl-[20px]">
-                      {item.title}
+                      <Link to={`/products/${item.id}`}>{item.title}</Link>
                     </h4>
                   </div>
                   <div className="w-1/5">

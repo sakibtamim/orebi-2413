@@ -10,9 +10,11 @@ import { Link } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./firebase";
 import { ApiData } from "./ContextApi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeCart } from "../slice/cartSlice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartDetails.cartItems);
 
   let { data } = useContext(ApiData);
@@ -69,6 +71,9 @@ const Navbar = () => {
     await signOut(auth);
     setAccountShow(false);
     window.location.href = "/";
+  };
+  let handleRemove = (item) => {
+    dispatch(removeCart(item));
   };
 
   return (
@@ -218,7 +223,10 @@ const Navbar = () => {
                             <h5>${item.price}</h5>
                           </div>
                           <div className="w-[5%]">
-                            <RxCross2 className="lg:text-[16px] text-[14px]" />
+                            <RxCross2
+                              className="lg:text-[16px] text-[14px]"
+                              onClick={() => handleRemove(item)}
+                            />
                           </div>
                         </div>
                       ))
