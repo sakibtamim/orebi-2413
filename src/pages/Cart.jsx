@@ -21,6 +21,7 @@ const Cart = () => {
   let handleRemove = (item) => {
     dispatch(removeCart(item));
   };
+
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
       <Container>
@@ -103,7 +104,7 @@ const Cart = () => {
                   </div>
                   <div className="w-1/5">
                     <h4 className="text-[16px] text-primary font-bold font-dmsans">
-                      ${item.price * item.cartQuantity}
+                      ${(item.price * item.cartQuantity).toFixed(2)}
                     </h4>
                   </div>
                 </div>
@@ -148,7 +149,13 @@ const Cart = () => {
                 </div>
                 <div className="w-1/2 ">
                   <p className="py-[16px] pl-[20px] text-[16px] text-secondary font-normal font-dmsans">
-                    389.99 $
+                    ${" "}
+                    {cartItems
+                      .reduce(
+                        (index, item) => index + item.price * item.cartQuantity,
+                        0
+                      )
+                      .toFixed(2)}
                   </p>
                 </div>
               </div>
@@ -160,7 +167,13 @@ const Cart = () => {
                 </div>
                 <div className="w-1/2 ">
                   <p className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
-                    389.99 $
+                    ${" "}
+                    {cartItems
+                      .reduce(
+                        (index, item) => index + item.price * item.cartQuantity,
+                        0
+                      )
+                      .toFixed(2)}
                   </p>
                 </div>
               </div>

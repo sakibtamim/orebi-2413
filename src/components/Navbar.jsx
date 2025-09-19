@@ -254,9 +254,13 @@ const Navbar = () => {
                     <div className="lg:p-[20px] p-[10px]">
                       <h3 className="lg:text-[16px] text-[14px] text-primary font-bold font-dmsans lg:pb-[14px] pb-[8px] ">
                         <span className=" text-secondary font-normal">
-                          Subtotal:{" "}
-                        </span>
-                        $44.00
+                          Subtotal:
+                        </span>{" "}
+                        $
+                        {cartItems.reduce(
+                          (index, item) => index + item.price,
+                          0
+                        )}
                       </h3>
                       <ul className="flex justify-between">
                         <li className="">
