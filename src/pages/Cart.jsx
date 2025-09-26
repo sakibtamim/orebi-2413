@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../components/Container";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -11,6 +11,13 @@ import { cartQuantity, removeCart } from "../slice/cartSlice";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartDetails.cartItems);
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState("");
+  const subtotal = cartItems
+    .reduce((index, item) => index + item.price * item.cartQuantity, 0)
+    .toFixed(2);
+
+  const total = (subtotal - discount).toFixed(2);
 
   let countUp = (item) => {
     dispatch(cartQuantity({ ...item, increment: true }));
@@ -20,6 +27,16 @@ const Cart = () => {
   };
   let handleRemove = (item) => {
     dispatch(removeCart(item));
+  };
+  let handleDiscount = (e) => {
+    setCoupon(e.target.value);
+  };
+  let handleApply = () => {
+    if (coupon === "fdr2413") {
+      setDiscount((subtotal * 0.2).toFixed(2));
+    } else {
+      setDiscount("");
+    }
   };
 
   return (
@@ -111,8 +128,8 @@ const Cart = () => {
               ))
             : "no Data found"}
 
-          <div className="flex  p-[20px] border-t-1 border-t-[#F0F0F0]">
-            <div className="w-1/2 flex items-center gap-x-[24px]">
+          <div className="flex gap-x-[40px]  p-[20px] border-t-1 border-t-[#F0F0F0]">
+            <div className="flex items-center gap-x-[24px]">
               <div className="">
                 <select
                   name=""
@@ -124,13 +141,19 @@ const Cart = () => {
                   <option value="Small">Small</option>
                 </select>
               </div>
-              <h5 className="text-[14px] text-primary font-dmsans font-bold">
-                Apply coupon
-              </h5>
             </div>
-            <div className="w-1/2 text-end">
-              <h5 className="text-[14px] text-primary font-dmsans font-bold">
-                Update cart
+
+            <div className="flex items-center gap-x-[16px]">
+              <input
+                type="text"
+                className="w-[255px] text-[14px] text-secondary font-dmsans font-normal py-[8px] px-[20px] border-[#F0F0F0] border-2 outline-none "
+                onChange={handleDiscount}
+              />
+              <h5
+                className="text-[14px] text-primary font-dmsans font-bold cursor-pointer"
+                onClick={handleApply}
+              >
+                Apply coupon
               </h5>
             </div>
           </div>
@@ -149,13 +172,19 @@ const Cart = () => {
                 </div>
                 <div className="w-1/2 ">
                   <p className="py-[16px] pl-[20px] text-[16px] text-secondary font-normal font-dmsans">
-                    ${" "}
-                    {cartItems
-                      .reduce(
-                        (index, item) => index + item.price * item.cartQuantity,
-                        0
-                      )
-                      .toFixed(2)}
+                    $ {subtotal}
+                  </p>
+                </div>
+              </div>
+              <div className="flex border-b-1 border-b-[#F0F0F0]">
+                <div className="w-1/2  border-r-1 border-r-[#F0F0F0]">
+                  <h4 className="py-[16px] pl-[20px] text-[16px] text-primary font-bold font-dmsans">
+                    Discount
+                  </h4>
+                </div>
+                <div className="w-1/2 ">
+                  <p className="py-[16px] pl-[20px] text-[16px] text-secondary font-normal font-dmsans">
+                    $ {discount}
                   </p>
                 </div>
               </div>
@@ -167,13 +196,7 @@ const Cart = () => {
                 </div>
                 <div className="w-1/2 ">
                   <p className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
-                    ${" "}
-                    {cartItems
-                      .reduce(
-                        (index, item) => index + item.price * item.cartQuantity,
-                        0
-                      )
-                      .toFixed(2)}
+                    $ {total}
                   </p>
                 </div>
               </div>
