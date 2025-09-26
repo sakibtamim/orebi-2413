@@ -1,12 +1,19 @@
 import React from "react";
 import Container from "../components/Container";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useSelector } from "react-redux";
 
 const CheckOut = () => {
+  const location = useLocation();
+  const discount = location.state?.discount || 0;
+
   const cartItems = useSelector((state) => state.cartDetails.cartItems);
-  console.log(cartItems);
+  const subtotal = cartItems
+    .reduce((index, item) => index + item.price * item.cartQuantity, 0)
+    .toFixed(2);
+
+  const total = (subtotal - discount).toFixed(2);
 
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
@@ -207,7 +214,10 @@ const CheckOut = () => {
               </div>
             </div>
             {cartItems.map((item) => (
-              <div className="flex flex-wrap border-b-1 border-b-[#F0F0F0]">
+              <div
+                key={item.id}
+                className="flex flex-wrap border-b-1 border-b-[#F0F0F0]"
+              >
                 <div className="flex w-1/2 gap-x-[4px] py-[16px] pl-[20px]  border-r-1 border-r-[#F0F0F0]">
                   <h4 className=" text-[16px] text-primary font-bold font-dmsans">
                     {item.title}
@@ -234,13 +244,19 @@ const CheckOut = () => {
               </div>
               <div className="w-1/2 ">
                 <p className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
-                  ${" "}
-                  {cartItems
-                    .reduce(
-                      (index, item) => index + item.price * item.cartQuantity,
-                      0
-                    )
-                    .toFixed(2)}
+                  $ {subtotal}
+                </p>
+              </div>
+            </div>
+            <div className="flex border-b-1 border-b-[#F0F0F0]">
+              <div className="w-1/2  border-r-1 border-r-[#F0F0F0]">
+                <h4 className="py-[16px] pl-[20px] text-[16px] text-primary font-bold font-dmsans">
+                  Discount
+                </h4>
+              </div>
+              <div className="w-1/2 ">
+                <p className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
+                  $ {discount}
                 </p>
               </div>
             </div>
@@ -252,13 +268,7 @@ const CheckOut = () => {
               </div>
               <div className="w-1/2 ">
                 <p className="py-[16px] pl-[20px] text-[16px] text-primary font-normal font-dmsans">
-                  ${" "}
-                  {cartItems
-                    .reduce(
-                      (index, item) => index + item.price * item.cartQuantity,
-                      0
-                    )
-                    .toFixed(2)}
+                  $ {total}
                 </p>
               </div>
             </div>

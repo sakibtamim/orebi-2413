@@ -203,6 +203,7 @@ const Cart = () => {
             </div>
             <div className="text-end">
               <Link
+                state={{ discount }}
                 to="/checkout"
                 className=" text-[14px] text-white font-bold font-dmsans py-[16px] px-[28px] bg-primary inline-block"
               >
