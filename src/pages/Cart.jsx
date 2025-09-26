@@ -3,7 +3,6 @@ import Container from "../components/Container";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
-import CartProduct from "../assets/cartproduct.png";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { cartQuantity, removeCart } from "../slice/cartSlice";
@@ -12,7 +11,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartDetails.cartItems);
   const [coupon, setCoupon] = useState("");
-  const [discount, setDiscount] = useState("");
+  const [discount, setDiscount] = useState(0);
   const subtotal = cartItems
     .reduce((index, item) => index + item.price * item.cartQuantity, 0)
     .toFixed(2);
@@ -35,7 +34,7 @@ const Cart = () => {
     if (coupon === "fdr2413") {
       setDiscount((subtotal * 0.2).toFixed(2));
     } else {
-      setDiscount("");
+      setDiscount(0);
     }
   };
 
@@ -146,6 +145,7 @@ const Cart = () => {
             <div className="flex items-center gap-x-[16px]">
               <input
                 type="text"
+                placeholder="For DIscount, Type: 'fdr2413'"
                 className="w-[255px] text-[14px] text-secondary font-dmsans font-normal py-[8px] px-[20px] border-[#F0F0F0] border-2 outline-none "
                 onChange={handleDiscount}
               />
