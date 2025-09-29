@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../components/Container";
 import { Link, useLocation } from "react-router-dom";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const CheckOut = () => {
+  const [billingDetails, setBillingDetails] = useState({
+    firstName: "",
+    lastName: "",
+    companyName: "",
+    country: "",
+    steetAddtess1: "",
+    steetAddtess2: "",
+    city: "",
+    postCode: "",
+    phone: "",
+    email: "",
+  });
   const location = useLocation();
   const discount = location.state?.discount || 0;
 
@@ -14,6 +27,16 @@ const CheckOut = () => {
     .toFixed(2);
 
   const total = (subtotal - discount).toFixed(2);
+  const handleOrder = (e) => {
+    e.preventDefault();
+    console.log(billingDetails);
+    toast.success("Order Successfully Placed!", {
+      position: "top-center",
+    });
+  };
+  const handleBilling = (e) => {
+    setBillingDetails({ ...billingDetails, [e.target.name]: e.target.value });
+  };
 
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
@@ -35,7 +58,7 @@ const CheckOut = () => {
           </p>
         </div>
         <div className="pb-[129px] w-2/3">
-          <form action="">
+          <form id="checkoutForm" action="" onSubmit={handleOrder}>
             <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
               Billing Details
             </h2>
@@ -48,6 +71,8 @@ const CheckOut = () => {
                   First Name *
                 </label>
                 <input
+                  onChange={handleBilling}
+                  name="firstName"
                   type="text"
                   placeholder="First Name"
                   required
@@ -62,6 +87,8 @@ const CheckOut = () => {
                   Last Name *
                 </label>
                 <input
+                  onChange={handleBilling}
+                  name="lastName"
                   type="text"
                   placeholder="Last Name"
                   required
@@ -74,12 +101,13 @@ const CheckOut = () => {
                 htmlFor=""
                 className="text-[16px] text-primary font-dmsans font-bold"
               >
-                Companye Name (optional)
+                Company Name (optional)
               </label>
               <input
+                onChange={handleBilling}
+                name="companyName"
                 type="text"
                 placeholder="Company Name"
-                required
                 className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
               />
             </div>
@@ -91,8 +119,8 @@ const CheckOut = () => {
                 Country *
               </label>
               <select
-                name=""
-                id=""
+                onChange={handleBilling}
+                name="country"
                 required
                 className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
               >
@@ -108,12 +136,16 @@ const CheckOut = () => {
                 Street Address *
               </label>
               <input
+                onChange={handleBilling}
+                name="steetAddtess1"
                 type="text"
                 placeholder="House number and street name"
                 required
                 className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
               />
               <input
+                onChange={handleBilling}
+                name="steetAddtess2"
                 type="text"
                 placeholder="Apartment, suite, unit etc. (optional)"
                 className="pb-[16px] text-[14px] text-secondary font-dmsans font-normal border-b-[1px] border-b-[#F0F0F0] outline-none"
@@ -127,6 +159,8 @@ const CheckOut = () => {
                 Town/City *
               </label>
               <input
+                onChange={handleBilling}
+                name="city"
                 type="text"
                 placeholder="Town/City"
                 required
@@ -141,6 +175,8 @@ const CheckOut = () => {
                 Post Code *
               </label>
               <input
+                onChange={handleBilling}
+                name="postCode"
                 type="text"
                 placeholder="Post Code"
                 required
@@ -155,6 +191,8 @@ const CheckOut = () => {
                 Phone *
               </label>
               <input
+                onChange={handleBilling}
+                name="phone"
                 type="tel"
                 placeholder="Phone"
                 required
@@ -169,6 +207,8 @@ const CheckOut = () => {
                 Email Address *
               </label>
               <input
+                onChange={handleBilling}
+                name="email"
                 type="email"
                 placeholder="Email"
                 required
@@ -273,9 +313,13 @@ const CheckOut = () => {
               </div>
             </div>
           </div>
-          <div className="text-[14px] text-white font-bold font-dmsans py-[16px] pl-[42px] pr-[47px] bg-primary inline-block">
+          <button
+            type="submit"
+            form="checkoutForm"
+            className="text-[14px] text-white font-bold font-dmsans py-[16px] pl-[42px] pr-[47px] bg-primary inline-block"
+          >
             Proceed to Order
-          </div>
+          </button>
         </div>
       </Container>
     </section>
