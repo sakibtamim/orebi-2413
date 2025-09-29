@@ -8,6 +8,7 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import ProductRatings from "../components/ProductRatings";
 import { useDispatch } from "react-redux";
 import { cartTotal } from "../slice/cartSlice";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ const ProductDetails = () => {
 
   const handleCart = () => {
     dispatch(cartTotal(productData));
+    toast.success("Add to cart Successfull", {
+      position: "top-center",
+    });
   };
 
   if (productLoading) {

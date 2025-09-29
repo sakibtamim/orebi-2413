@@ -12,6 +12,7 @@ import { auth } from "./firebase";
 import { ApiData } from "./ContextApi";
 import { useDispatch, useSelector } from "react-redux";
 import { removeCart } from "../slice/cartSlice";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ const Navbar = () => {
   };
   let handleRemove = (item) => {
     dispatch(removeCart(item));
+    toast.error("Removed From Cart", { position: "top-center" });
   };
 
   return (

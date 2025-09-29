@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ApiData } from "./ContextApi";
 import { useDispatch } from "react-redux";
 import { cartTotal } from "../slice/cartSlice";
+import { toast } from "react-toastify";
 
 const Products = ({ allData, cateFilter, activeList, showAll, setShowAll }) => {
   let dispatch = useDispatch();
@@ -28,6 +29,9 @@ const Products = ({ allData, cateFilter, activeList, showAll, setShowAll }) => {
 
   let handleCart = (item) => {
     dispatch(cartTotal(item));
+    toast.success("Add to cart Successfull", {
+      position: "top-center",
+    });
   };
 
   if (loading) {

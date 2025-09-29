@@ -6,6 +6,7 @@ import { IoClose } from "react-icons/io5";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { cartQuantity, removeCart } from "../slice/cartSlice";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Cart = () => {
   };
   let handleRemove = (item) => {
     dispatch(removeCart(item));
+    toast.error("Removed From Cart", { position: "top-center" });
   };
   let handleDiscount = (e) => {
     setCoupon(e.target.value);
@@ -205,6 +207,11 @@ const Cart = () => {
               <Link
                 state={{ discount }}
                 to="/checkout"
+                onClick={() =>
+                  toast.success("Proceed to Checkout", {
+                    position: "top-center",
+                  })
+                }
                 className=" text-[14px] text-white font-bold font-dmsans py-[16px] px-[28px] bg-primary inline-block"
               >
                 Proceed to Checkout

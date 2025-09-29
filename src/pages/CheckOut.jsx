@@ -273,6 +273,9 @@ const CheckOut = () => {
               </div>
             </div>
           </div>
+          <div className="text-[14px] text-white font-bold font-dmsans py-[16px] pl-[42px] pr-[47px] bg-primary inline-block">
+            Proceed to Order
+          </div>
         </div>
       </Container>
     </section>
