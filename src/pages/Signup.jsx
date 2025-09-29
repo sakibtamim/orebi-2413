@@ -88,7 +88,7 @@ const Signup = () => {
           <form action="" onSubmit={handleSignUp}>
             <div className="pb-[69px] border-b-[#F0F0F0] border-b-1">
               <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
-                Returning Customer
+                Your Personal Details
               </h2>
               <div className="w-2/3 flex flex-wrap justify-between pb-[29px] gap-y-[24px]">
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
@@ -154,9 +154,6 @@ const Signup = () => {
               </div>
             </div>
             <div className=" pt-[58px] pb-[69px] border-b-[#F0F0F0] border-b-1">
-              <h2 className="text-[39px] text-primary font-dmsans font-bold pb-[42px]">
-                New Customer
-              </h2>
               <div className="w-2/3 flex flex-wrap justify-between pb-[29px] gap-y-[24px]">
                 <div className="flex flex-col gap-y-[10px] w-[48%]">
                   <label
