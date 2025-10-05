@@ -9,6 +9,7 @@ import ProductRatings from "../components/ProductRatings";
 import { useDispatch } from "react-redux";
 import { cartTotal } from "../slice/cartSlice";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -319,7 +320,7 @@ const ProductDetails = () => {
                   </div>
                   <div className="w-[1/2]">
                     <p className="text-[16px] text-secondary font-dmsans font-normal">
-                      {reviews.date}
+                      {moment(reviews.date).format("lll")}
                     </p>
                   </div>
                 </div>
