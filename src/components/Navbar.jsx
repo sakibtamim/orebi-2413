@@ -28,7 +28,6 @@ const Navbar = () => {
   let [user, setUser] = useState(null);
   const [search, setSearch] = useState("");
   const [searchProducts, setSearchProducts] = useState([]);
-  const [searchshow, setSearchSHow] = useState(false);
 
   let cateRef = useRef();
   let accRef = useRef();
@@ -67,6 +66,10 @@ const Navbar = () => {
         setCartShow(!cartShow);
       } else {
         setCartShow(false);
+      }
+      if (!e.target.closest("input")) {
+        setSearch("");
+        setSearchProducts([]);
       }
     });
   }, [cateShow, accountShow, cartShow]);
@@ -142,6 +145,7 @@ const Navbar = () => {
             <div className="relative">
               <input
                 type="text"
+                value={search}
                 onChange={handleSearch}
                 placeholder="Search Products"
                 className="w-full bg-white lg:py-[16px] lg:px-[20px] py-[10px] px-[14px] text-input lg:text-[14px] text-[12px] font-normal font-dmsans capitalize border-none outline-none rounded-sm"
@@ -150,25 +154,34 @@ const Navbar = () => {
                 <FaSearch className="lg:text-[18px] text-[14px] text-primary" />
               </div>
             </div>
-            <div className="w-full h-[500px] absolute bg-white rounded-sm z-50 overflow-hidden">
-              {searchProducts.map((item) => (
-                <Link to={`/products/${item.id}`} key={item.id}>
-                  <div className="flex gap-x-[24px] items-center py-[20px] px-[10px]  mb-[8px] rounded-sm hover:bg-[#F5F5F3] cursor-pointer">
-                    <div className="w-[80px] h-[80px]">
-                      <img src={item.thumbnail} alt="" />
+            {search.length > 0 && (
+              <div className="w-full h-[500px] absolute bg-white rounded-sm z-50 overflow-hidden">
+                {searchProducts.map((item) => (
+                  <Link
+                    to={`/products/${item.id}`}
+                    key={item.id}
+                    onClick={() => {
+                      setSearch("");
+                      setSearchProducts([]);
+                    }}
+                  >
+                    <div className="flex gap-x-[24px] items-center py-[20px] px-[10px]  mb-[8px] rounded-sm hover:bg-[#F5F5F3] cursor-pointer">
+                      <div className="w-[80px] h-[80px]">
+                        <img src={item.thumbnail} alt="" />
+                      </div>
+                      <div className="">
+                        <h4 className="text-[16px] text-primary font-bold font-dmsans ">
+                          {item.title}
+                        </h4>
+                        <p className="text-[16px] text-primary font-bold font-dmsans">
+                          {item.price}
+                        </p>
+                      </div>
                     </div>
-                    <div className="">
-                      <h4 className="text-[16px] text-primary font-bold font-dmsans ">
-                        {item.title}
-                      </h4>
-                      <p className="text-[16px] text-primary font-bold font-dmsans">
-                        {item.price}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
           <div className="lg:w-1/4 w-2/6">
             <div className="flex justify-end lg:gap-x-[40px] gap-x-[10px]">
