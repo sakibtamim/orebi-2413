@@ -7,6 +7,8 @@ import { BiMinus, BiPlus } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { cartQuantity, removeCart } from "../slice/cartSlice";
 import { toast } from "react-toastify";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../components/firebase";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ const Cart = () => {
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
   const [couponApplied, setCouponApplied] = useState(false);
+  let [user, setUser] = useState(null);
   const subtotal = cartItems
     .reduce((index, item) => index + item.price * item.cartQuantity, 0)
     .toFixed(2);
@@ -51,6 +54,13 @@ const Cart = () => {
       setDiscount(0);
     }
   }, [subtotal, couponApplied, coupon]);
+
+  useEffect(() => {
+    let user = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => user();
+  }, []);
 
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
@@ -216,18 +226,28 @@ const Cart = () => {
               </div>
             </div>
             <div className="text-end">
-              <Link
-                state={{ discount }}
-                to="/checkout"
-                onClick={() =>
-                  toast.success("Proceed to Checkout", {
-                    position: "top-center",
-                  })
-                }
-                className=" text-[14px] text-white font-bold font-dmsans py-[16px] px-[28px] bg-primary inline-block"
-              >
-                Proceed to Checkout
-              </Link>
+              {user ? (
+                <Link
+                  state={{ discount }}
+                  to="/checkout"
+                  onClick={() =>
+                    toast.success("Proceed to Checkout", {
+                      position: "top-center",
+                    })
+                  }
+                  className=" text-[14px] text-white font-bold font-dmsans py-[16px] px-[28px] bg-primary inline-block"
+                >
+                  Proceed to Checkout
+                </Link>
+              ) : (
+                <Link
+                  state={{ discount }}
+                  to="/login"
+                  className=" text-[14px] text-white font-bold font-dmsans py-[16px] px-[28px] bg-primary inline-block"
+                >
+                  Proceed to Checkout
+                </Link>
+              )}
             </div>
           </div>
         </div>

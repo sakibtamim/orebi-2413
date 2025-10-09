@@ -266,20 +266,31 @@ const Navbar = () => {
                       </h3>
                       <ul className="flex justify-between">
                         <li className="">
-                          <Link
-                            to="/cart"
-                            className=" inline-block lg:text-[14px] text-[12px] text-primary font-bold font-dmsans lg:py-[16px] py-[12px] lg:px-[40px] px-[20px] border-[1px] border-border hover:bg-primary hover:text-white duration-300 ease-in-out"
-                          >
+                          <Link className=" inline-block lg:text-[14px] text-[12px] text-primary font-bold font-dmsans lg:py-[16px] py-[12px] lg:px-[40px] px-[20px] border-[1px] border-border hover:bg-primary hover:text-white duration-300 ease-in-out">
                             View Cart
                           </Link>
                         </li>
                         <li className="">
-                          <Link
-                            to="/checkout"
-                            className=" inline-block lg:text-[14px] text-[12px] text-primary font-bold font-dmsans lg:py-[16px] py-[12px] lg:px-[40px] px-[20px] border-[1px] border-border hover:bg-primary hover:text-white duration-300 ease-in-out"
-                          >
-                            Checkout
-                          </Link>
+                          {user ? (
+                            <Link
+                              to="/checkout"
+                              onClick={() =>
+                                toast.success("Proceed to Checkout", {
+                                  position: "top-center",
+                                })
+                              }
+                              className=" inline-block lg:text-[14px] text-[12px] text-primary font-bold font-dmsans lg:py-[16px] py-[12px] lg:px-[40px] px-[20px] border-[1px] border-border hover:bg-primary hover:text-white duration-300 ease-in-out"
+                            >
+                              Checkout
+                            </Link>
+                          ) : (
+                            <Link
+                              to="/login"
+                              className=" inline-block lg:text-[14px] text-[12px] text-primary font-bold font-dmsans lg:py-[16px] py-[12px] lg:px-[40px] px-[20px] border-[1px] border-border hover:bg-primary hover:text-white duration-300 ease-in-out"
+                            >
+                              Checkout
+                            </Link>
+                          )}
                         </li>
                       </ul>
                     </div>
