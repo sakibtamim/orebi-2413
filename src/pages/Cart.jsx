@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cartDetails.cartItems);
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
+  const [couponApplied, setCouponApplied] = useState(false);
   const subtotal = cartItems
     .reduce((index, item) => index + item.price * item.cartQuantity, 0)
     .toFixed(2);
@@ -32,13 +33,24 @@ const Cart = () => {
   let handleDiscount = (e) => {
     setCoupon(e.target.value);
   };
+
   let handleApply = () => {
     if (coupon === "fdr2413") {
+      setCouponApplied(true);
+      toast.success("Coupon applied successfully!", { position: "top-center" });
+    } else {
+      setCouponApplied(false);
+      setDiscount(0);
+      toast.error("Invalid coupon code!", { position: "top-center" });
+    }
+  };
+  useEffect(() => {
+    if (couponApplied && coupon === "fdr2413") {
       setDiscount((subtotal * 0.2).toFixed(2));
     } else {
       setDiscount(0);
     }
-  };
+  }, [subtotal, couponApplied, coupon]);
 
   return (
     <section className="lg:pt-[124px] pt-[40px] lg:pb-[140px] pb-[40px]">
@@ -84,7 +96,7 @@ const Cart = () => {
                 >
                   <div className="w-2/5 flex items-center">
                     <div
-                      className="pr-[40px] "
+                      className="pr-[40px] cursor-pointer"
                       onClick={() => handleRemove(item)}
                     >
                       <IoClose className="text-primary" />
