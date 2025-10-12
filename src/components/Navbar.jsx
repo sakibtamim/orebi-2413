@@ -174,7 +174,7 @@ const Navbar = () => {
                           {item.title}
                         </h4>
                         <p className="text-[16px] text-primary font-bold font-dmsans">
-                          {item.price}
+                          ${item.price}
                         </p>
                       </div>
                     </div>
